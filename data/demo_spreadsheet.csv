@@ -1,0 +1,30 @@
+Start_Branch_Here,"s ""What a great start to the dialog! We are so happy.""",,
+,"m ""Yep, happy as fuck.""","""{image = ""weird_out_emoji.png""}This is weird"" (Weird)
+
+""This is cool"" (Cool)
+
+""I want to talk to marlon"" (Talk_with_marlon_in_park)",
+Marlon_Text_Convo_Start,"s ""It's fine, bro.""",,
+,"m ""Shhhhh, you're talking too loud. speak quietly""",,
+,"k ""OK""",,
+,"m ""You're still shouting""",,
+,"k ""sorry""",,
+,"m ""thanks""",(Meteor),
+Cool,"m ""yes everything is fine""",(Meteor),
+,,,
+,,,
+,,,
+,,,
+Meteor,,,
+,,,
+,,,
+,,,
+,,,
+Talking In Park Marlon,,"(Weather)
+(Strange)
+(end)",
+Weather,,,
+,,,
+,,,
+,,,
+,end of convo,talking in park,
