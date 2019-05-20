@@ -87,7 +87,7 @@ label Marlontextconvo:
 label m_excited_text:
     k "Yeah, I'm awake and kicking it."
     m "perf, i wanna meet up"
-    m "m i gotta catch you up on the new trashy cryptids season {image=peach_emoji.png}"
+    m "m i gotta catch you up on the new trashy cryptids season {image=emoji/peach_emoji.png}"
 
     jump m_invite
 
@@ -98,7 +98,7 @@ label m_nervous:
 
     m "lol" 
 
-    m "i gotta catch you up on the new trashy cryptids season {image=peach_emoji.png}" #An emoji appears.
+    m "i gotta catch you up on the new trashy cryptids season {image=emoji/peach_emoji.png}" #An emoji appears.
 
     jump m_invite
 
@@ -114,35 +114,35 @@ label m_invite:
     m "lets meet up. park?"
 
     menu:
-        "Maybe {image=poop_emoji.png}":
+        "Maybe {image=emoji/poop_emoji.png}":
             jump m_poop
 
-        "Maybe {image=unicorn_emoji.png}":
+        "Maybe {image=emoji/unicorn_emoji.png}":
             jump m_unicorn
 
-        "Maybe {image=eggplant_emoji.png}":
+        "Maybe {image=emoji/eggplant_emoji.png}":
             jump m_eggplant
 
 label m_poop:
-    k "Maybe {image=poop_emoji.png}" #An emoji appears.
+    k "Maybe {image=emoji/poop_emoji.png}" #An emoji appears.
     m "lol rude"
-    m "meet me by the water fountain if ur there {image=basicsmile_emoji.png}" #An emoji appears.
+    m "meet me by the water fountain if ur there {image=emoji/basicsmile_emoji.png}" #An emoji appears.
 
     jump parkentrance
 
 label m_unicorn:
     $ unicorn_marlon = True
-    k "Maybe {image=unicorn_emoji.png}" #An emoji appears.
+    k "Maybe {image=emoji/unicorn_emoji.png}" #An emoji appears.
     #is this next comment real? I'd have him say:
         # m "dude that isn't funny"
-    m "you know i have a fear of unicorns {image=basicfrown_emoji.png}" #An emoji appears.
+    m "you know i have a fear of unicorns {image=emoji/basicfrown_emoji.png}" #An emoji appears.
         #m "whatever"
     m "meet me by the water fountain if ur there"
 
     jump parkentrance
 
 label m_eggplant:
-    k "Maybe {image=eggplant_emoji.png}"
+    k "Maybe {image=emoji/eggplant_emoji.png}"
     m "lollllll ur g8"
     m "missed u like a lot a lot"
     m "meet me by the water fountain if ur there"
@@ -156,11 +156,11 @@ label Spiketextconvo:
     s "oh you're right... well it's time to get up and greet the day! what are your plans?"
 
     menu:
-        "{image=basicsmile_emoji.png}Explore the town":
+        "{image=emoji/basicsmile_emoji.png}Explore the town":
             call s_smile_text
-        "{image=basicfrown_emoji.png}Probably sulk":
+        "{image=emoji/basicfrown_emoji.png}Probably sulk":
             call s_frown_text
-        "{image=eggplant_emoji.png}Spend time with you":
+        "{image=emoji/eggplant_emoji.png}Spend time with you":
             call s_eggplant1_text
 
     s "what do you say to a meet-up? i have some time before bball practice this afternoon"
@@ -172,11 +172,11 @@ label Spiketextconvo:
     s "so can i count on you?"
 
     menu:
-        "{image=thumbsup_emoji.png}See you there!":
+        "{image=emoji/thumbsup_emoji.png}See you there!":
             jump s_thumbsup_text
-        "{image=poop_emoji.png}If you insist":
+        "{image=emoji/poop_emoji.png}If you insist":
             jump s_poop_text
-        "{image=eggplant_emoji.png}Wouldn't miss it":
+        "{image=emoji/eggplant_emoji.png}Wouldn't miss it":
             jump s_eggplant2_text
 
 label s_smile_text:
@@ -203,7 +203,7 @@ label s_eggplant1_text:
     return
 
 label s_thumbsup_text:
-    k "{image=thumbsup_emoji.png}"
+    k "{image=emoji/thumbsup_emoji.png}"
     k "See you there!"
     s "can't wait! i'll be the attractive one with the wolf aesthetic."
 
@@ -253,10 +253,10 @@ label maze_marlon:
     "I need to say something to get Marlon talking."
 
     menu:
-        "{image=tv_emoji.png} Talk Trashy Cryptids":
+        "{image=emoji/tv_emoji.png} Talk Trashy Cryptids":
             $ marlon_friend_score += 5
             call maze_marlon_tv
-        "{image=unicorn_emoji.png} Talk about Unicorns":
+        "{image=emoji/unicorn_emoji.png} Talk about Unicorns":
             $ marlon_friend_score -= 5
             if unicorn_marlon == True:    
                 call maze_marlon_unicorn_again
