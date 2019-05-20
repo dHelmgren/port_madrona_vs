@@ -1,5 +1,10 @@
 # The script of the game goes in this file.
 
+# Define character affection stats
+default marlon_friend_score = 0
+default spike_friend_score = 10
+default unicorn_marlon = False
+
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
@@ -7,6 +12,8 @@ define k = Character(_("Kai"), color="#aa6f73")
 define m = Character(_("Marlon"), color="#7e6a7c")
 define s = Character(_("Spike"), color="#ac330f")
 define o = Character(_("Otis"), color="#f9d62e")
+
+#define pronouns
 default Her = "Her"
 default her = "her"
 default She = "She"
@@ -15,9 +22,6 @@ default Hers = "Hers"
 default hers = "hers"
 default Herself = "Herself"
 default herself = "herself"
-
-
-define e = Character("Eileen")
 
 label start:
     menu:
@@ -39,7 +43,7 @@ label start:
             $ She = "Ze"
             $ she = "ze"
             $ Herself = "Zirself"
-            $ herself = "Zirself"
+            $ herself = "zirself"
 
     "[She] went to the park. I went with [her]. [She] brought [her] frisbee. At least I think it was [hers]. [She] threw the frisbee to [herself]."
 
@@ -89,7 +93,7 @@ label m_excited_text:
 
 label m_nervous:
     k "No, I'm still sleeping"
-    m "how u texting if you're asleep?"
+    m "how u texting if yr asleep?"
     k "It's one of the world's greatest mysteries I guess"
 
     m "lol" 
@@ -127,8 +131,12 @@ label m_poop:
     jump parkentrance
 
 label m_unicorn:
+    $ unicorn_marlon = True
     k "Maybe {image=unicorn_emoji.png}" #An emoji appears.
+    #is this next comment real? I'd have him say:
+        # m "dude that isn't funny"
     m "you know i have a fear of unicorns {image=basicfrown_emoji.png}" #An emoji appears.
+        #m "whatever"
     m "meet me by the water fountain if ur there"
 
     jump parkentrance
@@ -218,7 +226,7 @@ label parkentrance:
     show bg park entrance
     #We see the entrance of the park with its three paths.
 
-    "Well, I made it. It's a beautiful day. The sky is grey, the bird are screaming, and the air smells like fish and chips."
+    "Well, I made it. It's a beautiful day. The sky is grey, the birds are screaming, and the air smells like fish and chips."
     "Hmm, both Marlon and Spike wanted to meet up. The water fountain is toward the left. That's where Marlon is. I think I see Spike over toward the right, by the bench."
     "I could always just explore on my own for a bit before meeting up with them."
 
@@ -235,4 +243,40 @@ label parkentrance:
 label Marlonparkconvo:
 
 label Spikeparkconvo:
-#Emily, this is for you!
+
+label maze_marlon:
+
+    show bg maze one
+
+    "Marlon lounges on my shoulder as we make our way into the maze, crossing his arms to drill in his discontent."
+    "The first few minutes pass in silence as I try to navigate without help."
+    "I need to say something to get Marlon talking."
+
+    menu:
+        "{image=tv_emoji.png} Talk Trashy Cryptids":
+            $ marlon_friend_score += 5
+            call maze_marlon_tv
+        "{image=unicorn_emoji.png} Talk about Unicorns":
+            $ marlon_friend_score -= 5
+            if unicorn_marlon == True:    
+                call maze_marlon_unicorn_again
+            else:
+                call maze_marlon_unicorn
+    
+    
+    "Marlon friend score: [marlon_friend_score]" 
+    jump end_of_maze
+
+label maze_marlon_tv:
+    m "OK SO LET'S TALK EILEEN!..."
+    "Marlon chitters happily about Eileen, who seems to be some sort of half-woman half-shark-ghost."
+    return
+label maze_marlon_unicorn:
+    m "Can we talk about LITERALLY anything else?"
+    return
+label maze_marlon_unicorn_again:
+    m "You need to stop it with the unicorn shit Kai, I told you."
+    return
+
+label end_of_maze:
+    "SPOOKY SHIT"
