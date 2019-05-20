@@ -49,10 +49,10 @@ label morning:
     #It is morning and we see a still image of Kai's bedroom. They ponder.
 
     "Feels like home away from home. Well except for the part where I don't remember what or where home is. Good morning, me!"
-    
+
     show bg phone
     #The phone is rendered over the image of Kai's bedroom. Navigate to two text messages.
-    
+
     k "Text messages already? {i}Guuuuuuh{/i}, it's too early to socialize."
     k "Marlon and Spike? What do they want?"
 
@@ -67,8 +67,8 @@ label Marlontextconvo:
 
     m "omg did u watch the new episode of Trashy Cryptids Trash America?"
     m "this new season is lit"
-    m "ester is my faveeeee" 
-   
+    m "ester is my faveeeee"
+
     menu:
         m "u up?"
 
@@ -91,7 +91,9 @@ label m_nervous:
     k "No, I'm still sleeping"
     m "how u texting if you're asleep?"
     k "It's one of the world's greatest mysteries I guess"
+
     m "lol" 
+
     m "i gotta catch you up on the new trashy cryptids season {image=peach_emoji.png}" #An emoji appears.
 
     jump m_invite
@@ -113,7 +115,7 @@ label m_invite:
 
         "Maybe {image=unicorn_emoji.png}":
             jump m_unicorn
-        
+
         "Maybe {image=eggplant_emoji.png}":
             jump m_eggplant
 
@@ -140,7 +142,76 @@ label m_eggplant:
     jump parkentrance
 
 label Spiketextconvo:
-#Emily, you can continue here.
+
+    s "hey kai!! good afternoon sleepyhead"
+    k "It's still morning, Spike..."
+    s "oh you're right... well it's time to get up and greet the day! what are your plans?"
+
+    menu:
+        "{image=basicsmile_emoji.png}Explore the town":
+            call s_smile_text
+        "{image=basicfrown_emoji.png}Probably sulk":
+            call s_frown_text
+        "{image=eggplant_emoji.png}Spend time with you":
+            call s_eggplant1_text
+
+    s "what do you say to a meet-up? i have some time before bball practice this afternoon"
+    k "...what did you have in mind?"
+    s "it's a surprise! i promise you won't regret it :) just come to the park in 20"
+    s "meet me by the park bench, but don't sit on it because invi might be there"
+    k "Invi?"
+    s "they're invisible, and they really hate it when people sit on them"
+    s "so can i count on you?"
+
+    menu:
+        "{image=thumbsup_emoji.png}See you there!":
+            jump s_thumbsup_text
+        "{image=poop_emoji.png}If you insist":
+            jump s_poop_text
+        "{image=eggplant_emoji.png}Wouldn't miss it":
+            jump s_eggplant2_text
+
+label s_smile_text:
+    k "I thought I'd try to explore the town some more and get back into the swing of things"
+    k "This is supposed to be my home, but I feel like I know nothing about it"
+    s "don't worry! we'll soon have you back to normal in no time!"
+    k "I hope you're right"
+
+    return
+
+label s_frown_text:
+    k "Oh, I thought I would just sulk in bed for a bit, then wander around in an aimless haze"
+    s "we can't have any of that! you've got to keep active, otherwise your muscles will all shrivel up from disuse~"
+    k "Thanks, Spike. That's a nice thought."
+
+    return
+
+label s_eggplant1_text:
+    k "I was actually hoping you had time to hang out today... interested?"
+    s "awoo definitely! it's been so long since we had fun like we used to ;)"
+    k "I thought you said I'd only been done a few days?"
+    s "like i said. so. long."
+
+    return
+
+label s_thumbsup_text:
+    k "{image=thumbsup_emoji.png}"
+    k "See you there!"
+    s "can't wait! i'll be the attractive one with the wolf aesthetic."
+
+    jump parkentrance
+
+label s_poop_text:
+    k "Fine, but I won't be happy about it"
+    s "you're no fun :( don't worry, i can fix that! see you soon!"
+
+    jump parkentrance
+
+label s_eggplant2_text:
+    k "I wouldn't miss it! As long as we don't get seriously injured or something"
+    s "just you wait... i'll take you to all sorts of places next ;)"
+
+    jump parkentrance
 
 label parkentrance:
 
@@ -148,7 +219,7 @@ label parkentrance:
     #We see the entrance of the park with its three paths.
 
     "Well, I made it. It's a beautiful day. The sky is grey, the bird are screaming, and the air smells like fish and chips."
-    "Hmm, both Marlon and Spike wanted to meet up. The water fountain is toward the left. That's where Marlon is. I think I see Spike over toward the right."
+    "Hmm, both Marlon and Spike wanted to meet up. The water fountain is toward the left. That's where Marlon is. I think I see Spike over toward the right, by the bench."
     "I could always just explore on my own for a bit before meeting up with them."
 
     menu:
@@ -157,7 +228,7 @@ label parkentrance:
 
         "Right towards Spike":
             jump Spikeparkconvo
-        
+
         "Enter park center":
             jump Otisparkconvo
 
