@@ -158,9 +158,9 @@ label Spiketextconvo:
     s "what do you say to a meet-up? i have some time before bball practice this afternoon"
     k "...what did you have in mind?"
     s "it's a surprise! i promise you won't regret it :) just come to the park in 20"
-    s "meet me by the park bench, but don't sit on it because invi might be there"
-    k "Invi?"
-    s "they're invisible, and they really hate it when people sit on them"
+    s "meet me by the park bench, but don't sit on it because my invisible friend might be there"
+    k "Invisible friend? Don't you mean {i}imaginary{/i} friend?"
+    s "nope! they're invisible, and they really hate it when people sit on them"
     s "so can i count on you?"
 
     menu:
@@ -249,13 +249,13 @@ label Spikeparkmenu:
 
     menu:
         "{image=basicsmile_emoji.png}You're a lumberjack?":
-            jump lumberjack
-        "{image=basicfrown_emoji.png}Um...the Weirdwood?":
-            jump wood
+            jump s_lumberjack
+        "{image=basicfrown_emoji.png}Um, the Weirdwood?":
+            jump s_wood
         "{image=thumbsup_emoji.png}Let's move on.":
-            jump moveon
+            jump s_moveon
 
-label lumberjack:
+label s_lumberjack:
     k "So, you're basically a lumberjack?"
     s "Awoo! You bet! I'm definitely a fan of that job title. Though we don't have anything nearly so sophisticated as a lumber or saw mill here in Port M."
     k "Where do you work, then?"
@@ -263,19 +263,19 @@ label lumberjack:
 
     menu:
         "{image=basicfrown_emoji.png}Tree spirits?! Wailing?!":
-            jump spirits
+            jump s_spirits
         "{image=eggplant_emoji.png}Don't you get lonely?":
-            jump lonely
+            jump s_lonely
         "{image=thumbsup_emoji.png}Let's move on.":
-            jump moveon
+            jump s_moveon
 
-label spirits:
+label s_spirits:
     k "Wait... what do you mean {i}tree spirits{/i}?"
     s "Don't worry! I'm only kidding... partially. Maybe you'll have to come visit me to find out!"
 
     jump Spikeparkmenu
 
-label lonely:
+label s_lonely:
     k "An isolated cabin? Don't you ever get lonely out there by yourself in the middle of the woods?"
     s "I haven't really thought about it. No one's ever asked me that, to be honest. I suppose it does get lonely, but my condition kind of necessitates it."
     k "Oh, you mean the whole werewolf... thing?"
@@ -283,7 +283,7 @@ label lonely:
 
     jump Spikeparkmenu
 
-label wood:
+label s_wood:
     k "What's the Weirdwood? I've seen it on my map, but no one's really told me much about it. Honestly, I'm not really enthused by that name."
     s "Oh! It's just our local haunted forest. Nothing to worry about."
     s "I'm sure you saw the outskirts of it on your way back into town. It's full of all sorts of creepies and crawlies, but if you're prepared and well-equipped, I'm sure you could handle it."
@@ -293,7 +293,7 @@ label wood:
 
     jump Spikeparkmenu
 
-label moveon:
+label s_moveon:
     k "Let's move on. Is this what you wanted to show me? It just looks like a regular old park to me."
     s "Maybe from the outside, but Otis just finished putting up the raddest hedge maze. Plus you can do a lot of people watching from the park bench here. I love to drop eaves any time of day."
     k "Tell me more about this hedge maze."
@@ -301,11 +301,11 @@ label moveon:
 
     menu:
         "{image=basicsmile_emoji.png}Let's go in the maze together!":
-            jump together_spike
+            jump s_together
         "{image=thumbsup_emoji.png}See you later!":
-            jump leave_spike
+            jump s_leave
 
-label together_spike:
+label s_together:
     k "I admit that I'm very intrigued. How about we try to navigate the maze together?"
     s "Awoo! Good idea! Who knows what kinds of goodies we could find inside?"
     k "Probably whatever's at the center?"
@@ -314,7 +314,7 @@ label together_spike:
 
     jump maze
 
-label leave_spike:
+label s_leave:
     k "Interesting... I'm going to walk around the park some more. See you later!"
     s "Not if I see you first!"
 
