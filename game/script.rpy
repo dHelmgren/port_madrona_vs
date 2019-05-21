@@ -222,6 +222,8 @@ label parkentrance:
     "Hmm, both Marlon and Spike wanted to meet up. The water fountain is toward the left. That's where Marlon is. I think I see Spike over toward the right, by the bench."
     "I could always just explore on my own for a bit before meeting up with them."
 
+label parkentrancemenu:
+#Leaving this here for now until we have the arrows and scene transitions in.
     menu:
         "Left towards Marlon":
             jump Marlonparkconvo
@@ -318,7 +320,7 @@ label s_leave:
     k "Interesting... I'm going to walk around the park some more. See you later!"
     s "Not if I see you first!"
 
-    jump maze
+    jump parkentrancemenu
 
 label maze:
 #Placeholder for maze stuff
