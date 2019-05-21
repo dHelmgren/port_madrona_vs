@@ -886,13 +886,28 @@ screen in_game_phone():
         xalign 0.5
         yalign 0.5
 
-        hotspot (997, 139, 403, 243) action Start('Spiketextconvo') #TL
+        hotspot (997, 139, 403, 243) action ShowMenu('phone_messages') #TL
         hotspot (1424, 139, 403, 240) action ShowMenu('save') #TR
         hotspot (997, 394, 404, 243) action ShowMenu('save') #ML
         hotspot (1424, 395, 404, 238) action ShowMenu('save') #MR
         hotspot (999, 650, 402, 239) action ShowMenu('save') #BL
         hotspot (1426, 650, 402, 244) action ShowMenu('save') #BR
         hotspot (1186, 928, 450, 108) action Return() #Back
+
+screen phone_messages():
+    tag menu
+
+    imagemap:
+        idle "game_phone/phone_messages_idle.PNG"
+        hover "game_phone/phone_messages_hover.PNG"
+        ground "game_phone/phone_messages_ground.PNG"
+
+        xalign 0.5
+        yalign 0.5
+
+        hotspot (999, 138, 831, 241) action Start('Spiketextconvo')
+        hotspot (997, 395, 831, 240) action Start('Marlontextconvo')
+        hotspot (1186, 930, 450, 108) action ShowMenu('in_game_phone')
 
 ## Phone Open Button ###########################################################
 ##
