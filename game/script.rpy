@@ -60,6 +60,20 @@ label morning:
     k "Text messages already? {i}Guuuuuuh{/i}, it's too early to socialize."
     k "Marlon and Spike? What do they want?"
 
+label open_phone:
+    k "Guess I need to take a look."
+    k "..."
+    k "If I reach over to my phone I can look at those juicy, juicy texts."
+    k "..."
+    k "..."
+    k "Just gotta reeeeeaaaaach with my *ahem* {i}hand{/i}, and {i}click{/i} I mean-"
+    k "{i}{b}GRAB{/b}{/i}"
+    k "my phone."
+    k "..."
+    k "..."
+    k "..."
+    jump open_phone
+
     menu:
         "Read Marlon's text":
             jump Marlontextconvo
@@ -259,11 +273,11 @@ label Spikeparkmenu:
     s "So... whaddaya think?"
 
     menu:
-        "{image=basicsmile_emoji.png}You're a lumberjack?":
+        "{image=emoji/basicsmile_emoji.png}You're a lumberjack?":
             jump s_lumberjack
-        "{image=basicfrown_emoji.png}Um, the Weirdwood?":
+        "{image=emoji/basicfrown_emoji.png}Um, the Weirdwood?":
             jump s_wood
-        "{image=thumbsup_emoji.png}Let's move on.":
+        "{image=emoji/thumbsup_emoji.png}Let's move on.":
             jump s_moveon
 
 label s_lumberjack:
@@ -273,11 +287,11 @@ label s_lumberjack:
     s "Oh, just a quiet, isolated cabin in the woods with only the wailing tree spirits for company."
 
     menu:
-        "{image=basicfrown_emoji.png}Tree spirits?! Wailing?!":
+        "{image=emoji/basicfrown_emoji.png}Tree spirits?! Wailing?!":
             jump s_spirits
-        "{image=eggplant_emoji.png}Don't you get lonely?":
+        "{image=emoji/eggplant_emoji.png}Don't you get lonely?":
             jump s_lonely
-        "{image=thumbsup_emoji.png}Let's move on.":
+        "{image=emoji/thumbsup_emoji.png}Let's move on.":
             jump s_moveon
 
 label s_spirits:
@@ -311,9 +325,9 @@ label s_moveon:
     s "Oh, I don't know much about it. Otis does something special for the festival every year. I'm sure he could tell you all about his plans, or Mayor Rain could fill you in."
 
     menu:
-        "{image=basicsmile_emoji.png}Let's go in the maze together!":
+        "{image=emoji/basicsmile_emoji.png}Let's go in the maze together!":
             jump s_together
-        "{image=thumbsup_emoji.png}See you later!":
+        "{image=emoji/thumbsup_emoji.png}See you later!":
             jump s_leave
 
 label s_together:
