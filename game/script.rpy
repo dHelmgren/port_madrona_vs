@@ -1,5 +1,10 @@
 # The script of the game goes in this file.
 
+# Define character affection stats
+default marlon_friend_score = 0
+default spike_friend_score = 10
+default unicorn_marlon = False
+
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
@@ -7,6 +12,8 @@ define k = Character(_("Kai"), color="#aa6f73")
 define m = Character(_("Marlon"), color="#7e6a7c")
 define s = Character(_("Spike"), color="#ac330f")
 define o = Character(_("Otis"), color="#f9d62e")
+
+#define pronouns
 default Her = "Her"
 default her = "her"
 default She = "She"
@@ -15,9 +22,6 @@ default Hers = "Hers"
 default hers = "hers"
 default Herself = "Herself"
 default herself = "herself"
-
-
-define e = Character("Eileen")
 
 label start:
     menu:
@@ -39,7 +43,7 @@ label start:
             $ She = "Ze"
             $ she = "ze"
             $ Herself = "Zirself"
-            $ herself = "Zirself"
+            $ herself = "zirself"
 
     "[She] went to the park. I went with [her]. [She] brought [her] frisbee. At least I think it was [hers]. [She] threw the frisbee to [herself]."
 
@@ -83,18 +87,18 @@ label Marlontextconvo:
 label m_excited_text:
     k "Yeah, I'm awake and kicking it."
     m "perf, i wanna meet up"
-    m "m i gotta catch you up on the new trashy cryptids season {image=peach_emoji.png}"
+    m "m i gotta catch you up on the new trashy cryptids season {image=emoji/peach_emoji.png}"
 
     jump m_invite
 
 label m_nervous:
     k "No, I'm still sleeping"
-    m "how u texting if you're asleep?"
+    m "how u texting if yr asleep?"
     k "It's one of the world's greatest mysteries I guess"
 
     m "lol" 
 
-    m "i gotta catch you up on the new trashy cryptids season {image=peach_emoji.png}" #An emoji appears.
+    m "i gotta catch you up on the new trashy cryptids season {image=emoji/peach_emoji.png}" #An emoji appears.
 
     jump m_invite
 
@@ -110,31 +114,35 @@ label m_invite:
     m "lets meet up. park?"
 
     menu:
-        "Maybe {image=poop_emoji.png}":
+        "Maybe {image=emoji/poop_emoji.png}":
             jump m_poop
 
-        "Maybe {image=unicorn_emoji.png}":
+        "Maybe {image=emoji/unicorn_emoji.png}":
             jump m_unicorn
 
-        "Maybe {image=eggplant_emoji.png}":
+        "Maybe {image=emoji/eggplant_emoji.png}":
             jump m_eggplant
 
 label m_poop:
-    k "Maybe {image=poop_emoji.png}" #An emoji appears.
+    k "Maybe {image=emoji/poop_emoji.png}" #An emoji appears.
     m "lol rude"
-    m "meet me by the water fountain if ur there {image=basicsmile_emoji.png}" #An emoji appears.
+    m "meet me by the water fountain if ur there {image=emoji/basicsmile_emoji.png}" #An emoji appears.
 
     jump parkentrance
 
 label m_unicorn:
-    k "Maybe {image=unicorn_emoji.png}" #An emoji appears.
-    m "you know i have a fear of unicorns {image=basicfrown_emoji.png}" #An emoji appears.
+    $ unicorn_marlon = True
+    k "Maybe {image=emoji/unicorn_emoji.png}" #An emoji appears.
+    #is this next comment real? I'd have him say:
+        # m "dude that isn't funny"
+    m "you know i have a fear of unicorns {image=emoji/basicfrown_emoji.png}" #An emoji appears.
+        #m "whatever"
     m "meet me by the water fountain if ur there"
 
     jump parkentrance
 
 label m_eggplant:
-    k "Maybe {image=eggplant_emoji.png}"
+    k "Maybe {image=emoji/eggplant_emoji.png}"
     m "lollllll ur g8"
     m "missed u like a lot a lot"
     m "meet me by the water fountain if ur there"
@@ -148,11 +156,11 @@ label Spiketextconvo:
     s "oh you're right... well it's time to get up and greet the day! what are your plans?"
 
     menu:
-        "{image=basicsmile_emoji.png}Explore the town":
+        "{image=emoji/basicsmile_emoji.png}Explore the town":
             call s_smile_text
-        "{image=basicfrown_emoji.png}Probably sulk":
+        "{image=emoji/basicfrown_emoji.png}Probably sulk":
             call s_frown_text
-        "{image=eggplant_emoji.png}Spend time with you":
+        "{image=emoji/eggplant_emoji.png}Spend time with you":
             call s_eggplant1_text
 
     s "what do you say to a meet-up? i have some time before bball practice this afternoon"
@@ -164,11 +172,11 @@ label Spiketextconvo:
     s "so can i count on you?"
 
     menu:
-        "{image=thumbsup_emoji.png}See you there!":
+        "{image=emoji/thumbsup_emoji.png}See you there!":
             jump s_thumbsup_text
-        "{image=poop_emoji.png}If you insist":
+        "{image=emoji/poop_emoji.png}If you insist":
             jump s_poop_text
-        "{image=eggplant_emoji.png}Wouldn't miss it":
+        "{image=emoji/eggplant_emoji.png}Wouldn't miss it":
             jump s_eggplant2_text
 
 label s_smile_text:
@@ -195,7 +203,7 @@ label s_eggplant1_text:
     return
 
 label s_thumbsup_text:
-    k "{image=thumbsup_emoji.png}"
+    k "{image=emoji/thumbsup_emoji.png}"
     k "See you there!"
     s "can't wait! i'll be the attractive one with the wolf aesthetic."
 
@@ -218,7 +226,7 @@ label parkentrance:
     show bg park entrance
     #We see the entrance of the park with its three paths.
 
-    "Well, I made it. It's a beautiful day. The sky is grey, the bird are screaming, and the air smells like fish and chips."
+    "Well, I made it. It's a beautiful day. The sky is grey, the birds are screaming, and the air smells like fish and chips."
     "Hmm, both Marlon and Spike wanted to meet up. The water fountain is toward the left. That's where Marlon is. I think I see Spike over toward the right, by the bench."
     "I could always just explore on my own for a bit before meeting up with them."
 
@@ -237,6 +245,7 @@ label parkentrancemenu:
 label Marlonparkconvo:
 
 label Spikeparkconvo:
+
     s "There [she] is! Hey, Kai, you made it!"
     k "Hey, Spike. Yeah I managed to find it by looking at the GPS on my phone."
     s "See? That's why I let my students use their phones during practice. Smartphones help develop hand-eye coordination."
@@ -324,3 +333,40 @@ label s_leave:
 
 label maze:
 #Placeholder for maze stuff
+
+label maze_marlon:
+
+    show bg maze one
+
+    "Marlon lounges on my shoulder as we make our way into the maze, crossing his arms to drill in his discontent."
+    "The first few minutes pass in silence as I try to navigate without help."
+    "I need to say something to get Marlon talking."
+
+    menu:
+        "{image=emoji/tv_emoji.png} Talk Trashy Cryptids":
+            $ marlon_friend_score += 5
+            call maze_marlon_tv
+        "{image=emoji/unicorn_emoji.png} Talk about Unicorns":
+            $ marlon_friend_score -= 5
+            if unicorn_marlon == True:    
+                call maze_marlon_unicorn_again
+            else:
+                call maze_marlon_unicorn
+    
+    
+    "Marlon friend score: [marlon_friend_score]" 
+    jump end_of_maze
+
+label maze_marlon_tv:
+    m "OK SO LET'S TALK EILEEN!..."
+    "Marlon chitters happily about Eileen, who seems to be some sort of half-woman half-shark-ghost."
+    return
+label maze_marlon_unicorn:
+    m "Can we talk about LITERALLY anything else?"
+    return
+label maze_marlon_unicorn_again:
+    m "You need to stop it with the unicorn shit Kai, I told you."
+    return
+
+label end_of_maze:
+    "SPOOKY SHIT"
