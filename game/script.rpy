@@ -166,9 +166,9 @@ label Spiketextconvo:
     s "what do you say to a meet-up? i have some time before bball practice this afternoon"
     k "...what did you have in mind?"
     s "it's a surprise! i promise you won't regret it :) just come to the park in 20"
-    s "meet me by the park bench, but don't sit on it because invi might be there"
-    k "Invi?"
-    s "they're invisible, and they really hate it when people sit on them"
+    s "meet me by the park bench, but don't sit on it because my invisible friend might be there"
+    k "Invisible friend? Don't you mean {i}imaginary{/i} friend?"
+    s "nope! they're invisible, and they really hate it when people sit on them"
     s "so can i count on you?"
 
     menu:
@@ -230,6 +230,8 @@ label parkentrance:
     "Hmm, both Marlon and Spike wanted to meet up. The water fountain is toward the left. That's where Marlon is. I think I see Spike over toward the right, by the bench."
     "I could always just explore on my own for a bit before meeting up with them."
 
+label parkentrancemenu:
+#Leaving this here for now until we have the arrows and scene transitions in.
     menu:
         "Left towards Marlon":
             jump Marlonparkconvo
@@ -243,6 +245,94 @@ label parkentrance:
 label Marlonparkconvo:
 
 label Spikeparkconvo:
+
+    s "There [she] is! Hey, Kai, you made it!"
+    k "Hey, Spike. Yeah I managed to find it by looking at the GPS on my phone."
+    s "See? That's why I let my students use their phones during practice. Smartphones help develop hand-eye coordination."
+    s "If kids can dribble down the court with one hand and send a text with the other, they're more skilled than I am!"
+    k "So you just coach basketball at the high school? Do you teach any other subjects?"
+    s "Nope! Just basketball! When I'm not coaching, you can find me in the Weirdwood. I chop down trees and sell quality, non-haunted logs to anyone who needs 'em!"
+
+    jump Spikeparkmenu
+
+label Spikeparkmenu:
+    s "So... whaddaya think?"
+
+    menu:
+        "{image=basicsmile_emoji.png}You're a lumberjack?":
+            jump s_lumberjack
+        "{image=basicfrown_emoji.png}Um, the Weirdwood?":
+            jump s_wood
+        "{image=thumbsup_emoji.png}Let's move on.":
+            jump s_moveon
+
+label s_lumberjack:
+    k "So, you're basically a lumberjack?"
+    s "Awoo! You bet! I'm definitely a fan of that job title. Though we don't have anything nearly so sophisticated as a lumber or saw mill here in Port M."
+    k "Where do you work, then?"
+    s "Oh, just a quiet, isolated cabin in the woods with only the wailing tree spirits for company."
+
+    menu:
+        "{image=basicfrown_emoji.png}Tree spirits?! Wailing?!":
+            jump s_spirits
+        "{image=eggplant_emoji.png}Don't you get lonely?":
+            jump s_lonely
+        "{image=thumbsup_emoji.png}Let's move on.":
+            jump s_moveon
+
+label s_spirits:
+    k "Wait... what do you mean {i}tree spirits{/i}?"
+    s "Don't worry! I'm only kidding... partially. Maybe you'll have to come visit me to find out!"
+
+    jump Spikeparkmenu
+
+label s_lonely:
+    k "An isolated cabin? Don't you ever get lonely out there by yourself in the middle of the woods?"
+    s "I haven't really thought about it. No one's ever asked me that, to be honest. I suppose it does get lonely, but my condition kind of necessitates it."
+    k "Oh, you mean the whole werewolf... thing?"
+    s "Hahaha. Yeah, that old chestnut. It's not a big deal to me, but having one day out of the month when you can't entertain buds in your folksy cabin in the woods makes it kind of difficult to host extended sleep-overs."
+
+    jump Spikeparkmenu
+
+label s_wood:
+    k "What's the Weirdwood? I've seen it on my map, but no one's really told me much about it. Honestly, I'm not really enthused by that name."
+    s "Oh! It's just our local haunted forest. Nothing to worry about."
+    s "I'm sure you saw the outskirts of it on your way back into town. It's full of all sorts of creepies and crawlies, but if you're prepared and well-equipped, I'm sure you could handle it."
+    k "Prepared how?"
+    s "You could always do what I do and pack a loaded crossbow. Gets you by just as well as a firearm without alerting the real scary forest denizens."
+    s "Couple that with some of the Seer's antivenom and/or nightvision goggles, and you're good to go a-huntin' for those premium logs."
+
+    jump Spikeparkmenu
+
+label s_moveon:
+    k "Let's move on. Is this what you wanted to show me? It just looks like a regular old park to me."
+    s "Maybe from the outside, but Otis just finished putting up the raddest hedge maze. Plus you can do a lot of people watching from the park bench here. I love to drop eaves any time of day."
+    k "Tell me more about this hedge maze."
+    s "Oh, I don't know much about it. Otis does something special for the festival every year. I'm sure he could tell you all about his plans, or Mayor Rain could fill you in."
+
+    menu:
+        "{image=basicsmile_emoji.png}Let's go in the maze together!":
+            jump s_together
+        "{image=thumbsup_emoji.png}See you later!":
+            jump s_leave
+
+label s_together:
+    k "I admit that I'm very intrigued. How about we try to navigate the maze together?"
+    s "Awoo! Good idea! Who knows what kinds of goodies we could find inside?"
+    k "Probably whatever's at the center?"
+    s "Hahaha. Wouldn't you love to find out, though? I can just smell the adventure."
+    s "Literally. Because of my wolfy nose senses. I can literally smell the adventure."
+
+    jump maze
+
+label s_leave:
+    k "Interesting... I'm going to walk around the park some more. See you later!"
+    s "Not if I see you first!"
+
+    jump parkentrancemenu
+
+label maze:
+#Placeholder for maze stuff
 
 label maze_marlon:
 
