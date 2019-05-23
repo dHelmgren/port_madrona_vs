@@ -151,9 +151,10 @@ label m_eggplant:
 
 label Spiketextconvo:
 
-    s "hey kai!! good afternoon sleepyhead"
-    k "It's still morning, Spike..."
-    s "oh you're right... well it's time to get up and greet the day! what are your plans?"
+    s "hey kai!! wake up sleepyhead~*~"
+    k "It's still early, Spike..."
+    s "time to greet the day ~(^.^~)" 
+    s "what are your plans?"
 
     menu:
         "{image=emoji/basicsmile_emoji.png}Explore the town":
@@ -163,12 +164,13 @@ label Spiketextconvo:
         "{image=emoji/eggplant_emoji.png}Spend time with you":
             call s_eggplant1_text
 
-    s "what do you say to a meet-up? i have some time before bball practice this afternoon"
+    s "wanna meet up? i have time before bball practice this afternoon"
     k "...what did you have in mind?"
-    s "it's a surprise! i promise you won't regret it :) just come to the park in 20"
-    s "meet me by the park bench, but don't sit on it because my invisible friend might be there"
+    s "it's a surprise! you won't regret it :D"
+    s "meet me by the park bench in 20" 
+    s "but don't sit on it :p my invisible friend might be there"
     k "Invisible friend? Don't you mean {i}imaginary{/i} friend?"
-    s "nope! they're invisible, and they really hate it when people sit on them"
+    s "nope they're invisible <(^o^)> they hate it when people sit on them"
     s "so can i count on you?"
 
     menu:
@@ -182,21 +184,23 @@ label Spiketextconvo:
 label s_smile_text:
     k "I thought I'd try to explore the town some more and get back into the swing of things"
     k "This is supposed to be my home, but I feel like I know nothing about it"
-    s "don't worry! we'll soon have you back to normal in no time!"
+    s "don't worry! we'll have you right as rain in no time~"
     k "I hope you're right"
 
     return
 
 label s_frown_text:
     k "Oh, I thought I would just sulk in bed for a bit, then wander around in an aimless haze"
-    s "we can't have any of that! you've got to keep active, otherwise your muscles will all shrivel up from disuse~"
+    s "we can't have any of that! you've got to keep active or your muscles will all shrivel up from disuse (o_O)"
     k "Thanks, Spike. That's a nice thought."
 
     return
 
 label s_eggplant1_text:
     k "I was actually hoping you had time to hang out today... interested?"
-    s "awoo definitely! it's been so long since we had fun like we used to ;)"
+    s "awoo definitely!!" 
+    s "it's been so long since we had fun like we used to"
+    s "\(^o^)/\(^_^)"
     k "I thought you said I'd only been done a few days?"
     s "like i said. so. long."
 
@@ -205,19 +209,22 @@ label s_eggplant1_text:
 label s_thumbsup_text:
     k "{image=emoji/thumbsup_emoji.png}"
     k "See you there!"
-    s "can't wait! i'll be the attractive one with the wolf aesthetic."
+    s "can't wait! i'll be the attractive one with the wolf aesthetic (=^o^=)"
 
     jump parkentrance
 
 label s_poop_text:
     k "Fine, but I won't be happy about it"
-    s "you're no fun :( don't worry, i can fix that! see you soon!"
+    s "you're no fun :( don't worry, i can fix that!" 
+    s "see you soon~*~"
 
     jump parkentrance
 
 label s_eggplant2_text:
-    k "I wouldn't miss it! As long as we don't get seriously injured or something"
-    s "just you wait... i'll take you to all sorts of places next ;)"
+    k "I wouldn't miss it!" 
+    k "As long as we don't get seriously injured or something"
+    s "just you wait..." 
+    s "i'll take you to all sorts of places next ;)"
 
     jump parkentrance
 
@@ -248,8 +255,11 @@ label Spikeparkconvo:
 
     s "There [she] is! Hey, Kai, you made it!"
     k "Hey, Spike. Yeah I managed to find it by looking at the GPS on my phone."
-    s "See? That's why I let my students use their phones during practice. Smartphones help develop hand-eye coordination."
-    s "If kids can dribble down the court with one hand and send a text with the other, they're more skilled than I am!"
+    s "See? That's why I let my pups use their phones during practice-"
+    k "Wait, your 'pups'?"
+    s "Oh, sorry! That's what I call my students."
+    s "But it's true! Smartphones help develop hand-eye coordination." 
+    s "If my pups can dribble down the court with one hand and send a text with the other, they're more skilled than I am! Maybe they should be the pack alpha instead of me!"
     k "So you just coach basketball at the high school? Do you teach any other subjects?"
     s "Nope! Just basketball! When I'm not coaching, you can find me in the Weirdwood. I chop down trees and sell quality, non-haunted logs to anyone who needs 'em!"
 
@@ -299,8 +309,8 @@ label s_wood:
     s "Oh! It's just our local haunted forest. Nothing to worry about."
     s "I'm sure you saw the outskirts of it on your way back into town. It's full of all sorts of creepies and crawlies, but if you're prepared and well-equipped, I'm sure you could handle it."
     k "Prepared how?"
-    s "You could always do what I do and pack a loaded crossbow. Gets you by just as well as a firearm without alerting the real scary forest denizens."
-    s "Couple that with some of the Seer's antivenom and/or nightvision goggles, and you're good to go a-huntin' for those premium logs."
+    s "You could always do what I do and pack a loaded crossbow. Gets you by just as well as a firearm does without alerting the real scary forest denizens."
+    s "Couple that with some of the Seer's antivenom and/or nightvision goggles, and you're good to go a-huntin' for premium wood."
 
     jump Spikeparkmenu
 
