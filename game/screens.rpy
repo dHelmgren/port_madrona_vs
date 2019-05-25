@@ -878,6 +878,8 @@ style slider_vbox:
 screen in_game_phone():
     tag menu
 
+    zorder 90
+
     imagemap:
         idle "game_phone/phone_idle.PNG"
         hover "game_phone/phone_hover.PNG"
@@ -897,6 +899,8 @@ screen in_game_phone():
 screen phone_messages():
     tag menu
 
+    zorder 90
+
     imagemap:
         idle "game_phone/phone_messages_idle.PNG"
         hover "game_phone/phone_messages_hover.PNG"
@@ -915,6 +919,7 @@ screen phone_messages():
 
 screen phone_pop_but():
     tag menu
+    zorder 85
 
     imagemap:
         idle "menus/phone_on_idle.png"
