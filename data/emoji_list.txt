@@ -4,11 +4,9 @@ unicorn_emoji.png
 eggplant_emoji.png
 basicsmile_emoji.png
 basicfrown_emoji.png
-eggplant_emoji.png
 thumbsup_emoji.png
 wolf_emoji.png
 sad_emoji.png
-tv_emoji.png
 hearteyes_emoji.png
 mad_emoji.png
 wink_emoji.png
@@ -16,3 +14,5 @@ heart_emoji.png
 eyeroll_emoji.png
 sweat_emoji.png
 laugh_emoji.png
+opensmile_emoji.png
+tree_emoji.png
