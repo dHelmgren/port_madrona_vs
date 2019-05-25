@@ -60,6 +60,20 @@ label morning:
     k "Text messages already? {i}Guuuuuuh{/i}, it's too early to socialize."
     k "Marlon and Spike? What do they want?"
 
+label open_phone:
+    k "Guess I need to take a look."
+    k "..."
+    k "If I reach over to my phone I can look at those juicy, juicy texts."
+    k "..."
+    k "..."
+    k "Just gotta reeeeeaaaaach with my *ahem* {i}hand{/i}, and {i}click{/i} I mean-"
+    k "{i}{b}GRAB{/b}{/i}"
+    k "my phone."
+    k "..."
+    k "..."
+    k "..."
+    jump open_phone
+
     menu:
         "Read Marlon's text":
             jump Marlontextconvo
@@ -267,6 +281,7 @@ label Spikeparkmenu:
     s "So... whaddaya think?"
 
     menu:
+
         "{image=emoji/tree_emoji.png} You're a lumberjack?":
             jump s_tree_park
         "{image=emoji/basicfrown_emoji.png} Um, the Weirdwood?":
@@ -275,12 +290,14 @@ label Spikeparkmenu:
             jump s_thumbsup_park
 
 label s_tree_park:
+
     k "So, you're basically a lumberjack?"
     s "Awoo! You bet! I'm definitely a fan of that job title. Though we don't have anything nearly so sophisticated as a lumber or saw mill here in Port M."
     k "Where do you work, then?"
     s "Oh, just a quiet, isolated cabin in the woods with only the wailing tree spirits for company."
 
     menu:
+
         "{image=emoji/sad_emoji.png} Tree spirits?! Wailing?!":
             jump s_sad_park
         "{image=emoji/eggplant_emoji.png} Don't you get lonely?":
@@ -289,6 +306,7 @@ label s_tree_park:
             jump s_thumbsup_park
 
 label s_sad_park:
+
     k "Wait... what do you mean {i}tree spirits{/i}?"
     s "Don't worry! I'm only kidding... partially. Maybe you'll have to come visit me to find out!"
 
@@ -319,6 +337,7 @@ label s_thumbsup_park:
     s "Oh, I don't know much about it. Otis does something special for the festival every year. I'm sure he could tell you all about his plans, or Mayor Rain could fill you in."
 
     menu:
+
         "{image=emoji/basicsmile_emoji.png} Let's go in the maze together!":
             jump s_opensmile_park
         "{image=emoji/thumbsup_emoji.png} See you later!":
