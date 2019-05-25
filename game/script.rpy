@@ -206,7 +206,7 @@ label s_eggplant1_text:
 label s_thumbsup_text:
     k "{image=emoji/thumbsup_emoji.png}"
     k "See you there!"
-    s "can't wait! i'll be the attractive one with the wolf aesthetic (=^o^=)"
+    s "can't wait! i'll be the attractive {image=emoji/wolf_emoji.png} lookin one"
 
     jump parkentrance
 
@@ -385,9 +385,9 @@ label Spikemazeconvo:
     "Maybe her wolf senses have picked up something. Should I ask her about it or try another tactic?"
 
     menu: #1/7
-        "{image=emoji/thumbsup_emoji.png} Ask her":
+        "{image=emoji/wolf_emoji.png} Ask about wolf senses":
             #GOOD response
-            call s_thumbsup_maze
+            call s_wolf_maze
         "{image=emoji/poop_emoji.png} Find your own way":
             #BAD response
             call s_poop_maze
@@ -402,7 +402,7 @@ label Spikemazeconvo:
     menu: #2/7
         "{image=emoji/thumbsup_emoji.png} Agree":
             #GOOD response
-            call s_thumbsup2_maze
+            call s_thumbsup_maze
         "{image=emoji/basicfrown_emoji.png} Disagree":
             #BAD response
             call s_basicfrown_maze
@@ -432,9 +432,9 @@ label Spikemazeconvo:
         "{image=emoji/wink_emoji.png} Whatever tree you like":
             #GOOD response
             call s_wink_maze
-        "{image=emoji/basicsmile_emoji.png} Madrona tree":
+        "{image=emoji/tree_emoji.png} Madrona tree":
             #GOOD response
-            call s_basicsmile3_maze
+            call s_tree2_maze
 
     "She's starting to freak out a little. I should say something."
 
@@ -454,7 +454,7 @@ label Spikemazeconvo:
     menu: #6/7
         "{image=emoji/thumbsup_emoji.png} Agree":
             #GOOD response
-            call s_thumbsup3_maze
+            call s_thumbsup2_maze
         "{image=emoji/basicfrown_emoji.png} Disagree":
             #BAD response
             call s_basicfrown2_maze
@@ -466,9 +466,9 @@ label Spikemazeconvo:
     s "Do you trust me?"
 
     menu: #7/7
-        "{image=emoji/opensmile_emoji.png} Yes":
+        "{image=emoji/thumbsup_emoji.png} Yes":
             #GOOD response
-            call s_thumbsup4_maze
+            call s_thumbsup3_maze
         "{image=emoji/basicfrown_emoji.png} No":
             #BAD response
             call s_basicfrown3_maze
@@ -479,9 +479,9 @@ label Spikemazeconvo:
     "Spike friend score: [spike_friend_score]"
     jump end_of_maze
 
-label s_thumbsup_maze:
+label s_wolf_maze:
     k "Smell anything?"
-    s "Oh, yes! This way!"
+    s "Awoo, yes! This way!"
     "Spike explains that she can smell something in the center of the maze. She takes my hand and leads me down a series of paths, tugging me along with frenetic certainty."
     "We proceed without trouble, making good progress, until we reach a new crossroads, and Spike stops to sniff again."
     s "I think someone got lost in here recently. They stopped to eat a snack—a tuna sandwich—but they didn't finish it. They must have discarded the remains somewhere nearby. The rotten fish smell is blocking my nose."
@@ -498,7 +498,7 @@ label s_basicsmile_maze:
     "I bring up basketball to her, and she instantly perks up, telling me all about the sport and her 'pups.'"
     return
 
-label s_thumbsup2_maze:
+label s_thumbsup_maze:
     "I agree to sit on Spike's shoulders, and she hoists me up to see above the hedges. I get a good enough view of the layout, and we continue on our way—a bit better informed than we were before."
     return
 
@@ -540,7 +540,7 @@ label s_wink_maze:
     "We laugh together, but then Spike stops, her nostrils widening. She says she's picked up a scent: the scent of blood."
     return
 
-label s_basicsmile3_maze:
+label s_tree2_maze:
     "I instinctively mention the Madrona tree, and Spike smiles."
     "She talks a little bit about the town's namesake before she stops, her nostrils widening. She says she's picked up a scent: the scent of blood."
     return
@@ -560,7 +560,7 @@ label s_sweat_maze:
     "I fixate on the blood, and Spike manages to calm down as she tells me the details, a determined look settling on her face."
     return
 
-label s_thumbsup3_maze:
+label s_thumbsup2_maze:
     "I let Spike take the lead, and she walks on, presumably in the direction of this blood."
     s "Thank you for trusting my nose."
     return
@@ -576,7 +576,7 @@ label s_eyeroll2_maze:
     "I feel like one of her disobedient pups, but she looks more determined than ever as she pulls me along, our pace slowed somewhat due to my resistance."
     return
 
-label s_thumbsup4_maze:
+label s_thumbsup3_maze:
     "Spike beams back at me, and we turn the corner together, toward the blood and (hopefully) the center of the maze."
     return
 
