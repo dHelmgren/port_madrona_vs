@@ -4,6 +4,7 @@
 default marlon_friend_score = 0
 default spike_friend_score = 10
 default unicorn_marlon = False
+default maze_progress = 0
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
@@ -172,11 +173,11 @@ label Spiketextconvo:
 
     menu:
         "{image=emoji/basicsmile_emoji.png} Explore the town":
-            call s_basicsmile_text
-        "{image=emoji/basicfrown_emoji.png} Probably sulk":
-            call s_basicfrown_text
-        "{image=emoji/eggplant_emoji.png} Spend time with you":
-            call s_eggplant1_text
+            call s_explore_text
+        "{image=emoji/sadfrown_emoji.png} Probably sulk":
+            call s_sulk_text
+        "{image=emoji/wink_emoji.png} Spend time with you":
+            call s_wink_text
 
     s "wanna meet up? i have time before bball practice this afternoon"
     k "...what did you have in mind?"
@@ -190,25 +191,25 @@ label Spiketextconvo:
     menu:
         "{image=emoji/thumbsup_emoji.png} See you there!":
             jump s_thumbsup_text
-        "{image=emoji/poop_emoji.png} If you insist":
-            jump s_poop_text
-        "{image=emoji/eggplant_emoji.png} Wouldn't miss it":
-            jump s_eggplant2_text
+        "{image=emoji/mad_emoji.png} If you insist":
+            jump s_mad_text
+        "{image=emoji/opensmile_emoji.png} Wouldn't miss it":
+            jump s_opensmile_text
 
-label s_basicsmile_text:
+label s_explore_text:
     k "I thought I'd try to explore the town some more and get back into the swing of things"
     k "This is supposed to be my home, but I feel like I know nothing about it"
     s "don't worry! we'll have you right as rain in no time~"
     k "I hope you're right"
     return
 
-label s_basicfrown_text:
+label s_sulk_text:
     k "Oh, I thought I would just sulk in bed for a bit, then wander around in an aimless haze"
     s "we can't have any of that! you've got to keep active or your muscles will all shrivel up from disuse (o_O)"
     k "Thanks, Spike. That's a nice thought."
     return
 
-label s_eggplant1_text:
+label s_wink_text:
     k "I was actually hoping you had time to hang out today... interested?"
     s "awoo definitely!!"
     s "it's been so long since we had fun like we used to"
@@ -224,14 +225,14 @@ label s_thumbsup_text:
 
     jump parkentrance
 
-label s_poop_text:
+label s_mad_text:
     k "Fine, but I won't be happy about it"
     s "you're no fun :( don't worry, i can fix that!"
     s "see you soon~*~"
 
     jump parkentrance
 
-label s_eggplant2_text:
+label s_opensmile_text:
     k "I wouldn't miss it!"
     k "As long as we don't get seriously injured or something"
     s "just you wait..."
@@ -283,13 +284,13 @@ label Spikeparkmenu:
     menu:
 
         "{image=emoji/tree_emoji.png} You're a lumberjack?":
-            jump s_tree_park
+            jump s_lumberjack_park
         "{image=emoji/basicfrown_emoji.png} Um, the Weirdwood?":
-            jump s_poop_park
+            jump s_weirdwood_park
         "{image=emoji/thumbsup_emoji.png} Let's move on.":
-            jump s_thumbsup_park
+            jump s_moveon_park
 
-label s_tree_park:
+label s_lumberjack_park:
 
     k "So, you're basically a lumberjack?"
     s "Awoo! You bet! I'm definitely a fan of that job title. Though we don't have anything nearly so sophisticated as a lumber or saw mill here in Port M."
@@ -298,21 +299,21 @@ label s_tree_park:
 
     menu:
 
-        "{image=emoji/sad_emoji.png} Tree spirits?! Wailing?!":
-            jump s_sad_park
-        "{image=emoji/eggplant_emoji.png} Don't you get lonely?":
-            jump s_eggplant_park
+        "{image=emoji/eyeroll_emoji.png} Tree spirits?! Wailing?!":
+            jump s_spirits_park
+        "{image=emoji/sadfrown_emoji.png} Don't you get lonely?":
+            jump s_lonely_park
         "{image=emoji/thumbsup_emoji.png} Let's move on.":
-            jump s_thumbsup_park
+            jump s_moveon_park
 
-label s_sad_park:
+label s_spirits_park:
 
     k "Wait... what do you mean {i}tree spirits{/i}?"
     s "Don't worry! I'm only kidding... partially. Maybe you'll have to come visit me to find out!"
 
     jump Spikeparkmenu
 
-label s_eggplant_park:
+label s_lonely_park:
     k "An isolated cabin? Don't you ever get lonely out there by yourself in the middle of the woods?"
     s "I haven't really thought about it. No one's ever asked me that, to be honest. I suppose it does get lonely, but my condition kind of necessitates it."
     k "Oh, you mean the whole werewolf... thing?"
@@ -320,7 +321,7 @@ label s_eggplant_park:
 
     jump Spikeparkmenu
 
-label s_poop_park:
+label s_weirdwood_park:
     k "What's the Weirdwood? I've seen it on my map, but no one's really told me much about it. Honestly, I'm not really enthused by that name."
     s "Oh! It's just our local haunted forest. Nothing to worry about."
     s "I'm sure you saw the outskirts of it on your way back into town. It's full of all sorts of creepies and crawlies, but if you're prepared and well-equipped, I'm sure you could handle it."
@@ -330,7 +331,7 @@ label s_poop_park:
 
     jump Spikeparkmenu
 
-label s_thumbsup_park:
+label s_moveon_park:
     k "Let's move on. Is this what you wanted to show me? It just looks like a regular old park to me."
     s "Maybe from the outside, but Otis just finished putting up the raddest hedge maze. Plus you can do a lot of people watching from the park bench here. I love to drop eaves any time of day."
     k "Tell me more about this hedge maze."
@@ -338,12 +339,12 @@ label s_thumbsup_park:
 
     menu:
 
-        "{image=emoji/basicsmile_emoji.png} Let's go in the maze together!":
-            jump s_opensmile_park
+        "{image=emoji/opensmile_emoji.png} Let's go in the maze together!":
+            jump s_together_park
         "{image=emoji/thumbsup_emoji.png} See you later!":
-            jump s_thumbsup2_park
+            jump s_leave_park
 
-label s_opensmile_park:
+label s_together_park:
     k "I admit that I'm very intrigued. How about we try to navigate the maze together?"
     s "Awoo! Good idea! Who knows what kinds of goodies we could find inside?"
     k "Probably whatever's at the center?"
@@ -352,7 +353,7 @@ label s_opensmile_park:
 
     jump Spikemazeconvo
 
-label s_thumbsup2_park:
+label s_leave_park:
     k "Interesting... I'm going to walk around the park some more. See you later!"
     s "Not if I see you first!"
 
@@ -412,7 +413,7 @@ label Spikemazeconvo:
             call s_poop_maze
         "{image=emoji/basicsmile_emoji.png} Talk about basketball":
             #GOOD response
-            call s_basicsmile_maze
+            call s_basketball_maze
 
     s "In the pack, I teach my pups to support each other, lift up their teammates, in order to succeed. Maybe we should follow my own advice—literally!"
     "She goes on to present an unnecessarily complex idea that pretty much boils down to her lifting me on her shoulders to see over the hedges."
@@ -421,20 +422,20 @@ label Spikemazeconvo:
     menu: #2/7
         "{image=emoji/thumbsup_emoji.png} Agree":
             #GOOD response
-            call s_thumbsup_maze
+            call s_agree_maze
         "{image=emoji/basicfrown_emoji.png} Disagree":
             #BAD response
-            call s_basicfrown_maze
+            call s_disagree_maze
         "{image=emoji/basicsmile_emoji.png} Talk about teenagers":
             #GOOD response
-            call s_basicsmile2_maze
+            call s_teenagers_maze
 
     "Spike starts talking about the hedges themselves, monologuing about the types of trees and shrubbery typically used in the construction. There's a pause in her speech."
 
     menu: #3/7
         "{image=emoji/hearteyes_emoji.png} Listen intently":
             #GOOD response
-            call s_hearteyes_maze
+            call s_listen_maze
         "{image=emoji/tree_emoji.png} Talk about trees":
             #GOOD response
             call s_tree_maze
@@ -447,39 +448,39 @@ label Spikemazeconvo:
     menu: #4/7
         "{image=emoji/mad_emoji.png} No":
             #BAD response
-            call s_mad_maze
+            call s_no_maze
         "{image=emoji/wink_emoji.png} Whatever tree you like":
             #GOOD response
             call s_wink_maze
         "{image=emoji/tree_emoji.png} Madrona tree":
             #GOOD response
-            call s_tree2_maze
+            call s_madrona_maze
 
     "She's starting to freak out a little. I should say something."
 
     menu: #5/7
         "{image=emoji/heart_emoji.png} Offer support":
             #GOOD response
-            call s_heart_maze
-        "{image=emoji/eyeroll_emoji.png} Demand focus":
+            call s_support_maze
+        "{image=emoji/tableflip_emoji.png} Demand focus":
             #BAD response
-            call s_eyeroll_maze
-        "{image=emoji/sweat_emoji.png} Express concern":
+            call s_demand_maze
+        "{image=emoji/basicfrown_emoji.png} Express concern":
             #GOOD response
-            call s_sweat_maze
+            call s_concern_maze
 
     s "I think... it's coming from the center of the maze. Let's follow it."
 
     menu: #6/7
         "{image=emoji/thumbsup_emoji.png} Agree":
             #GOOD response
-            call s_thumbsup2_maze
+            call s_agree2_maze
         "{image=emoji/basicfrown_emoji.png} Disagree":
             #BAD response
-            call s_basicfrown2_maze
-        "{image=emoji/eyeroll_emoji.png} Flee":
+            call s_disagree2_maze
+        "{image=emoji/poop_emoji.png} Flee":
             #BAD response
-            call s_eyeroll2_maze
+            call s_flee_maze
 
     "After a while, Spike says that we're getting closer. She explains that whatever we find at the center could be bad, very bad, but she'll protect me."
     s "Do you trust me?"
@@ -487,16 +488,17 @@ label Spikemazeconvo:
     menu: #7/7
         "{image=emoji/thumbsup_emoji.png} Yes":
             #GOOD response
-            call s_thumbsup3_maze
+            call s_yes_maze
         "{image=emoji/basicfrown_emoji.png} No":
             #BAD response
-            call s_basicfrown3_maze
+            call s_no2_maze
         "{image=emoji/laugh_emoji.png} Laugh it off":
             #GOOD response
             call s_laugh_maze
 
     "Spike friend score: [spike_friend_score]"
-    jump end_of_maze
+    "Suddenly, a man appears before us, as though he just phased through the hedge: a bird-like man, with feathers along his face and arms."
+    jump Otis_Maze_Convo
 
 label s_wolf_maze:
     k "Smell anything?"
@@ -512,27 +514,27 @@ label s_poop_maze:
     "We come to a dead end. This was probably the wrong way to go... we backtrack until we reach an entirely new crossroads."
     return
 
-label s_basicsmile_maze:
+label s_basketball_maze:
     "Perhaps she'd rather chat about basketball than her olfactory system..."
     "I bring up basketball to her, and she instantly perks up, telling me all about the sport and her 'pups.'"
     return
 
-label s_thumbsup_maze:
+label s_agree_maze:
     "I agree to sit on Spike's shoulders, and she hoists me up to see above the hedges. I get a good enough view of the layout, and we continue on our way—a bit better informed than we were before."
     return
 
-label s_basicfrown_maze:
+label s_disagree_maze:
     "I tell Spike that I'm not really interested in being boosted up on your shoulders like a child, and she deflates a little. That was probably the wrong thing to say..."
     "As we continue through the maze, she seems a bit downcast. We end up moving a bit slower than we were before, not really making progress."
     return
 
-label s_basicsmile2_maze:
+label s_teenagers_maze:
     "Instead of taking a stand either way, I ask Spike more questions about her 'pack' and she is more than happy to give details. She really seems to love those kids..."
     "But now it seems like she's totally forgotten her plan, and we still have to get through this maze."
     "She's in a good mood, though, and before we know it we appear to have made progress."
     return
 
-label s_hearteyes_maze:
+label s_listen_maze:
     "Spike goes on to compare the merits of the yew tree versus the boxwood hedge, and I let her ramble uninterrupted."
     "Our course through the maze runs smoothly."
     return
@@ -548,7 +550,7 @@ label s_unicorn_maze:
     "Spike's enthusiasm dies out, and it distracts her from our course in the maze. She isn't entirely done with the subject of trees, though."
     return
 
-label s_mad_maze:
+label s_no_maze:
     "I grumpily state that I don't have a favorite tree, which seems to put an end to the conversation at last."
     "But then Spike starts, her nostrils widening. She says she's picked up a scent: the scent of blood."
     return
@@ -559,48 +561,48 @@ label s_wink_maze:
     "We laugh together, but then Spike stops, her nostrils widening. She says she's picked up a scent: the scent of blood."
     return
 
-label s_tree2_maze:
+label s_madrona_maze:
     "I instinctively mention the Madrona tree, and Spike smiles."
     "She talks a little bit about the town's namesake before she stops, her nostrils widening. She says she's picked up a scent: the scent of blood."
     return
 
-label s_heart_maze:
+label s_support_maze:
     "Spike's breathing slows down as I speak soothingly to her."
     "She quickly recovers as I pat her back, and a determined look settles on her face."
     return
 
-label s_eyeroll_maze:
+label s_demand_maze:
     "Spike doesn't respond to me as I try to verbally slap sense into her."
     "We end up wasting a fair amount of time waiting for Spike's sense of smell to adjust itself."
     "Eventually, she manages to recover enough, and a determined look settles on her face."
     return
 
-label s_sweat_maze:
+label s_concern_maze:
     "I fixate on the blood, and Spike manages to calm down as she tells me the details, a determined look settling on her face."
     return
 
-label s_thumbsup2_maze:
+label s_agree2_maze:
     "I let Spike take the lead, and she walks on, presumably in the direction of this blood."
     s "Thank you for trusting my nose."
     return
 
-label s_basicfrown2_maze:
+label s_disagree2_maze:
     k "How do you know it's in the center? Let's just continue as we were."
     "Spike seems put out by my not trusting her nose, but we continue as we were, all sense of urgency gone."
     return
 
-label s_eyeroll2_maze:
+label s_flee_maze:
     "I try to take off running, back to the entrance of the maze, but Spike catches my arm."
     s "We're not giving up."
     "I feel like one of her disobedient pups, but she looks more determined than ever as she pulls me along, our pace slowed somewhat due to my resistance."
     return
 
-label s_thumbsup3_maze:
+label s_yes_maze:
     "Spike beams back at me, and we turn the corner together, toward the blood and (hopefully) the center of the maze."
     return
 
-label s_basicfrown3_maze:
-    "Spike looks crestfallen, but I had to be honest. She turns the corner, and I follow, toward the blood and (hopefully) the center of the maze."
+label s_no2_maze:
+    "Spike looks crestfallen, but I had to be honest. She turns the corner, and I follow, toward the blood and (hopefully) the center of the maze." "
     return
 
 label s_laugh_maze:
