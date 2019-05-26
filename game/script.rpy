@@ -4,6 +4,8 @@
 default marlon_friend_score = 0
 default spike_friend_score = 10
 default unicorn_marlon = False
+
+#Define puzzle states
 default maze_progress = 0
 
 # Declare characters used by this game. The color argument colorizes the
@@ -497,7 +499,18 @@ label Spikemazeconvo:
             call s_laugh_maze
 
     "Spike friend score: [spike_friend_score]"
-    "Suddenly, a man appears before us, as though he just phased through the hedge: a bird-like man, with feathers along his face and arms."
+            #This doesn't go anywhere yet, but it'll be fixed once Otis park convo is added
+            if otis_visited == True:
+                jump s_talked_to_otis
+            else:
+                jump s_otis_maze
+
+label s_talked_to_otis:
+    "Now we're suddenly face-to-face with that bird-man from before, and he's blocking our path."
+    jump Otis_Maze_Convo
+
+label s_otis_maze:
+    "Now we're suddenly face-to-face with a bird-man I don't recognize, and he's blocking our path."
     jump Otis_Maze_Convo
 
 label s_wolf_maze:
@@ -598,15 +611,18 @@ label s_flee_maze:
     return
 
 label s_yes_maze:
-    "Spike beams back at me, and we turn the corner together, toward the blood and (hopefully) the center of the maze."
+    "Spike beams back at me, and we turn the corner together."
     return
 
 label s_no2_maze:
-    "Spike looks crestfallen, but I had to be honest. She turns the corner, and I follow, toward the blood and (hopefully) the center of the maze." "
+    "Spike looks crestfallen, but I had to be honest. She turns the corner, and I follow."
     return
 
 label s_laugh_maze:
     "I start laughing, trying to force the tension from my system."
     k "It can't be as bad as all that, right?"
-    "Spike just looks fondly at me and shakes her head. She takes my hand in hers, and we turn the corner together, toward the blood and (hopefully) the center of the maze."
+    "Spike just looks fondly at me and shakes her head. She takes my hand in hers, and we turn the corner together."
     return
+
+label Otis_Maze_Convo:
+#For Marlene's maze stuff
