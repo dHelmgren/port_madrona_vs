@@ -90,12 +90,11 @@ label Marlontextconvo:
     menu:
         m "u up?"
 
-        "Yes, I'm awake and kicking.":
+        "{image=emoji/basicsmile_emoji.png}Yes, I'm awake and kicking.":
             jump m_excited_text
-        "No, still sleeping.":
-            jump m_nervous
-
-        "What's Trashy Cryptids?":
+        "{image=emoji/basicfrown_emoji.png}No, still sleeping.":
+            jump m_sleepy
+        "{image=emoji/peach_emoji.png}What's Trashy Cryptids?":
             jump m_question
 
 label m_excited_text:
@@ -105,12 +104,12 @@ label m_excited_text:
 
     jump m_invite
 
-label m_nervous:
+label m_sleepy:
     k "No, I'm still sleeping"
     m "how u texting if yr asleep?"
     k "It's one of the world's greatest mysteries I guess"
 
-    m "lol"
+    m "lol" 
 
     m "i gotta catch you up on the new trashy cryptids season {image=emoji/peach_emoji.png}" #An emoji appears.
 
@@ -119,7 +118,8 @@ label m_nervous:
 label m_question:
     k "What's Trashy Cryptids?"
     m "UMMMMM"
-    m "only the best trashiest reality tv show! don't tell me u forgot"
+    m "only the best trashiest reality tv show! {image=emoji/hearteyes_emoji.png}"
+    m "don't tell me u forgot"
     m "ima change that"
 
     jump m_invite
@@ -128,17 +128,17 @@ label m_invite:
     m "lets meet up. park?"
 
     menu:
-        "Maybe {image=emoji/poop_emoji.png}":
+        "{image=emoji/poop_emoji.png}Maybe":
             jump m_poop
 
-        "Maybe {image=emoji/unicorn_emoji.png}":
+        "{image=emoji/unicorn_emoji.png}Maybe":
             jump m_unicorn
 
-        "Maybe {image=emoji/eggplant_emoji.png}":
+        "{image=emoji/eggplant_emoji.png}Maybe":
             jump m_eggplant
 
 label m_poop:
-    k "Maybe {image=emoji/poop_emoji.png}" #An emoji appears.
+    k "{image=emoji/poop_emoji.png} Maybe" #An emoji appears.
     m "lol rude"
     m "meet me by the water fountain if ur there {image=emoji/basicsmile_emoji.png}" #An emoji appears.
 
@@ -146,18 +146,17 @@ label m_poop:
 
 label m_unicorn:
     $ unicorn_marlon = True
-    k "Maybe {image=emoji/unicorn_emoji.png}" #An emoji appears.
-    #is this next comment real? I'd have him say:
-        # m "dude that isn't funny"
-    m "you know i have a fear of unicorns {image=emoji/basicfrown_emoji.png}" #An emoji appears.
-        #m "whatever"
+    k "{image=emoji/unicorn_emoji.png}Maybe" #An emoji appears.
+    m "ew no u kno i don't like unicorns {image=emoji/basicfrown_emoji.png}" #An emoji appears.
+    k "I do?"
+    m "ya, they r the woooorst"
     m "meet me by the water fountain if ur there"
 
     jump parkentrance
 
 label m_eggplant:
-    k "Maybe {image=emoji/eggplant_emoji.png}"
-    m "lollllll ur g8"
+    k "{image=emoji/eggplant_emoji.png}Maybe"
+    m "lollllll girrrrrrrl ur g8"
     m "missed u like a lot a lot"
     m "meet me by the water fountain if ur there"
 
@@ -263,8 +262,130 @@ label parkentrancemenu:
 
 label Marlonparkconvo:
 
-label Spikeparkconvo:
+    m "Oh looky loo. You made it! What took you so long?"
+        if spike_visited == True:
+	        m_talked_to_spike
+        else:
+            m_long_morning
 
+label m_talked_to_spike:
+
+    k "I met up with Spike real quick before meeting up with you."
+    m "Fun! I love Spike. It's all 'awoooos' and sweat with her."
+
+    jump m_kai_weird_greetings
+
+label m_long_morning:
+
+    k "It's been a hectic morning."
+    m "Oh no buddy! Why's that?"
+
+    jump m_kai_weird_greetings
+
+m_kai_weird_greetings:
+    k "I felt weird walking over here. Everybody was greeting me."
+    k "'Morning, Kai!' and 'Great to see you Kai!'  Everyone was so kind and happy…"
+    m "Yep, everyone knows you. And they like you!"
+    k "But I don't remember anybody. I remember nothing."
+    m "Nothing? Not the time we summoned a banshee in the school cafeteria?"
+    k "Nope."
+    m "Or the time we covered the statue in front of town hall in glitter?"
+    k "Was that one your idea?"
+    m "Oh {i}absoluuuuuuutely{/i}."
+    k "None of that sounds familiar. Something...{size=-10}someone?{/size}...stuffed my mind into a blender and pressed the smoothie button."
+    m "That's disgusting and…a little cool. {p=1.0} You'll remember something! I'm unforgettable after all."
+    k "Thanks, Marlon."
+    m "I can answer anything up for you if you want. I got ALL the dirt."
+
+    jump Marlonparkmenu
+
+label Marlonparkmenu:
+    menu:
+        "{image=emoji/opensmile_emoji.png}Tell me about you.":
+            jump m_aboutMarlon
+        "{image=emoji/basicsmile_emoji.png}Tell me about The Glow.":
+            jump m_aboutGlow
+        "{image=emoji/eyeroll_emoji.png}Let's talk about something else."
+            jump m_somethingelse
+
+label m_aboutMarlon:
+    k "What's your thing? What are you all about?"
+    m "Trashy Cryptids Trash America obv."
+    k "Did you just use 'obv' in real life conversation?"
+    m "Yeah. Obv. Eileen is ALL about that I-R-L slang. She is the QUEEEEEEEN."
+    k "So, what's this show about?"
+    m "So it's a group of five best friends who road trip around America and change people's lives with their weirdness. It's actually very wholesome and everyone has their shit together."
+    m "Except for Tia. Tia is a mess."
+
+        menu:
+            "{image=emoji/sweat_emoji.png}Eileen?":
+                jump m_aboutEileen
+            "{image=emoji/eggplant_emoji.png}Tia?":
+                jump m_aboutTia
+            "{image=emoji/eyeroll_emoji.png}Let's move on.":
+                jump m_moveOn
+
+label m_aboutEileen:
+    k "So who is Eileen? Is she your favorite? Wait, let me rephrase. Is she your {i}fave{/i}?"
+    m "Ew, no, please don't say 'fave.' That's so two years ago."
+    m "Eileen is {size=+10}THE COOLEST{/size}. She is a half-woman, half-shark ghost and gives no fucks about what anyone thinks of her. She is just soooo authentic."
+    return
+
+label m_aboutTia:
+    k "Who is Tia?"
+    m "Ugh, don't get me started on Tia. Tia is this basic vampire who does this annoying clicking thing with her teeth when she's excited."
+    m "Tia replaced Kimmi last season because there was some drama between Kimmi and Lucretia. They should have worked it out, but instead Kimmi left and we're stuck with Tia."
+    k Fascinating.
+    m "{size=+10}I KNOOOOOOOWWWW.{/size}"
+    return
+    
+label m_moveOn:
+    k "Let's talk about something else."
+    m "Whatever you want!"
+
+    jump Marlonparkmenu
+
+label m_aboutGlow:
+    k "How do you like working at the Glow?"
+    m "I like the Glow! I actually opened it as my personal project."
+    k "Really? I didn't take you as the business owner type."
+    m "I wanted to open a place that would makes me feel less afraid of the dark."
+    k "But, you can see in the dark, right? Why would you be scared of the dark?"
+    m "I can see in the dark, but that doesn't make it any less scary. Light means comfort. Light is infinite, like I'm standing on the edge of forever while the cracks in my life are illuminated with understanding. I remember things I've forgotten. When I'm in the light, the world just...makes sense."
+    m ...
+    m ...
+    k ...
+    k "Buddy.{p=2.0}That was deep."
+    m "Was it? Oops."
+
+    jump Marlonparkmenu
+
+label m_somethingelse:
+    k "Let's explore or something."
+    m "Oh, you probably want to check out that maze, right? Otis made a weird-ass hedge maze this year for the festival. I don't get it."
+
+    menu:
+        "{image=emoji/opensmile_emoji.png}Let's go in the maze together!":
+            jump m_enterMaze
+        "{image=emoji/thumbsup_emoji.png}See you later!":
+            jump m_seeYouLater
+
+label m_enterMaze:
+    k "I'm intrigued by the maze's weirdness. Maybe he hid something in the middle."
+    m "Like treasure? Or gift cards!"
+    k "How about we check it out? We can split our findings."
+    m "Dibs on the gift cards."
+
+    jump m_maze_withMaron
+
+label: m_seeYouLater:
+    k "Interesting...well, I'm going to keep looking around this park. See you later!"
+    m "See ya, buddy."
+
+    jump parkentrancemenu
+
+label Spikeparkconvo:
+    $ spike_visited = True
     s "There [she] is! Hey, Kai, you made it!"
     k "Hey, Spike. Yeah I managed to find it by looking at the GPS on my phone."
     s "See? That's why I let my pups use their phones during practice."
@@ -358,40 +479,99 @@ label s_thumbsup2_park:
 
     jump parkentrancemenu
 
-label maze_marlon:
+label m_maze_withMaron:
 
     show bg maze one
 
-    "Marlon lounges on my shoulder as we make our way into the maze, crossing his arms to drill in his discontent."
-    "The first few minutes pass in silence as I try to navigate without help."
-    "I need to say something to get Marlon talking."
+    "Turns out, this maze is more than just a family-friendly walk in the park. How do I get out of here? Marlon doesn't seem very thrilled to be in this maze. He's made himself comfortable on my shoulder and isn't being his usual self."
+    "Maybe if I get him to lighten up he'll help us get through this maze. He's the one with the supernatural powers after all."
 
     menu:
-        "{image=emoji/tv_emoji.png} Talk Trashy Cryptids":
-            $ marlon_friend_score += 5
-            call maze_marlon_tv
-        "{image=emoji/unicorn_emoji.png} Talk about Unicorns":
+
+        "I need to say something to get Marlon interested."
+
+        "{image=emoji/tree_emoji.png}Work?":
             $ marlon_friend_score -= 5
-            if unicorn_marlon == True:
-                call maze_marlon_unicorn_again
-            else:
-                call maze_marlon_unicorn
+            call m_maze_work
+        "{image=emoji/unicorn_emoji.png}Unicorns?":
+            $ marlon_friend_score -= 5
+            call m_maze_unicorns
+        "{image=emoji/eggplant_emoji.png}Eileen?":
+            $ marlon_friend_score += 5
+            call m_maze_Eileen
+        "{image=emoji/tableflip_emoji.png}Tia?":
+            $ marlon_friend_score -= 5
+            call m_maze_Tia
+        "{image=emoji/wink_emoji.png}Gossip?":
+            $ marlon_friend_score += 5
+            call m_maze_gossip
+        "{image=emoji/heart_emoji.png}Dating?":
+            $ marlon_friend_score += 5
+            call m_maze_dating
+        "{image=emoji/basicsmile_emoji.png}Aesthetic?":
+            $ marlon_friend_score += 5
+            call m_maze_aesthetic
 
+label m_maze_work:
+    k "How's work been?"
+    m "Lame. I really don't like talking about work. Can we not?"
+    k "Oh, of course."
+    "Okay, bad choice."
+    return
 
-    "Marlon friend score: [marlon_friend_score]"
+label m_maze_unicorns:
+    k "So, why DO you hate unicorns?"
+    m "Wow, this again?"
+    k "I'm curious, that's all."
+    m "Did you know that unicorns and mothmen went to war? Yeah, that's right. It's called the Grey Rainbow War of 1983."
+    k "This actually happened?"
+    m "YES! Well, okay, it was less of a war and more of a final championship. And less fighting and more roller skating."
+    k "So what you're saying is the mothmen lost against unicorns in a roller skating competition?"
+    m "YES! IT WAS CARNAGE! Mothmen have never gotten closer to beating unicorns at roller skating than in 1983. {p=2.0} Some say we never will..."
+    "Marlon doesn't seem very happy about that topic. Maybe I should let it rest."
+    return
+
+label m_maze_Eileen:
+    k "So, about Eileen from Trashy Cryptids."
+    m "OMG EILEEN IS THE QUEEEEEEEEEN!!!"
+    m "She is my {size=+10}IDOL{/size}."
+    m "This one time I sent her some fan mail and included a piece of my antennae. Don't worry. They grow back."
+    "Oh geez, Marlon can't stop talking about Eileen."
+    return
+
+label m_maze_Tia:   
+    k "Tell me about Tia from Trashy Crypids."
+    m "Wow, no thanks. Tia is honestly the worst and a waste. She ruined the last season."
+    "Oh no, Marlon didn't like that at all."
+    return
+
+label m_maze_gossip:
+    k "Any interesting stuff happening around town?"
+    m "OH YES. So you know Ferris Castro? He's the barista at the bookstore you work. So I was walking by one night while he was closing by himself. I don't think he noticed me looking through the window. You know how he has those antlers that grow out of his head?" 
+    m "Well I absolutely SWEAR I saw him TAKE OFF his antlers."
+    m "Want to know what I think? I think he's hiding that fact that he's a normal human. CRAZY, RIGHT?"
+    "Wow, Marlon really does have dirt on everybody in the town."
+    return
+
+label m_maze_dating:
+    k "So um, what's the dating scene look like in Port Madrona?"
+    m "OH. {p=1.0} Ohhhhhh, you're into somebody, aren't you?"
+    k "No! I was just making conversation!"
+    m "Oh yeah, I'm sure that's all it was. Don't you worry. I'm your go-to wingman any time you need it."
+    "Glad to see Marlon is really loyal when it comes to dating."
+    return
+
+label m_maze_aesthetic:
+    k "How would you describe your aesthetic?"
+    m "Sparkly graveyard chic is what the poets call it. I call it 'being ready to cut anybody if they cross my sweet, raged-filled self.'"
+    k "You really have yourself figured out."
+    m "I am the change I want to see in the world."
+    "Who knew mothmen were so...cut-throaty."
+    return
+    
+    "Marlon friend score: [marlon_friend_score]" 
     jump end_of_maze
-
-label maze_marlon_tv:
-    m "OK SO LET'S TALK EILEEN!..."
-    "Marlon chitters happily about Eileen, who seems to be some sort of half-woman half-shark-ghost."
-    return
-label maze_marlon_unicorn:
-    m "Can we talk about LITERALLY anything else?"
-    return
-label maze_marlon_unicorn_again:
-    m "You need to stop it with the unicorn shit Kai, I told you."
-    return
-
+    
 label end_of_maze:
     "SPOOKY SHIT"
 
