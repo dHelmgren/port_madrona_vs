@@ -208,11 +208,11 @@ label Spiketextconvo:
 
     menu:
         "{image=emoji/thumbsup_emoji.png} See you there!":
-            call s_thumbsup_text
+            call s_thumbsup_text from _call_s_thumbsup_text
         "{image=emoji/mad_emoji.png} If you insist":
-            call s_mad_text
+            call s_mad_text from _call_s_mad_text
         "{image=emoji/opensmile_emoji.png} Wouldn't miss it":
-            call s_opensmile_text
+            call s_opensmile_text from _call_s_opensmile_text
     
     jump phone_hold_two
 
