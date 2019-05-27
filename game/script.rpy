@@ -68,8 +68,7 @@ label morning:
 
     "Feels like home away from home. Well except for the part where I don't remember what or where home is. Good morning, me!"
 
-    show bg phone
-    #The phone is rendered over the image of Kai's bedroom. Navigate to two text messages.
+    # TODO: phone buzz noise?
 
     k "Text messages already? {i}Guuuuuuh{/i}, it's too early to socialize."
     k "Marlon and Spike? What do they want?"
@@ -106,16 +105,14 @@ label phone_hold_two:
 label Marlontextconvo:
     hide screen phone_pop_but
     $ morning_phone_texts[0] = 1
-
     show bg phone marlon
-
+    
     m "omg did u watch the new episode of Trashy Cryptids Trash America?"
     m "this new season is lit"
     m "ester is my faveeeee"
 
     menu:
         m "u up?"
-
         "{image=emoji/basicsmile_emoji.png}Yes, I'm awake and kicking.":
             jump m_excited_text
         "{image=emoji/basicfrown_emoji.png}No, still sleeping.":
@@ -127,18 +124,14 @@ label m_excited_text:
     k "Yeah, I'm awake and kicking it."
     m "perf, i wanna meet up"
     m "m i gotta catch you up on the new trashy cryptids season {image=emoji/peach_emoji.png}"
-
     jump m_invite
 
 label m_sleepy:
     k "No, I'm still sleeping"
     m "how u texting if yr asleep?"
     k "It's one of the world's greatest mysteries I guess"
-
     m "lol" 
-
     m "i gotta catch you up on the new trashy cryptids season {image=emoji/peach_emoji.png}" #An emoji appears.
-
     jump m_invite
 
 label m_question:
@@ -168,7 +161,7 @@ label m_poop:
     m "lol rude"
     m "meet me by the water fountain if ur there {image=emoji/basicsmile_emoji.png}" #An emoji appears.
 
-    jump parkentrance
+    jump phone_hold_two
 
 label m_unicorn:
     $ unicorn_marlon = True
@@ -178,14 +171,13 @@ label m_unicorn:
     m "ya, they r the woooorst"
     m "meet me by the water fountain if ur there"
 
-    jump parkentrance
+    jump phone_hold_two
 
 label m_eggplant:
     k "{image=emoji/eggplant_emoji.png}Maybe"
     m "lollllll girrrrrrrl ur g8"
     m "missed u like a lot a lot"
     m "meet me by the water fountain if ur there"
-
 
     jump phone_hold_two
 
@@ -250,15 +242,13 @@ label s_thumbsup_text:
     k "{image=emoji/thumbsup_emoji.png}"
     k "See you there!"
     s "can't wait! i'll be the attractive {image=emoji/wolf_emoji.png} lookin one"
-
-    jump parkentrance
+    return
 
 label s_mad_text:
     k "Fine, but I won't be happy about it"
     s "you're no fun :( don't worry, i can fix that!"
     s "see you soon~*~"
-
-    jump parkentrance
+    return
 
 label s_opensmile_text:
     k "I wouldn't miss it!"
@@ -266,8 +256,7 @@ label s_opensmile_text:
     s "just you wait..."
     s "i'll take you to all sorts of places next ;)"
     s "maybe you can help me murder some {image=emoji/tree_emoji.png}{image=emoji/tree_emoji.png}{image=emoji/tree_emoji.png} this weekend :P"
-
-    jump parkentrance
+    return
 
 label parkentrance:
 
