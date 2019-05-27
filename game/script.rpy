@@ -400,6 +400,8 @@ label m_seeYouLater:
     jump parkentrancemenu
 
 label Spikeparkconvo:
+    show spike neutral
+
     $ spike_visited = True
     s "There [she] is! Hey, Kai, you made it!"
     k "Hey, Spike. Yeah I managed to find it by looking at the GPS on my phone."
@@ -600,6 +602,7 @@ label end_of_maze:
 label Spikemazeconvo:
 
     show bg maze one
+    show spike neutral
 
     "Spike and I start to walk side by side through the maze, the seemingly endless labyrinth looming before us as we take each step."
     "Spike sniffs once, twice, deeply inhaling. I try to sniff, as well, only smelling the scents of the park: the freshly upturned dirt below our feet, the almost pungent aromas of the local flora, and the droppings left by various animals."
