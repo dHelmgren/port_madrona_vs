@@ -889,9 +889,9 @@ screen in_game_phone():
         yalign 0.5
 
         hotspot (997, 139, 403, 243) action ShowMenu('phone_messages') #texts
-        hotspot (1424, 139, 403, 240) action ShowMenu('save') #
-        hotspot (997, 394, 404, 243) action ShowMenu('save') #ML
-        hotspot (1424, 395, 404, 238) action ShowMenu('save') #MR
+        hotspot (1424, 139, 403, 240) action ShowMenu('save') #Cache
+        hotspot (997, 394, 404, 243) action ShowMenu('save') #
+        hotspot (1424, 395, 404, 238) action ShowMenu('phone_map') #Map
         hotspot (999, 650, 402, 239) action ShowMenu('save') #BL
         hotspot (1426, 650, 402, 244) action ShowMenu('save') #BR
         hotspot (1186, 928, 450, 108) action Return() #Back
@@ -913,6 +913,20 @@ screen phone_messages():
         hotspot (997, 395, 831, 240) action Start('Marlontextconvo')
         hotspot (1186, 930, 450, 108) action ShowMenu('in_game_phone')
 
+screen phone_map():
+    tag menu
+
+    zorder 90
+
+    imagemap:
+        idle "game_phone/phone_map_idle.PNG"
+        hover "game_phone/phone_map_hover.PNG"
+        ground "game_phone/phone_map_ground.PNG"
+        xalign 0.5
+        yalign 0.5
+
+        hotspot (1473, 545, 73, 62) action Start('parkentrance') 
+
 ## Phone Open Button ###########################################################
 ##
 ## This is a button that I want to render over the screen!
@@ -930,8 +944,6 @@ screen phone_pop_but():
 
         xpos 1500
         ypos 700
-# init python:
-#     config.overlay_screens.append("phone_pop_but")
 
 ## History screen ##############################################################
 ##

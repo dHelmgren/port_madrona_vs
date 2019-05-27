@@ -106,7 +106,7 @@ label Marlontextconvo:
     hide screen phone_pop_but
     $ morning_phone_texts[0] = 1
     show bg phone marlon
-    
+
     m "omg did u watch the new episode of Trashy Cryptids Trash America?"
     m "this new season is lit"
     m "ester is my faveeeee"
@@ -208,12 +208,12 @@ label Spiketextconvo:
 
     menu:
         "{image=emoji/thumbsup_emoji.png} See you there!":
-            jump s_thumbsup_text
+            call s_thumbsup_text
         "{image=emoji/mad_emoji.png} If you insist":
-            jump s_mad_text
+            call s_mad_text
         "{image=emoji/opensmile_emoji.png} Wouldn't miss it":
-            jump s_opensmile_text
-
+            call s_opensmile_text
+    
     jump phone_hold_two
 
 label s_explore_text:
@@ -259,7 +259,7 @@ label s_opensmile_text:
     return
 
 label parkentrance:
-
+    hide screen phone_pop_but
     show bg park entrance
     #We see the entrance of the park with its three paths.
 
