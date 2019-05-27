@@ -95,7 +95,7 @@ label .k_shortversion
 
     o "I'll be seeing you, Kai."
 
-label k_nothanks
+label .k_nothanks
 
     k "Maybe later."
 

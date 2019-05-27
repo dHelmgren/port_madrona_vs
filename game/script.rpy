@@ -3,12 +3,13 @@
 # Define character affection stats
 default marlon_friend_score = 0
 default spike_friend_score = 10
+
+# define various states the player may trigger
 default morning_phone_texts = [0,0]
 default unicorn_marlon = False
 default spike_visited = False
 default marlon_visited = False
-default spoke_with_otis_one = False
-default spoke_with_otis_two = False
+default otis_visited = False
 default trash_tv_topics = [0,0]
 default marlon_maze_topics = [0,0,0,0,0,0,0]
 
@@ -22,6 +23,9 @@ define k = Character(_("Kai"), color="#aa6f73")
 define m = Character(_("Marlon"), color="#7e6a7c")
 define s = Character(_("Spike"), color="#ac330f")
 define o = Character(_("Otis"), color="#f9d62e")
+
+#define companion 
+default Companion = "{size=+20}ERROR{/size}"
 
 #define pronouns
 default Her = "Her"
@@ -283,11 +287,12 @@ label parkentrancemenu:
         "Right towards Spike":
             jump Spikeparkconvo
 
-        "Enter park center" if spoke_with_otis_one == False:
-            jump Otis_Park_Convo_Entrance_Optional
+        "Enter park center" if otis_visited == False:
+            jump otis_park
 
-label Otis_Park_Convo_Entrance_Optional:
-    $ spoke_with_otis_one = True
+label otis_park:
+    $ otis_visited = True
+    show otis neutral
 
     o "Hey there, Kai. Kai, the amelioration! How lovely to see you here at the heart of the town. Have you come to admire our famous Port Madrona Tree?"
 
@@ -296,12 +301,12 @@ label Otis_Park_Convo_Entrance_Optional:
     o "Well, as you know, I run the town's grand annual festival to celebrate our beloved Port Madrona tree. I like to check on her often and tend to her. After all, we have a responsibility to protect her, right? We're all connected here."
 
     menu:
-        "{image=basicsmile_emoji.png} Absolutely!":
-            jump k_absolutely
-        "{image=basicfrown_emoji.png} Maybe, but why you?":
-            jump k_maybe
-        "{image=thumbsup_emoji.png} See you around.":
-            jump k_seeyou
+        "{image=emoji/basicsmile_emoji.png} Absolutely!":
+            jump otis_park.k_absolutely
+        "{image=emoji/basicfrown_emoji.png} Maybe, but why you?":
+            jump otis_park.k_maybe
+        "{image=emoji/thumbsup_emoji.png} See you around.":
+            jump otis_park.k_seeyou
 label .k_absolutely:
 
     k "Of course! That's really kind of you."
@@ -898,4 +903,72 @@ label s_laugh_maze:
     return
 
 label Otis_Maze_Convo:
-#For Marlene's maze stuff
+    show otis neutral
+
+    k "How did you get here so fast?! Didn't I see you at the entrance before I came in?"
+
+    o "Oh, I know my way around this place quite well. You see, the maze is the home of my imagination."
+    
+    o "As a child, I would run through the maze seeing myself in the Great Hall of the People or flying above the Karnak Temple Complex. It was my kingdom. It was anything I needed it to be."
+
+    k "Sounds like a nice place."
+
+    o "Indeed. Would you like to hear about the history of the Madrona tree?"
+
+    menu:
+        "{image=emoji/basicsmile_emoji.png} Sure!":
+            jump Otis_Maze_Convo.k_sure
+        "{image=emoji/basicfrown_emoji.png}Okay, but the short version.":
+            jump Otis_Maze_Convo.k_shortversion
+        "{image=emoji/thumbsup_emoji.png}No thanks, I'll see you around.":
+            jump Otis_Maze_Convo.k_nothanks
+
+label .k_sure:
+
+    k "I'd like that."
+
+    o "Well, the Port Madrona, also known as the Arbutus Menziesii species of the order Ericales, is native to the western regions of the North." 
+    o "It is an evergreen that sheds its bark with age and in the autumn produces small red berries known for their healing properties. "
+    o "The tree is said to be over 400 years old with roots so deep that they span the length of the town. And when it rains, the tree appears to come to life taking in water and pumping out a rich red substance like blood stains on its leaves. " 
+    o "It's no wonder the tree has come to be revered as the life force of the town. Every year, I host our annual festival so we can celebrate the Port Madrona tree through song, food, sacrifices and prayer. "
+
+    k "Wow. That's pretty amazing. It seems to have thrived here for so long. I wonder, why?"
+
+    o "Some say, it was the Port Madrona tree that gave birth to our entire town, and as long as we honor it, it will continue to protect our home."
+
+    k "What happens if the tree starts to die?"
+
+    o "Don't be silly. That would never happen."
+    jump maze_center
+
+label .k_shortversion:
+
+    k "Alright, but keep it short will you?"
+
+    o "Very well. The Port Madrona tree has lived here for over 400 years with roots that are said to span the length of the town."
+    o "Every year, in order to ensure that the tree continues to thrive and floruish, we honor it."
+    o "The town gets together and celebrates with a festival. Yusef's Crab House, the Beaver Mill Diner, the Dark Carta all donate food and entertainment to the night's festivities and, of course, we choose the guardian that will tend to the tree year-round."
+
+    k "That sounds pretty great. Guardian, huh?"
+
+    o "Yes, the chosen guardian will have the honor of tending to our beloved tree and ensuring no harm should befall her. "
+
+    k "I wonder who it will be this year… this festival sounds interesting. I can't wait!"
+
+    o "Well, surely, you remember it from last year?"
+
+    k "Oh, right, of course. Um, I should be going now."
+
+    o "I'll be seeing you, Kai."
+
+    jump maze_center
+
+label .k_nothanks:
+
+    k "Maybe later."
+
+    o "No problem. I'll be around if you get curious. I promise it's quite enchanting."
+    jump maze_center
+
+label maze_center:
+    "[Companion] and I finally reach the center of the hedge maze."
