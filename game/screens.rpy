@@ -256,7 +256,7 @@ screen quick_menu():
             textbutton _("Back") action Rollback()
             textbutton _("History") action ShowMenu('history')
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
+            textbutton _("Phone") action ShowMenu('in_game_phone')
             textbutton _("Save") action ShowMenu('save')
             textbutton _("Q.Save") action QuickSave()
             textbutton _("Q.Load") action QuickLoad()
@@ -871,6 +871,67 @@ style slider_button_text:
 style slider_vbox:
     xsize 675
 
+## In Game Phone Screen ########################################################
+##
+## This is a screen that displays Kai's root Phone Menu to the player.
+
+screen in_game_phone():
+    tag menu
+
+    zorder 90
+
+    imagemap:
+        idle "game_phone/phone_idle.PNG"
+        hover "game_phone/phone_hover.PNG"
+        ground "game_phone/phone_ground.PNG"
+
+        xalign 0.5
+        yalign 0.5
+
+        hotspot (997, 139, 403, 243) action ShowMenu('phone_messages') #TL
+        hotspot (1424, 139, 403, 240) action ShowMenu('save') #TR
+        hotspot (997, 394, 404, 243) action ShowMenu('save') #ML
+        hotspot (1424, 395, 404, 238) action ShowMenu('save') #MR
+        hotspot (999, 650, 402, 239) action ShowMenu('save') #BL
+        hotspot (1426, 650, 402, 244) action ShowMenu('save') #BR
+        hotspot (1186, 928, 450, 108) action Return() #Back
+
+screen phone_messages():
+    tag menu
+
+    zorder 90
+
+    imagemap:
+        idle "game_phone/phone_messages_idle.PNG"
+        hover "game_phone/phone_messages_hover.PNG"
+        ground "game_phone/phone_messages_ground.PNG"
+
+        xalign 0.5
+        yalign 0.5
+
+        hotspot (999, 138, 831, 241) action Start('Spiketextconvo')
+        hotspot (997, 395, 831, 240) action Start('Marlontextconvo')
+        hotspot (1186, 930, 450, 108) action ShowMenu('in_game_phone')
+
+## Phone Open Button ###########################################################
+##
+## This is a button that I want to render over the screen!
+
+screen phone_pop_but():
+    tag menu
+    zorder 85
+
+    imagemap:
+        idle "menus/phone_on_idle.png"
+        hover "menus/phone_on_hover.png"
+        ground "menus/phone_on_ground.png"
+
+        hotspot(16, 2, 164, 175) action ShowMenu('in_game_phone')
+
+        xpos 1500
+        ypos 700
+init python:
+    config.overlay_screens.append("phone_pop_but")
 
 ## History screen ##############################################################
 ##
