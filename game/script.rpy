@@ -4,6 +4,10 @@
 default marlon_friend_score = 0
 default spike_friend_score = 10
 default unicorn_marlon = False
+default spike_visited = False
+default marlon_visited = False
+default trash_tv_topics = [0,0]
+default marlon_maze_topics = [0,0,0,0,0,0,0]
 
 #Define puzzle states
 default maze_progress = 0
@@ -264,12 +268,17 @@ label parkentrancemenu:
             jump Otisparkconvo
 
 label Marlonparkconvo:
-
-    m "Oh looky loo. You made it! What took you so long?"
+    if marlon_visited == False:
+        $ marlon_visited = True
+        m "Oh looky loo. You made it! What took you so long?"
         if spike_visited == True:
-	        m_talked_to_spike
+            jump m_talked_to_spike
         else:
-            m_long_morning
+            jump m_long_morning
+    else:
+        m "[She]'s back!"
+        jump Marlonparkmenu
+
 
 label m_talked_to_spike:
 
@@ -285,7 +294,7 @@ label m_long_morning:
 
     jump m_kai_weird_greetings
 
-m_kai_weird_greetings:
+label m_kai_weird_greetings:
     k "I felt weird walking over here. Everybody was greeting me."
     k "'Morning, Kai!' and 'Great to see you Kai!'  Everyone was so kind and happy…"
     m "Yep, everyone knows you. And they like you!"
@@ -296,7 +305,7 @@ m_kai_weird_greetings:
     k "Was that one your idea?"
     m "Oh {i}absoluuuuuuutely{/i}."
     k "None of that sounds familiar. Something...{size=-10}someone?{/size}...stuffed my mind into a blender and pressed the smoothie button."
-    m "That's disgusting and…a little cool. {p=1.0} You'll remember something! I'm unforgettable after all."
+    m "That's disgusting and… a little cool. {p=1.0} You'll remember something! I'm unforgettable after all."
     k "Thanks, Marlon."
     m "I can answer anything up for you if you want. I got ALL the dirt."
 
@@ -304,11 +313,11 @@ m_kai_weird_greetings:
 
 label Marlonparkmenu:
     menu:
-        "{image=emoji/opensmile_emoji.png}Tell me about you.":
+        "{image=emoji/opensmile_emoji.png}Tell me about you." if trash_tv_topics[0] == 0 | trash_tv_topics[1] == 0:
             jump m_aboutMarlon
         "{image=emoji/basicsmile_emoji.png}Tell me about The Glow.":
             jump m_aboutGlow
-        "{image=emoji/eyeroll_emoji.png}Let's talk about something else."
+        "{image=emoji/eyeroll_emoji.png}Let's talk about something else.":
             jump m_somethingelse
 
 label m_aboutMarlon:
@@ -320,27 +329,30 @@ label m_aboutMarlon:
     m "So it's a group of five best friends who road trip around America and change people's lives with their weirdness. It's actually very wholesome and everyone has their shit together."
     m "Except for Tia. Tia is a mess."
 
-        menu:
-            "{image=emoji/sweat_emoji.png}Eileen?":
-                jump m_aboutEileen
-            "{image=emoji/eggplant_emoji.png}Tia?":
-                jump m_aboutTia
-            "{image=emoji/eyeroll_emoji.png}Let's move on.":
-                jump m_moveOn
+label TCTA:
+    menu:          
+        "{image=emoji/sweat_emoji.png}Eileen?" if trash_tv_topics[0] == 0:
+            $ trash_tv_topics[0] = 1
+            jump m_aboutEileen
+        "{image=emoji/eggplant_emoji.png}Tia?" if trash_tv_topics[1] == 0:
+            $ trash_tv_topics[1] = 1 
+            jump m_aboutTia
+        "{image=emoji/eyeroll_emoji.png}Let's move on.":
+            jump m_moveOn
 
 label m_aboutEileen:
     k "So who is Eileen? Is she your favorite? Wait, let me rephrase. Is she your {i}fave{/i}?"
     m "Ew, no, please don't say 'fave.' That's so two years ago."
     m "Eileen is {size=+10}THE COOLEST{/size}. She is a half-woman, half-shark ghost and gives no fucks about what anyone thinks of her. She is just soooo authentic."
-    return
+    jump TCTA
 
 label m_aboutTia:
     k "Who is Tia?"
     m "Ugh, don't get me started on Tia. Tia is this basic vampire who does this annoying clicking thing with her teeth when she's excited."
     m "Tia replaced Kimmi last season because there was some drama between Kimmi and Lucretia. They should have worked it out, but instead Kimmi left and we're stuck with Tia."
-    k Fascinating.
+    k "Fascinating."
     m "{size=+10}I KNOOOOOOOWWWW.{/size}"
-    return
+    jump TCTA
     
 label m_moveOn:
     k "Let's talk about something else."
@@ -355,9 +367,9 @@ label m_aboutGlow:
     m "I wanted to open a place that would makes me feel less afraid of the dark."
     k "But, you can see in the dark, right? Why would you be scared of the dark?"
     m "I can see in the dark, but that doesn't make it any less scary. Light means comfort. Light is infinite, like I'm standing on the edge of forever while the cracks in my life are illuminated with understanding. I remember things I've forgotten. When I'm in the light, the world just...makes sense."
-    m ...
-    m ...
-    k ...
+    m "..."
+    m "..."
+    k "..."
     k "Buddy.{p=2.0}That was deep."
     m "Was it? Oops."
 
@@ -381,7 +393,7 @@ label m_enterMaze:
 
     jump m_maze_withMaron
 
-label: m_seeYouLater:
+label m_seeYouLater:
     k "Interesting...well, I'm going to keep looking around this park. See you later!"
     m "See ya, buddy."
 
@@ -491,28 +503,35 @@ label m_maze_withMaron:
 
     menu:
 
-        "I need to say something to get Marlon interested."
+        "I need to sayet Marlon interested."
 
-        "{image=emoji/tree_emoji.png}Work?":
+        "{image=emoji/tree_emoji.png}Work?" if marlon_maze_topics[0] == 0:
+            $ marlon_maze_topics[0] = 1
             $ marlon_friend_score -= 5
             call m_maze_work
-        "{image=emoji/unicorn_emoji.png}Unicorns?":
+        "{image=emoji/unicorn_emoji.png}Unicorns?" if marlon_maze_topics[1] == 0:
             $ marlon_friend_score -= 5
+            $ marlon_maze_topics[1] = 1
             call m_maze_unicorns
-        "{image=emoji/eggplant_emoji.png}Eileen?":
+        "{image=emoji/eggplant_emoji.png}Eileen?" if marlon_maze_topics[2] == 0:
             $ marlon_friend_score += 5
+            $ marlon_maze_topics[2] = 1
             call m_maze_Eileen
-        "{image=emoji/tableflip_emoji.png}Tia?":
+        "{image=emoji/tableflip_emoji.png}Tia?" if marlon_maze_topics[3] == 0:
             $ marlon_friend_score -= 5
+            $ marlon_maze_topics[3] = 1
             call m_maze_Tia
-        "{image=emoji/wink_emoji.png}Gossip?":
+        "{image=emoji/wink_emoji.png}Gossip?" if marlon_maze_topics[4] == 0:
             $ marlon_friend_score += 5
+            $ marlon_maze_topics[4] = 1
             call m_maze_gossip
-        "{image=emoji/heart_emoji.png}Dating?":
+        "{image=emoji/heart_emoji.png}Dating?" if marlon_maze_topics[5] == 0:
             $ marlon_friend_score += 5
+            $ marlon_maze_topics[5] = 1
             call m_maze_dating
-        "{image=emoji/basicsmile_emoji.png}Aesthetic?":
+        "{image=emoji/basicsmile_emoji.png}Aesthetic?" if marlon_maze_topics[6] == 0:
             $ marlon_friend_score += 5
+            $ marlon_maze_topics[6] = 1
             call m_maze_aesthetic
 
 label m_maze_work:
@@ -550,7 +569,7 @@ label m_maze_Tia:
 
 label m_maze_gossip:
     k "Any interesting stuff happening around town?"
-    m "OH YES. So you know Ferris Castro? He's the barista at the bookstore you work. So I was walking by one night while he was closing by himself. I don't think he noticed me looking through the window. You know how he has those antlers that grow out of his head?" 
+    m "OH YES. So you know Ferris Castro? He's the barista at the bookstore where you work. So I was walking by one night while he was closing by himself. I don't think he noticed me looking through the window. You know how he has those antlers that grow out of his head?" 
     m "Well I absolutely SWEAR I saw him TAKE OFF his antlers."
     m "Want to know what I think? I think he's hiding that fact that he's a normal human. CRAZY, RIGHT?"
     "Wow, Marlon really does have dirt on everybody in the town."
@@ -679,11 +698,10 @@ label Spikemazeconvo:
             call s_laugh_maze
 
     "Spike friend score: [spike_friend_score]"
-            #This doesn't go anywhere yet, but it'll be fixed once Otis park convo is added
-            if otis_visited == True:
-                jump s_talked_to_otis
-            else:
-                jump s_otis_maze
+    if otis_visited == True:
+        jump s_talked_to_otis
+    else:
+        jump s_otis_maze
 
 label s_talked_to_otis:
     "Now we're suddenly face-to-face with that bird-man from before, and he's blocking our path."
