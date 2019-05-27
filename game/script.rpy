@@ -71,6 +71,8 @@ label morning:
     k "Marlon and Spike? What do they want?"
 
 label open_phone:
+    show screen phone_pop_but
+
     k "Guess I need to take a look."
     k "..."
     k "If I reach over to my phone I can look at those juicy, juicy texts."
@@ -85,6 +87,7 @@ label open_phone:
     jump open_phone
 
 label phone_hold_two:
+    show screen phone_pop_but
     k "Okay, cool."
     k "I can head to the park now."
     if morning_phone_texts[0] == 0:
@@ -97,6 +100,7 @@ label phone_hold_two:
 
 
 label Marlontextconvo:
+    hide screen phone_pop_but
     $ morning_phone_texts[0] = 1
 
     show bg phone marlon
@@ -182,6 +186,7 @@ label m_eggplant:
     jump phone_hold_two
 
 label Spiketextconvo:
+    hide screen phone_pop_but
     $ morning_phone_texts[1] = 1
     s "hey kai!! wake up sleepyhead~*~"
     k "It's still early, Spike..."
