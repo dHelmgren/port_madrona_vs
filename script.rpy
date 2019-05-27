@@ -7,11 +7,11 @@ label Otis_Park_Convo_Entrance_Optional
     o "Well, as you know, I run the town's grand annual festival to celebrate our beloved Port Madrona tree. I like to check on her often and tend to her. After all, we have a responsibility to protect her, right? We're all connected here."
 
     menu:
-        "{image=basicsmile_emoji.png}Absolutely!":
+        "{image=basicsmile_emoji.png} Absolutely!":
             jump k_absolutely
-        "{image=basicfrown_emoji.png}Maybe, but why you?":
+        "{image=basicfrown_emoji.png} Maybe, but why you?":
             jump k_maybe
-        "{image=thumbsup_emoji.png}See you around.":
+        "{image=thumbsup_emoji.png} See you around.":
             jump k_seeyou
 label .k_absolutely
 

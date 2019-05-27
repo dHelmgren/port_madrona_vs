@@ -3,9 +3,12 @@
 # Define character affection stats
 default marlon_friend_score = 0
 default spike_friend_score = 10
+default morning_phone_texts = [0,0]
 default unicorn_marlon = False
 default spike_visited = False
 default marlon_visited = False
+default spoke_with_otis_one = False
+default spoke_with_otis_two = False
 default trash_tv_topics = [0,0]
 default marlon_maze_topics = [0,0,0,0,0,0,0]
 
@@ -81,14 +84,22 @@ label open_phone:
     k "..."
     jump open_phone
 
-    menu:
-        "Read Marlon's text":
-            jump Marlontextconvo
-        "Read Spike's text":
-            jump Spiketextconvo
+label phone_hold_two:
+    k "Okay, cool."
+    k "I can head to the park now."
+    if morning_phone_texts[0] == 0:
+        k "Or I can see what's up with Marlon."
+    elif morning_phone_texts[1] == 0:
+        k "Or I could see what Spike wants."
+    k "If I want to go to the park, I should probably look up directions on my phone."
+    ""
+    jump phone_hold_two
+
 
 label Marlontextconvo:
-    show bg phone marlon text
+    $ morning_phone_texts[0] = 1
+
+    show bg phone marlon
 
     m "omg did u watch the new episode of Trashy Cryptids Trash America?"
     m "this new season is lit"
@@ -167,10 +178,11 @@ label m_eggplant:
     m "missed u like a lot a lot"
     m "meet me by the water fountain if ur there"
 
-    jump parkentrance
+
+    jump phone_hold_two
 
 label Spiketextconvo:
-
+    $ morning_phone_texts[1] = 1
     s "hey kai!! wake up sleepyhead~*~"
     k "It's still early, Spike..."
     s "time to greet the day ~(^.^~)"
@@ -200,6 +212,8 @@ label Spiketextconvo:
             jump s_mad_text
         "{image=emoji/opensmile_emoji.png} Wouldn't miss it":
             jump s_opensmile_text
+
+    jump phone_hold_two
 
 label s_explore_text:
     k "I thought I'd try to explore the town some more and get back into the swing of things"
@@ -264,8 +278,61 @@ label parkentrancemenu:
         "Right towards Spike":
             jump Spikeparkconvo
 
-        "Enter park center":
-            jump Otisparkconvo
+        "Enter park center" if spoke_with_otis_one == False:
+            jump Otis_Park_Convo_Entrance_Optional
+
+label Otis_Park_Convo_Entrance_Optional:
+    $ spoke_with_otis_one = True
+
+    o "Hey there, Kai. Kai, the amelioration! How lovely to see you here at the heart of the town. Have you come to admire our famous Port Madrona Tree?"
+
+    k "Uh, right. Hey, to you too.. I'm actually here to meet up with one of my friends, but thought I might explore a bit first. What brings you here?"
+
+    o "Well, as you know, I run the town's grand annual festival to celebrate our beloved Port Madrona tree. I like to check on her often and tend to her. After all, we have a responsibility to protect her, right? We're all connected here."
+
+    menu:
+        "{image=basicsmile_emoji.png} Absolutely!":
+            jump k_absolutely
+        "{image=basicfrown_emoji.png} Maybe, but why you?":
+            jump k_maybe
+        "{image=thumbsup_emoji.png} See you around.":
+            jump k_seeyou
+label .k_absolutely:
+
+    k "Of course! That's really kind of you."
+
+    o "Why, thank you. I just like to do my part. I think I'm just utterly fascinated by our town's history."
+
+    k "It's definitely an interesting place.. I take it you must know a lot about it?"
+
+    o "Better than most. However, I won't keep you from your friends. We'll have plenty of time to talk. Come find me in the maze later if you would like to know more."
+
+    k "Okay, but I imagine I'll get there first."
+
+    o "We'll see."
+
+    jump parkentrancemenu
+
+label .k_maybe:
+
+    k "I guess, but why you? Are you the chosen one or something?"
+
+    o "Oh Kai, you're full of surprises! You know we choose someone annually to guard the tree year-round, but I have to say, I just don't think anyone could show her the care and attention that I can. Perhaps, it's because I study her needs."
+
+    k "How exactly do you do that?"
+
+    o "I make sure her environment is ideal. Make sure she receives water every 10 - 14 days until the soil is moist at a depth of just 6-inches. I prune any dead limbs, trim the outer foliage, and spray in the early spring to kill any insects or larvae that may have nested during the winter months. It's quite simple, really."
+
+    k "Right.."
+    jump parkentrancemenu
+
+label .k_seeyou:
+
+    k "Yeah, sounds good. I'll see you around."
+
+    o "Of course. Come find me in the maze later if you would like to hear more about our enchanting Port Madrona tree."
+    jump parkentrancemenu
+
 
 label Marlonparkconvo:
     if marlon_visited == False:
