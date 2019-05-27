@@ -178,11 +178,11 @@ label Spiketextconvo:
 
     menu:
         "{image=emoji/basicsmile_emoji.png} Explore the town":
-            call s_explore_text
+            call s_explore_text from _call_s_explore_text
         "{image=emoji/sadfrown_emoji.png} Probably sulk":
-            call s_sulk_text
+            call s_sulk_text from _call_s_sulk_text
         "{image=emoji/wink_emoji.png} Spend time with you":
-            call s_wink_text
+            call s_wink_text from _call_s_wink_text
 
     s "wanna meet up? i have time before bball practice this afternoon"
     k "...what did you have in mind?"
@@ -510,31 +510,31 @@ label m_maze_withMaron:
         "{image=emoji/tree_emoji.png}Work?" if marlon_maze_topics[0] == 0:
             $ marlon_maze_topics[0] = 1
             $ marlon_friend_score -= 5
-            call m_maze_work
+            call m_maze_work from _call_m_maze_work
         "{image=emoji/unicorn_emoji.png}Unicorns?" if marlon_maze_topics[1] == 0:
             $ marlon_friend_score -= 5
             $ marlon_maze_topics[1] = 1
-            call m_maze_unicorns
+            call m_maze_unicorns from _call_m_maze_unicorns
         "{image=emoji/eggplant_emoji.png}Eileen?" if marlon_maze_topics[2] == 0:
             $ marlon_friend_score += 5
             $ marlon_maze_topics[2] = 1
-            call m_maze_Eileen
+            call m_maze_Eileen from _call_m_maze_Eileen
         "{image=emoji/tableflip_emoji.png}Tia?" if marlon_maze_topics[3] == 0:
             $ marlon_friend_score -= 5
             $ marlon_maze_topics[3] = 1
-            call m_maze_Tia
+            call m_maze_Tia from _call_m_maze_Tia
         "{image=emoji/wink_emoji.png}Gossip?" if marlon_maze_topics[4] == 0:
             $ marlon_friend_score += 5
             $ marlon_maze_topics[4] = 1
-            call m_maze_gossip
+            call m_maze_gossip from _call_m_maze_gossip
         "{image=emoji/heart_emoji.png}Dating?" if marlon_maze_topics[5] == 0:
             $ marlon_friend_score += 5
             $ marlon_maze_topics[5] = 1
-            call m_maze_dating
+            call m_maze_dating from _call_m_maze_dating
         "{image=emoji/basicsmile_emoji.png}Aesthetic?" if marlon_maze_topics[6] == 0:
             $ marlon_friend_score += 5
             $ marlon_maze_topics[6] = 1
-            call m_maze_aesthetic
+            call m_maze_aesthetic from _call_m_maze_aesthetic
 
 label m_maze_work:
     k "How's work been?"
@@ -611,13 +611,13 @@ label Spikemazeconvo:
     menu: #1/7
         "{image=emoji/wolf_emoji.png} Ask about wolf senses":
             #GOOD response
-            call s_wolf_maze
+            call s_wolf_maze from _call_s_wolf_maze
         "{image=emoji/poop_emoji.png} Find your own way":
             #BAD response
-            call s_poop_maze
+            call s_poop_maze from _call_s_poop_maze
         "{image=emoji/basicsmile_emoji.png} Talk about basketball":
             #GOOD response
-            call s_basketball_maze
+            call s_basketball_maze from _call_s_basketball_maze
 
     s "In the pack, I teach my pups to support each other, lift up their teammates, in order to succeed. Maybe we should follow my own advice—literally!"
     "She goes on to present an unnecessarily complex idea that pretty much boils down to her lifting me on her shoulders to see over the hedges."
@@ -626,65 +626,65 @@ label Spikemazeconvo:
     menu: #2/7
         "{image=emoji/thumbsup_emoji.png} Agree":
             #GOOD response
-            call s_agree_maze
+            call s_agree_maze from _call_s_agree_maze
         "{image=emoji/basicfrown_emoji.png} Disagree":
             #BAD response
-            call s_disagree_maze
+            call s_disagree_maze from _call_s_disagree_maze
         "{image=emoji/basicsmile_emoji.png} Talk about teenagers":
             #GOOD response
-            call s_teenagers_maze
+            call s_teenagers_maze from _call_s_teenagers_maze
 
     "Spike starts talking about the hedges themselves, monologuing about the types of trees and shrubbery typically used in the construction. There's a pause in her speech."
 
     menu: #3/7
         "{image=emoji/hearteyes_emoji.png} Listen intently":
             #GOOD response
-            call s_listen_maze
+            call s_listen_maze from _call_s_listen_maze
         "{image=emoji/tree_emoji.png} Talk about trees":
             #GOOD response
-            call s_tree_maze
+            call s_tree_maze from _call_s_tree_maze
         "{image=emoji/unicorn_emoji.png} Talk about unicorns":
             #BAD response
-            call s_unicorn_maze
+            call s_unicorn_maze from _call_s_unicorn_maze
 
     s "Do you have a favorite tree?"
 
     menu: #4/7
         "{image=emoji/mad_emoji.png} No":
             #BAD response
-            call s_no_maze
+            call s_no_maze from _call_s_no_maze
         "{image=emoji/wink_emoji.png} Whatever tree you like":
             #GOOD response
-            call s_wink_maze
+            call s_wink_maze from _call_s_wink_maze
         "{image=emoji/tree_emoji.png} Madrona tree":
             #GOOD response
-            call s_madrona_maze
+            call s_madrona_maze from _call_s_madrona_maze
 
     "She's starting to freak out a little. I should say something."
 
     menu: #5/7
         "{image=emoji/heart_emoji.png} Offer support":
             #GOOD response
-            call s_support_maze
+            call s_support_maze from _call_s_support_maze
         "{image=emoji/tableflip_emoji.png} Demand focus":
             #BAD response
-            call s_demand_maze
+            call s_demand_maze from _call_s_demand_maze
         "{image=emoji/basicfrown_emoji.png} Express concern":
             #GOOD response
-            call s_concern_maze
+            call s_concern_maze from _call_s_concern_maze
 
     s "I think... it's coming from the center of the maze. Let's follow it."
 
     menu: #6/7
         "{image=emoji/thumbsup_emoji.png} Agree":
             #GOOD response
-            call s_agree2_maze
+            call s_agree2_maze from _call_s_agree2_maze
         "{image=emoji/basicfrown_emoji.png} Disagree":
             #BAD response
-            call s_disagree2_maze
+            call s_disagree2_maze from _call_s_disagree2_maze
         "{image=emoji/poop_emoji.png} Flee":
             #BAD response
-            call s_flee_maze
+            call s_flee_maze from _call_s_flee_maze
 
     "After a while, Spike says that we're getting closer. She explains that whatever we find at the center could be bad, very bad, but she'll protect me."
     s "Do you trust me?"
@@ -692,13 +692,13 @@ label Spikemazeconvo:
     menu: #7/7
         "{image=emoji/thumbsup_emoji.png} Yes":
             #GOOD response
-            call s_yes_maze
+            call s_yes_maze from _call_s_yes_maze
         "{image=emoji/basicfrown_emoji.png} No":
             #BAD response
-            call s_no2_maze
+            call s_no2_maze from _call_s_no2_maze
         "{image=emoji/laugh_emoji.png} Laugh it off":
             #GOOD response
-            call s_laugh_maze
+            call s_laugh_maze from _call_s_laugh_maze
 
     "Spike friend score: [spike_friend_score]"
     if otis_visited == True:

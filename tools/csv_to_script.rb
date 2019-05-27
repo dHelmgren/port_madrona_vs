@@ -3,7 +3,7 @@ require "pry"
 require "rb-readline"
 
 File.open("script.rpy", "w") do |script|
-  CSV.foreach("data/demo_spreadsheet.csv") do |row|
+  CSV.foreach("data/otis.csv") do |row|
     if row[0]
       script << "label #{row[0]}\n\n"
     end
