@@ -213,7 +213,7 @@ label Spiketextconvo:
             call s_mad_text
         "{image=emoji/opensmile_emoji.png} Wouldn't miss it":
             call s_opensmile_text
-    
+
     jump phone_hold_two
 
 label s_explore_text:
@@ -309,7 +309,7 @@ label o_absolutely_park:
     k "Okay, but I imagine I'll get there first."
 
     o "We'll see."
-
+    hide otis neutral
     jump parkentrancemenu
 
 label o_maybe_park:
@@ -323,6 +323,7 @@ label o_maybe_park:
     o "I make sure her environment is ideal. Make sure she receives water every 10 - 14 days until the soil is moist at a depth of just 6-inches. I prune any dead limbs, trim the outer foliage, and spray in the early spring to kill any insects or larvae that may have nested during the winter months. It's quite simple, really."
 
     k "Right.."
+    hide otis neutral
     jump parkentrancemenu
 
 label o_seeyou_park:
@@ -330,19 +331,21 @@ label o_seeyou_park:
     k "Yeah, sounds good. I'll see you around."
 
     o "Of course. Come find me in the maze later if you would like to hear more about our enchanting Port Madrona tree."
+    hide otis neutral
     jump parkentrancemenu
 
 
 label Marlonparkconvo:
-    show marlon neutral
     if marlon_visited == False:
         $ marlon_visited = True
+        show marlon neutral
         m "Oh looky loo. You made it! What took you so long?"
         if spike_visited == True:
             jump m_talked_to_spike
         else:
             jump m_long_morning
     else:
+        show marlon neutral
         m "[She]'s back!"
         jump Marlonparkmenu
 
@@ -420,7 +423,7 @@ label m_aboutTia:
     k "Fascinating."
     m "{size=+10}I KNOOOOOOOWWWW.{/size}"
     jump TCTA
-    
+
 label m_moveOn:
     k "Let's talk about something else."
     m "Whatever you want!"
@@ -464,18 +467,20 @@ label m_seeYouLater:
     k "Interesting...well, I'm going to keep looking around this park. See you later!"
     m "See ya, buddy."
 
+    hide marlon neutral
     jump parkentrancemenu
 
 label Spikeparkconvo:
-    show spike neutral
     if spike_visited == False:
         $ spike_visited = True
+        show spike neutral
         s "There [she] is!"
         if marlon_visited == True:
             jump s_talked_to_marlon
         else:
             jump s_park_intro
     else:
+        show spike neutral
         s "Awoo! You're back! I missed you so much!"
         jump Spikeparkmenu
 
@@ -578,11 +583,13 @@ label s_leave_park:
     k "Interesting... I'm going to walk around the park some more. See you later!"
     s "Not if I see you first!"
 
+    hide spike neutral
     jump parkentrancemenu
 
 label m_maze_withMaron:
 
     show bg maze one
+    show marlon neutral
 
     "Turns out, this maze is more than just a family-friendly walk in the park. How do I get out of here? Marlon doesn't seem very thrilled to be in this maze. He's made himself comfortable on my shoulder and isn't being his usual self."
     "Maybe if I get him to lighten up he'll help us get through this maze. He's the one with the supernatural powers after all."
@@ -676,10 +683,10 @@ label m_maze_aesthetic:
     m "I am the change I want to see in the world."
     "Who knew mothmen were so...cut-throaty."
     return
-    
+
     "Marlon friend score: [marlon_friend_score]"
     jump end_of_maze
-    
+
 label end_of_maze:
     "SPOOKY SHIT"
 
@@ -785,6 +792,8 @@ label Spikemazeconvo:
             call s_laugh_maze from _call_s_laugh_maze
 
     "Spike friend score: [spike_friend_score]"
+    hide spike neutral
+    show otis neutral
     if otis_visited == True:
         jump s_talked_to_otis
     else:
@@ -915,7 +924,7 @@ label Otis_Maze_Convo:
     k "How did you get here so fast?! Didn't I see you at the entrance before I came in?"
 
     o "Oh, I know my way around this place quite well. You see, the maze is the home of my imagination."
-    
+
     o "As a child, I would run through the maze seeing myself in the Great Hall of the People or flying above the Karnak Temple Complex. It was my kingdom. It was anything I needed it to be."
 
     k "Sounds like a nice place."
@@ -946,6 +955,7 @@ label o_sure_maze:
     k "What happens if the tree starts to die?"
 
     o "Don't be silly. That would never happen."
+    hide otis neutral
     jump maze_center
 
 label o_shortversion_maze:
@@ -967,7 +977,7 @@ label o_shortversion_maze:
     k "Oh, right, of course. Um, I should be going now."
 
     o "I'll be seeing you, Kai."
-
+    hide otis neutral
     jump maze_center
 
 label o_nothanks_maze:
@@ -975,6 +985,7 @@ label o_nothanks_maze:
     k "Maybe later."
 
     o "No problem. I'll be around if you get curious. I promise it's quite enchanting."
+    hide otis neutral
     jump maze_center
 
 label maze_center:
