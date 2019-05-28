@@ -22,6 +22,8 @@ default maze_progress = 0
 define k = Character(_("Kai"), color="#aa6f73")
 define m = Character(_("Marlon"), color="#7e6a7c")
 define s = Character(_("Spike"), color="#ac330f")
+define mt = Character(_("[[Marlon]"), color="#7e6a7c")
+define st = Character(_("[[Spike]"), color="#ac330f")
 define o = Character(_("Otis"), color="#f9d62e")
 
 #define companion 
@@ -105,7 +107,7 @@ label phone_hold_two:
 label Marlontextconvo:
     hide screen phone_pop_but
     $ morning_phone_texts[0] = 1
-    show bg phone marlon
+    show phone
 
     m "omg did u watch the new episode of Trashy Cryptids Trash America?"
     m "this new season is lit"
@@ -268,6 +270,10 @@ label parkentrance:
     "I could always just explore on my own for a bit before meeting up with them."
 
 label parkentrancemenu:
+    hide otis neutral
+    hide marlon neutral
+    hide spike neutral
+    show bg park main
 #Leaving this here for now until we have the arrows and scene transitions in.
     menu:
         "Left towards Marlon":
@@ -334,6 +340,7 @@ label .k_seeyou:
 
 
 label Marlonparkconvo:
+    show marlon neutral
     if marlon_visited == False:
         $ marlon_visited = True
         m "Oh looky loo. You made it! What took you so long?"
@@ -466,6 +473,7 @@ label m_seeYouLater:
     jump parkentrancemenu
 
 label Spikeparkconvo:
+    show bg park left
     show spike neutral
 
     $ spike_visited = True
@@ -565,6 +573,8 @@ label s_leave_park:
 label m_maze_withMaron:
 
     show bg maze one
+
+    $ Companion = "Marlon"
 
     "Turns out, this maze is more than just a family-friendly walk in the park. How do I get out of here? Marlon doesn't seem very thrilled to be in this maze. He's made himself comfortable on my shoulder and isn't being his usual self."
     "Maybe if I get him to lighten up he'll help us get through this maze. He's the one with the supernatural powers after all."
@@ -666,7 +676,7 @@ label end_of_maze:
     "SPOOKY SHIT"
 
 label Spikemazeconvo:
-
+    $ Companion = "Spike"
     show bg maze one
     show spike neutral
 
@@ -892,6 +902,7 @@ label s_laugh_maze:
     return
 
 label Otis_Maze_Convo:
+    hide spike neutral
     show otis neutral
 
     k "How did you get here so fast?! Didn't I see you at the entrance before I came in?"
