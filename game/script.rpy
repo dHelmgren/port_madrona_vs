@@ -269,6 +269,7 @@ label parkentrance:
 
 label parkentrancemenu:
 #Leaving this here for now until we have the arrows and scene transitions in.
+    show bg park entrance
     menu:
         "Left towards Marlon":
             jump Marlonparkconvo
@@ -336,6 +337,7 @@ label .k_seeyou:
 
 
 label Marlonparkconvo:
+    show bg park fountain
     if marlon_visited == False:
         $ marlon_visited = True
         show marlon neutral
@@ -471,6 +473,7 @@ label m_seeYouLater:
     jump parkentrancemenu
 
 label Spikeparkconvo:
+    show bg park bench
     if spike_visited == False:
         $ spike_visited = True
         show spike neutral
