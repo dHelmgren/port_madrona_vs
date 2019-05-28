@@ -316,7 +316,7 @@ label parkentrancemenu:
     hide otis neutral
     hide marlon neutral
     hide spike neutral
-    show bg park entrance
+    show bg park main
     menu:
         "Left towards Marlon":
             jump Marlonparkconvo
@@ -333,9 +333,7 @@ label otis_park:
     show bg park fountain_mirror
 
     o "Hey there, Kai. Kai, the amelioration! How lovely to see you here at the heart of the town. Have you come to admire our famous Port Madrona Tree?"
-
     k "Uh, right. Hey, to you too.. I'm actually here to meet up with one of my friends, but thought I might explore a bit first. What brings you here?"
-
     o "Well, as you know, I run the town's grand annual festival to celebrate our beloved Port Madrona tree. I like to check on her often and tend to her. After all, we have a responsibility to protect her, right? We're all connected here."
 
     menu:
@@ -348,29 +346,19 @@ label otis_park:
 label .k_absolutely:
 
     k "Of course! That's really kind of you."
-
     o "Why, thank you. I just like to do my part. I think I'm just utterly fascinated by our town's history."
-
     k "It's definitely an interesting place.. I take it you must know a lot about it?"
-
     o "Better than most. However, I won't keep you from your friends. We'll have plenty of time to talk. Come find me in the maze later if you would like to know more."
-
     k "Okay, but I imagine I'll get there first."
-
     o "We'll see."
     hide otis neutral
     jump parkentrancemenu
 
 label .k_maybe:
-
     k "I guess, but why you? Are you the chosen one or something?"
-
     o "Oh Kai, you're full of surprises! You know we choose someone annually to guard the tree year-round, but I have to say, I just don't think anyone could show her the care and attention that I can. Perhaps, it's because I study her needs."
-
     k "How exactly do you do that?"
-
     o "I make sure her environment is ideal. Make sure she receives water every 10 - 14 days until the soil is moist at a depth of just 6-inches. I prune any dead limbs, trim the outer foliage, and spray in the early spring to kill any insects or larvae that may have nested during the winter months. It's quite simple, really."
-
     k "Right.."
     hide otis neutral
     jump parkentrancemenu
@@ -378,7 +366,6 @@ label .k_maybe:
 label .k_seeyou:
 
     k "Yeah, sounds good. I'll see you around."
-
     o "Of course. Come find me in the maze later if you would like to hear more about our enchanting Port Madrona tree."
     hide otis neutral
     jump parkentrancemenu
