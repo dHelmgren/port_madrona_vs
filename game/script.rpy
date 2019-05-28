@@ -1044,13 +1044,9 @@ label .k_nothanks:
 label maze_center:
     show no_flicker
     "[Companion] and I finally reach the center of the hedge maze."
-
-    
-
-
     show flicker_one
     "What the hell? Is that.. No. This isn't real… is that me?! Holy shit."
     show flicker_two
     "What the hell is going on here? I don't understand. Am I dead? How can I be dead? I thought I just lost my memories, but is this all some type of pseudo world I'm living out in my head?! Oh god, I need to figure this out."
-    
     "I can't lose it now. If I can't trust my memories, I'll need to find the answers from the people of this town. I need to remember who I am and why I came here. I can't explain it, but I know it's the only way to prevent this."
+    show madrona_light
