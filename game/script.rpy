@@ -308,7 +308,7 @@ label s_opensmile_text:
 
 label parkentrance:
     hide screen phone_pop_but
-    show bg park fountain
+    show bg park main
     #We see the entrance of the park with its three paths.
 
     "Well, I made it. It's a beautiful day. The sky is grey, the birds are screaming, and the air smells like fish and chips."
