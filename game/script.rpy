@@ -260,7 +260,7 @@ label Spiketextconvo:
         "{image=emoji/mad_emoji.png} If you insist":
             call s_mad_text from _call_s_mad_text
         "{image=emoji/opensmile_emoji.png} Wouldn't miss it":
-            call s_opensmile_text
+            call s_opensmile_text from _call_s_opensmile_text
 
     jump phone_hold_two
 
