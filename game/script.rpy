@@ -136,6 +136,7 @@ label open_phone:
     jump open_phone
 
 label phone_hold_two:
+    hide phone texts
     show screen phone_pop_but
     k "Okay, cool."
     k "I can head to the park now."
@@ -151,7 +152,7 @@ label phone_hold_two:
 label Marlontextconvo:
     hide screen phone_pop_but
     $ morning_phone_texts[0] = 1
-    show phone
+    show phone texts
 
     m "omg did u watch the new episode of Trashy Cryptids Trash America?"
     m "this new season is lit"
@@ -229,6 +230,7 @@ label m_eggplant:
 
 label Spiketextconvo:
     hide screen phone_pop_but
+    show phone texts
     $ morning_phone_texts[1] = 1
     s "hey kai!! wake up sleepyhead~*~"
     k "It's still early, Spike..."
@@ -306,7 +308,7 @@ label s_opensmile_text:
 
 label parkentrance:
     hide screen phone_pop_but
-    show bg park main
+    show bg park fountain
     #We see the entrance of the park with its three paths.
 
     "Well, I made it. It's a beautiful day. The sky is grey, the birds are screaming, and the air smells like fish and chips."
