@@ -113,11 +113,11 @@ label Marlontextconvo:
 
     menu:
         m "u up?"
-        "{image=emoji/basicsmile_emoji.png}Yes, I'm awake and kicking.":
+        "{image=emoji/basicsmile_emoji.png} Yes, I'm awake and kicking.":
             jump m_excited_text
-        "{image=emoji/basicfrown_emoji.png}No, still sleeping.":
+        "{image=emoji/basicfrown_emoji.png} No, still sleeping.":
             jump m_sleepy
-        "{image=emoji/peach_emoji.png}What's Trashy Cryptids?":
+        "{image=emoji/peach_emoji.png} What's Trashy Cryptids?":
             jump m_question
 
 label m_excited_text:
@@ -147,13 +147,13 @@ label m_invite:
     m "lets meet up. park?"
 
     menu:
-        "{image=emoji/poop_emoji.png}Maybe":
+        "{image=emoji/poop_emoji.png} Maybe":
             jump m_poop
 
-        "{image=emoji/unicorn_emoji.png}Maybe":
+        "{image=emoji/unicorn_emoji.png} Maybe":
             jump m_unicorn
 
-        "{image=emoji/eggplant_emoji.png}Maybe":
+        "{image=emoji/eggplant_emoji.png} Maybe":
             jump m_eggplant
 
 label m_poop:
@@ -165,7 +165,7 @@ label m_poop:
 
 label m_unicorn:
     $ unicorn_marlon = True
-    k "{image=emoji/unicorn_emoji.png}Maybe" #An emoji appears.
+    k "{image=emoji/unicorn_emoji.png} Maybe" #An emoji appears.
     m "ew no u kno i don't like unicorns {image=emoji/basicfrown_emoji.png}" #An emoji appears.
     k "I do?"
     m "ya, they r the woooorst"
@@ -174,7 +174,7 @@ label m_unicorn:
     jump phone_hold_two
 
 label m_eggplant:
-    k "{image=emoji/eggplant_emoji.png}Maybe"
+    k "{image=emoji/eggplant_emoji.png} Maybe"
     m "lollllll girrrrrrrl ur g8"
     m "missed u like a lot a lot"
     m "meet me by the water fountain if ur there"
@@ -291,12 +291,12 @@ label otis_park:
 
     menu:
         "{image=emoji/basicsmile_emoji.png} Absolutely!":
-            jump o_absolutely_park
+            jump otis_park.k_absolutely
         "{image=emoji/basicfrown_emoji.png} Maybe, but why you?":
-            jump o_maybe_park
+            jump otis_park.k_maybe
         "{image=emoji/thumbsup_emoji.png} See you around.":
-            jump o_seeyou_park
-label o_absolutely_park:
+            jump otis_park.k_seeyou
+label .k_absolutely:
 
     k "Of course! That's really kind of you."
 
@@ -312,7 +312,7 @@ label o_absolutely_park:
     hide otis neutral
     jump parkentrancemenu
 
-label o_maybe_park:
+label .k_maybe:
 
     k "I guess, but why you? Are you the chosen one or something?"
 
@@ -326,7 +326,7 @@ label o_maybe_park:
     hide otis neutral
     jump parkentrancemenu
 
-label o_seeyou_park:
+label .k_seeyou:
 
     k "Yeah, sounds good. I'll see you around."
 
@@ -383,11 +383,11 @@ label m_kai_weird_greetings:
 
 label Marlonparkmenu:
     menu:
-        "{image=emoji/opensmile_emoji.png}Tell me about you." if trash_tv_topics[0] == 0 | trash_tv_topics[1] == 0:
+        "{image=emoji/opensmile_emoji.png} Tell me about you." if trash_tv_topics[0] == 0 | trash_tv_topics[1] == 0:
             jump m_aboutMarlon
-        "{image=emoji/basicsmile_emoji.png}Tell me about The Glow.":
+        "{image=emoji/basicsmile_emoji.png} Tell me about The Glow.":
             jump m_aboutGlow
-        "{image=emoji/eyeroll_emoji.png}Let's talk about something else.":
+        "{image=emoji/eyeroll_emoji.png} Let's talk about something else.":
             jump m_somethingelse
 
 label m_aboutMarlon:
@@ -401,13 +401,13 @@ label m_aboutMarlon:
 
 label TCTA:
     menu:
-        "{image=emoji/sweat_emoji.png}Eileen?" if trash_tv_topics[0] == 0:
+        "{image=emoji/sweat_emoji.png} Eileen?" if trash_tv_topics[0] == 0:
             $ trash_tv_topics[0] = 1
             jump m_aboutEileen
-        "{image=emoji/eggplant_emoji.png}Tia?" if trash_tv_topics[1] == 0:
+        "{image=emoji/eggplant_emoji.png} Tia?" if trash_tv_topics[1] == 0:
             $ trash_tv_topics[1] = 1
             jump m_aboutTia
-        "{image=emoji/eyeroll_emoji.png}Let's move on.":
+        "{image=emoji/eyeroll_emoji.png} Let's move on.":
             jump m_moveOn
 
 label m_aboutEileen:
@@ -450,9 +450,9 @@ label m_somethingelse:
     m "Oh, you probably want to check out that maze, right? Otis made a weird-ass hedge maze this year for the festival. I don't get it."
 
     menu:
-        "{image=emoji/opensmile_emoji.png}Let's go in the maze together!":
+        "{image=emoji/opensmile_emoji.png} Let's go in the maze together!":
             jump m_enterMaze
-        "{image=emoji/thumbsup_emoji.png}See you later!":
+        "{image=emoji/thumbsup_emoji.png} See you later!":
             jump m_seeYouLater
 
 label m_enterMaze:
@@ -598,31 +598,31 @@ label m_maze_withMaron:
 
         "I need to say something to get Marlon interested."
 
-        "{image=emoji/tree_emoji.png}Work?" if marlon_maze_topics[0] == 0:
+        "{image=emoji/tree_emoji.png} Work?" if marlon_maze_topics[0] == 0:
             $ marlon_maze_topics[0] = 1
             $ marlon_friend_score -= 5
             call m_maze_work from _call_m_maze_work
-        "{image=emoji/unicorn_emoji.png}Unicorns?" if marlon_maze_topics[1] == 0:
+        "{image=emoji/unicorn_emoji.png} Unicorns?" if marlon_maze_topics[1] == 0:
             $ marlon_friend_score -= 5
             $ marlon_maze_topics[1] = 1
             call m_maze_unicorns from _call_m_maze_unicorns
-        "{image=emoji/eggplant_emoji.png}Eileen?" if marlon_maze_topics[2] == 0:
+        "{image=emoji/eggplant_emoji.png} Eileen?" if marlon_maze_topics[2] == 0:
             $ marlon_friend_score += 5
             $ marlon_maze_topics[2] = 1
             call m_maze_Eileen from _call_m_maze_Eileen
-        "{image=emoji/tableflip_emoji.png}Tia?" if marlon_maze_topics[3] == 0:
+        "{image=emoji/tableflip_emoji.png} Tia?" if marlon_maze_topics[3] == 0:
             $ marlon_friend_score -= 5
             $ marlon_maze_topics[3] = 1
             call m_maze_Tia from _call_m_maze_Tia
-        "{image=emoji/wink_emoji.png}Gossip?" if marlon_maze_topics[4] == 0:
+        "{image=emoji/wink_emoji.png} Gossip?" if marlon_maze_topics[4] == 0:
             $ marlon_friend_score += 5
             $ marlon_maze_topics[4] = 1
             call m_maze_gossip from _call_m_maze_gossip
-        "{image=emoji/heart_emoji.png}Dating?" if marlon_maze_topics[5] == 0:
+        "{image=emoji/heart_emoji.png} Dating?" if marlon_maze_topics[5] == 0:
             $ marlon_friend_score += 5
             $ marlon_maze_topics[5] = 1
             call m_maze_dating from _call_m_maze_dating
-        "{image=emoji/basicsmile_emoji.png}Aesthetic?" if marlon_maze_topics[6] == 0:
+        "{image=emoji/basicsmile_emoji.png} Aesthetic?" if marlon_maze_topics[6] == 0:
             $ marlon_friend_score += 5
             $ marlon_maze_topics[6] = 1
             call m_maze_aesthetic from _call_m_maze_aesthetic
@@ -685,10 +685,8 @@ label m_maze_aesthetic:
     return
 
     "Marlon friend score: [marlon_friend_score]"
-    jump end_of_maze
-
-label end_of_maze:
-    "SPOOKY SHIT"
+    hide marlon neutral
+    jump Otis_Maze_Convo
 
 label Spikemazeconvo:
 
@@ -933,13 +931,13 @@ label Otis_Maze_Convo:
 
     menu:
         "{image=emoji/basicsmile_emoji.png} Sure!":
-            jump o_sure_maze
-        "{image=emoji/basicfrown_emoji.png}Okay, but the short version.":
-            jump o_shortversion_maze
-        "{image=emoji/thumbsup_emoji.png}No thanks, I'll see you around.":
-            jump o_nothanks_maze
+            jump Otis_Maze_Convo.k_sure
+        "{image=emoji/basicfrown_emoji.png} Okay, but the short version.":
+            jump Otis_Maze_Convo.k_shortversion
+        "{image=emoji/thumbsup_emoji.png} No thanks, I'll see you around.":
+            jump Otis_Maze_Convo.k_nothanks
 
-label o_sure_maze:
+label .k_sure:
 
     k "I'd like that."
 
@@ -958,7 +956,7 @@ label o_sure_maze:
     hide otis neutral
     jump maze_center
 
-label o_shortversion_maze:
+label .k_shortversion:
 
     k "Alright, but keep it short will you?"
 
@@ -980,7 +978,7 @@ label o_shortversion_maze:
     hide otis neutral
     jump maze_center
 
-label o_nothanks_maze:
+label .k_nothanks:
 
     k "Maybe later."
 
