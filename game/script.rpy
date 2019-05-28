@@ -438,8 +438,8 @@ label m_aboutGlow:
     k "Really? I didn't take you as the business owner type."
     m "I wanted to open a place that would makes me feel less afraid of the dark."
     k "But, you can see in the dark, right? Why would you be scared of the dark?"
-    m "I can see in the dark, but that doesn't make it any less scary. Light means comfort. 
-    m "Light is infinite, like I'm standing on the edge of forever while the cracks in my life are illuminated with understanding. I remember things I've forgotten. 
+    m "I can see in the dark, but that doesn't make it any less scary. Light means comfort."
+    m "Light is infinite, like I'm standing on the edge of forever while the cracks in my life are illuminated with understanding. I remember things I've forgotten."
     m "When I'm in the light, the world just...makes sense."
     m "..."
     m "..."
