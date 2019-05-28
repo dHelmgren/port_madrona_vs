@@ -57,6 +57,7 @@ image flicker_two:
     "madrona_light.png"
     pause 0.08
     "madrona_dark.png"
+    pause 0.3
     repeat
 
 # Declare characters used by this game. The color argument colorizes the
