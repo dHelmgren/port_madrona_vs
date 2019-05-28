@@ -305,7 +305,7 @@ label s_opensmile_text:
 
 label parkentrance:
     hide screen phone_pop_but
-    show bg park entrance
+    show bg park main
     #We see the entrance of the park with its three paths.
 
     "Well, I made it. It's a beautiful day. The sky is grey, the birds are screaming, and the air smells like fish and chips."
@@ -316,8 +316,6 @@ label parkentrancemenu:
     hide otis neutral
     hide marlon neutral
     hide spike neutral
-    show bg park main
-#Leaving this here for now until we have the arrows and scene transitions in.
     show bg park entrance
     menu:
         "Left towards Marlon":
@@ -332,6 +330,7 @@ label parkentrancemenu:
 label otis_park:
     $ otis_visited = True
     show otis neutral
+    show bg park fountain_mirror
 
     o "Hey there, Kai. Kai, the amelioration! How lovely to see you here at the heart of the town. Have you come to admire our famous Port Madrona Tree?"
 
@@ -744,7 +743,7 @@ label m_maze_aesthetic:
 
 label Spikemazeconvo:
     $ Companion = "Spike"
-    show bg maze one
+    show bg hedge one
     show spike neutral
 
     "Spike and I start to walk side by side through the maze, the seemingly endless labyrinth looming before us as we take each step."
@@ -762,6 +761,7 @@ label Spikemazeconvo:
             #GOOD response
             call s_basketball_maze from _call_s_basketball_maze
 
+    show bg hedge two
     s "In the pack, I teach my pups to support each other, lift up their teammates, in order to succeed. Maybe we should follow my own advice—literally!"
     "She goes on to present an unnecessarily complex idea that pretty much boils down to her lifting me on her shoulders to see over the hedges."
     "I think she's waiting for my response..."
@@ -777,6 +777,7 @@ label Spikemazeconvo:
             #GOOD response
             call s_teenagers_maze from _call_s_teenagers_maze
 
+    show bg hedge three
     "Spike starts talking about the hedges themselves, monologuing about the types of trees and shrubbery typically used in the construction. There's a pause in her speech."
 
     menu: #3/7
@@ -790,6 +791,7 @@ label Spikemazeconvo:
             #BAD response
             call s_unicorn_maze from _call_s_unicorn_maze
 
+    show bg hedge two
     s "Do you have a favorite tree?"
 
     menu: #4/7
@@ -803,6 +805,7 @@ label Spikemazeconvo:
             #GOOD response
             call s_madrona_maze from _call_s_madrona_maze
 
+    show bg hedge three
     "She's starting to freak out a little. I should say something."
 
     menu: #5/7
@@ -816,6 +819,7 @@ label Spikemazeconvo:
             #GOOD response
             call s_concern_maze from _call_s_concern_maze
 
+    show bg hedge one
     s "I think... it's coming from the center of the maze. Let's follow it."
 
     menu: #6/7
@@ -829,6 +833,7 @@ label Spikemazeconvo:
             #BAD response
             call s_flee_maze from _call_s_flee_maze
 
+    show bg hedge three
     "After a while, Spike says that we're getting closer. She explains that whatever we find at the center could be bad, very bad, but she'll protect me."
     s "Do you trust me?"
 
@@ -843,6 +848,7 @@ label Spikemazeconvo:
             #GOOD response
             call s_laugh_maze from _call_s_laugh_maze
 
+    show bg hedge one
     "Spike friend score: [spike_friend_score]"
     hide spike neutral
     show otis neutral
@@ -975,13 +981,9 @@ label Otis_Maze_Convo:
     show otis neutral
 
     k "How did you get here so fast?! Didn't I see you at the entrance before I came in?"
-
     o "Oh, I know my way around this place quite well. You see, the maze is the home of my imagination."
-
     o "As a child, I would run through the maze seeing myself in the Great Hall of the People or flying above the Karnak Temple Complex. It was my kingdom. It was anything I needed it to be."
-
     k "Sounds like a nice place."
-
     o "Indeed. Would you like to hear about the history of the Madrona tree?"
 
     menu:
@@ -995,18 +997,13 @@ label Otis_Maze_Convo:
 label .k_sure:
 
     k "I'd like that."
-
     o "Well, the Port Madrona, also known as the Arbutus Menziesii species of the order Ericales, is native to the western regions of the North."
     o "It is an evergreen that sheds its bark with age and in the autumn produces small red berries known for their healing properties. "
     o "The tree is said to be over 400 years old with roots so deep that they span the length of the town. And when it rains, the tree appears to come to life taking in water and pumping out a rich red substance like blood stains on its leaves. "
     o "It's no wonder the tree has come to be revered as the life force of the town. Every year, I host our annual festival so we can celebrate the Port Madrona tree through song, food, sacrifices and prayer. "
-
     k "Wow. That's pretty amazing. It seems to have thrived here for so long. I wonder, why?"
-
     o "Some say, it was the Port Madrona tree that gave birth to our entire town, and as long as we honor it, it will continue to protect our home."
-
     k "What happens if the tree starts to die?"
-
     o "Don't be silly. That would never happen."
     hide otis neutral
     jump maze_center
@@ -1014,21 +1011,14 @@ label .k_sure:
 label .k_shortversion:
 
     k "Alright, but keep it short will you?"
-
     o "Very well. The Port Madrona tree has lived here for over 400 years with roots that are said to span the length of the town."
     o "Every year, in order to ensure that the tree continues to thrive and floruish, we honor it."
     o "The town gets together and celebrates with a festival. Yusef's Crab House, the Beaver Mill Diner, the Dark Carta all donate food and entertainment to the night's festivities and, of course, we choose the guardian that will tend to the tree year-round."
-
     k "That sounds pretty great. Guardian, huh?"
-
     o "Yes, the chosen guardian will have the honor of tending to our beloved tree and ensuring no harm should befall her. "
-
     k "I wonder who it will be this year… this festival sounds interesting. I can't wait!"
-
     o "Well, surely, you remember it from last year?"
-
     k "Oh, right, of course. Um, I should be going now."
-
     o "I'll be seeing you, Kai."
     hide otis neutral
     jump maze_center
@@ -1036,7 +1026,6 @@ label .k_shortversion:
 label .k_nothanks:
 
     k "Maybe later."
-
     o "No problem. I'll be around if you get curious. I promise it's quite enchanting."
     hide otis neutral
     jump maze_center
