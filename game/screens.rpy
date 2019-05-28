@@ -892,7 +892,7 @@ screen in_game_phone():
         hotspot (997, 394, 404, 243) action ShowMenu('save') #
         hotspot (1424, 395, 404, 238) action ShowMenu('phone_map') #Map
         hotspot (999, 650, 402, 239) action ShowMenu('save') #BL
-        hotspot (1426, 650, 402, 244) action ShowMenu('save') #BR
+        hotspot (1426, 650, 402, 244) action Start('maze_center') #BR
         hotspot (1186, 928, 450, 108) action Return() #Back
 
 screen phone_messages():

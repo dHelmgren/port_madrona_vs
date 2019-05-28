@@ -16,6 +16,49 @@ default marlon_maze_topics = [0,0,0,0,0,0,0]
 #Define puzzle states
 default maze_progress = 0
 
+# Set up horror flicker
+default blink_timer = renpy.random.random()
+
+init python:
+    def blink(trans, st, at):
+        global blink_timer
+
+        if st >= blink_timer:
+            blink_timer = renpy.random.random()
+            return None
+        else:
+            return 0
+
+image no_flicker:
+    "madrona_light.png"
+
+image flicker_one:
+    "madrona_light.png"
+    function blink
+    "madrona_dark.png"
+    pause 0.02
+    "madrona_light.png"
+    pause 0.02
+    "madrona_dark.png"
+    function blink
+    repeat
+
+image flicker_two:
+    "madrona_light.png"
+    pause 0.05
+    "madrona_dark.png"
+    function blink
+    "madrona_gore.png"
+    pause 0.02
+    "madrona_dark.png"
+    pause 0.5
+    "madrona_gore.png"
+    function blink  
+    "madrona_light.png"
+    pause 0.08
+    "madrona_dark.png"
+    repeat
+
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
@@ -214,13 +257,8 @@ label Spiketextconvo:
         "{image=emoji/mad_emoji.png} If you insist":
             call s_mad_text from _call_s_mad_text
         "{image=emoji/opensmile_emoji.png} Wouldn't miss it":
-<<<<<<< HEAD
-            call s_opensmile_text from _call_s_opensmile_text
-    
-=======
             call s_opensmile_text
 
->>>>>>> 96e633966bc17d577b96467199e8414faa1b7c17
     jump phone_hold_two
 
 label s_explore_text:
@@ -348,11 +386,7 @@ label .k_seeyou:
 
 
 label Marlonparkconvo:
-<<<<<<< HEAD
-    show marlon neutral
-=======
     show bg park fountain
->>>>>>> 96e633966bc17d577b96467199e8414faa1b7c17
     if marlon_visited == False:
         $ marlon_visited = True
         show marlon neutral
@@ -488,10 +522,6 @@ label m_seeYouLater:
     jump parkentrancemenu
 
 label Spikeparkconvo:
-<<<<<<< HEAD
-    show bg park left
-    show spike neutral
-=======
     show bg park bench
     if spike_visited == False:
         $ spike_visited = True
@@ -512,7 +542,6 @@ label s_talked_to_marlon:
     s "Hehe, definitely! I love that dude. He knows everyone's deepest, darkest secrets..."
 
     jump s_park_intro
->>>>>>> 96e633966bc17d577b96467199e8414faa1b7c17
 
 label s_park_intro:
 
@@ -1013,10 +1042,15 @@ label .k_nothanks:
     jump maze_center
 
 label maze_center:
+    show no_flicker
     "[Companion] and I finally reach the center of the hedge maze."
 
-    show bg maze center
+    
 
+
+    show flicker_one
     "What the hell? Is that.. No. This isn't real… is that me?! Holy shit."
+    show flicker_two
     "What the hell is going on here? I don't understand. Am I dead? How can I be dead? I thought I just lost my memories, but is this all some type of pseudo world I'm living out in my head?! Oh god, I need to figure this out."
+    
     "I can't lose it now. If I can't trust my memories, I'll need to find the answers from the people of this town. I need to remember who I am and why I came here. I can't explain it, but I know it's the only way to prevent this."
