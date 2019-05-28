@@ -24,7 +24,7 @@ define m = Character(_("Marlon"), color="#7e6a7c")
 define s = Character(_("Spike"), color="#ac330f")
 define o = Character(_("Otis"), color="#f9d62e")
 
-#define companion 
+#define companion
 default Companion = "{size=+20}ERROR{/size}"
 
 #define pronouns
@@ -113,11 +113,11 @@ label Marlontextconvo:
 
     menu:
         m "u up?"
-        "{image=emoji/basicsmile_emoji.png}Yes, I'm awake and kicking.":
+        "{image=emoji/basicsmile_emoji.png} Yes, I'm awake and kicking.":
             jump m_excited_text
-        "{image=emoji/basicfrown_emoji.png}No, still sleeping.":
+        "{image=emoji/basicfrown_emoji.png} No, still sleeping.":
             jump m_sleepy
-        "{image=emoji/peach_emoji.png}What's Trashy Cryptids?":
+        "{image=emoji/peach_emoji.png} What's Trashy Cryptids?":
             jump m_question
 
 label m_excited_text:
@@ -130,7 +130,7 @@ label m_sleepy:
     k "No, I'm still sleeping"
     m "how u texting if yr asleep?"
     k "It's one of the world's greatest mysteries I guess"
-    m "lol" 
+    m "lol"
     m "i gotta catch you up on the new trashy cryptids season {image=emoji/peach_emoji.png}" #An emoji appears.
     jump m_invite
 
@@ -147,13 +147,13 @@ label m_invite:
     m "lets meet up. park?"
 
     menu:
-        "{image=emoji/poop_emoji.png}Maybe":
+        "{image=emoji/poop_emoji.png} Maybe":
             jump m_poop
 
-        "{image=emoji/unicorn_emoji.png}Maybe":
+        "{image=emoji/unicorn_emoji.png} Maybe":
             jump m_unicorn
 
-        "{image=emoji/eggplant_emoji.png}Maybe":
+        "{image=emoji/eggplant_emoji.png} Maybe":
             jump m_eggplant
 
 label m_poop:
@@ -165,7 +165,7 @@ label m_poop:
 
 label m_unicorn:
     $ unicorn_marlon = True
-    k "{image=emoji/unicorn_emoji.png}Maybe" #An emoji appears.
+    k "{image=emoji/unicorn_emoji.png} Maybe" #An emoji appears.
     m "ew no u kno i don't like unicorns {image=emoji/basicfrown_emoji.png}" #An emoji appears.
     k "I do?"
     m "ya, they r the woooorst"
@@ -174,7 +174,7 @@ label m_unicorn:
     jump phone_hold_two
 
 label m_eggplant:
-    k "{image=emoji/eggplant_emoji.png}Maybe"
+    k "{image=emoji/eggplant_emoji.png} Maybe"
     m "lollllll girrrrrrrl ur g8"
     m "missed u like a lot a lot"
     m "meet me by the water fountain if ur there"
@@ -197,14 +197,14 @@ label Spiketextconvo:
         "{image=emoji/wink_emoji.png} Spend time with you":
             call s_wink_text from _call_s_wink_text
 
-    s "wanna meet up? i have time before bball practice this afternoon"
+    s "wanna meet up? i have time before bball practice this afternoon {image=emoji/sweat_emoji.png}"
     k "...what did you have in mind?"
     s "it's a surprise! you won't regret it :D"
     s "meet me by the park bench in 20"
     s "but don't sit on it :p my invisible friend might be there"
     k "Invisible friend? Don't you mean {i}imaginary{/i} friend?"
     s "nope they're invisible <(^o^)> they hate it when people sit on them"
-    s "so can i count on you?"
+    s "so can i count on you? {image=emoji/sweat_emoji.png}"
 
     menu:
         "{image=emoji/thumbsup_emoji.png} See you there!":
@@ -213,7 +213,7 @@ label Spiketextconvo:
             call s_mad_text
         "{image=emoji/opensmile_emoji.png} Wouldn't miss it":
             call s_opensmile_text
-    
+
     jump phone_hold_two
 
 label s_explore_text:
@@ -269,6 +269,7 @@ label parkentrance:
 
 label parkentrancemenu:
 #Leaving this here for now until we have the arrows and scene transitions in.
+    show bg park entrance
     menu:
         "Left towards Marlon":
             jump Marlonparkconvo
@@ -309,7 +310,7 @@ label .k_absolutely:
     k "Okay, but I imagine I'll get there first."
 
     o "We'll see."
-
+    hide otis neutral
     jump parkentrancemenu
 
 label .k_maybe:
@@ -323,6 +324,7 @@ label .k_maybe:
     o "I make sure her environment is ideal. Make sure she receives water every 10 - 14 days until the soil is moist at a depth of just 6-inches. I prune any dead limbs, trim the outer foliage, and spray in the early spring to kill any insects or larvae that may have nested during the winter months. It's quite simple, really."
 
     k "Right.."
+    hide otis neutral
     jump parkentrancemenu
 
 label .k_seeyou:
@@ -330,18 +332,22 @@ label .k_seeyou:
     k "Yeah, sounds good. I'll see you around."
 
     o "Of course. Come find me in the maze later if you would like to hear more about our enchanting Port Madrona tree."
+    hide otis neutral
     jump parkentrancemenu
 
 
 label Marlonparkconvo:
+    show bg park fountain
     if marlon_visited == False:
         $ marlon_visited = True
+        show marlon neutral
         m "Oh looky loo. You made it! What took you so long?"
         if spike_visited == True:
             jump m_talked_to_spike
         else:
             jump m_long_morning
     else:
+        show marlon neutral
         m "[She]'s back!"
         jump Marlonparkmenu
 
@@ -379,11 +385,11 @@ label m_kai_weird_greetings:
 
 label Marlonparkmenu:
     menu:
-        "{image=emoji/opensmile_emoji.png}Tell me about you." if trash_tv_topics[0] == 0 | trash_tv_topics[1] == 0:
+        "{image=emoji/opensmile_emoji.png} Tell me about you." if trash_tv_topics[0] == 0 | trash_tv_topics[1] == 0:
             jump m_aboutMarlon
-        "{image=emoji/basicsmile_emoji.png}Tell me about The Glow.":
+        "{image=emoji/basicsmile_emoji.png} Tell me about The Glow.":
             jump m_aboutGlow
-        "{image=emoji/eyeroll_emoji.png}Let's talk about something else.":
+        "{image=emoji/eyeroll_emoji.png} Let's talk about something else.":
             jump m_somethingelse
 
 label m_aboutMarlon:
@@ -396,14 +402,14 @@ label m_aboutMarlon:
     m "Except for Tia. Tia is a mess."
 
 label TCTA:
-    menu:          
-        "{image=emoji/sweat_emoji.png}Eileen?" if trash_tv_topics[0] == 0:
+    menu:
+        "{image=emoji/sweat_emoji.png} Eileen?" if trash_tv_topics[0] == 0:
             $ trash_tv_topics[0] = 1
             jump m_aboutEileen
-        "{image=emoji/eggplant_emoji.png}Tia?" if trash_tv_topics[1] == 0:
-            $ trash_tv_topics[1] = 1 
+        "{image=emoji/eggplant_emoji.png} Tia?" if trash_tv_topics[1] == 0:
+            $ trash_tv_topics[1] = 1
             jump m_aboutTia
-        "{image=emoji/eyeroll_emoji.png}Let's move on.":
+        "{image=emoji/eyeroll_emoji.png} Let's move on.":
             jump m_moveOn
 
 label m_aboutEileen:
@@ -419,7 +425,7 @@ label m_aboutTia:
     k "Fascinating."
     m "{size=+10}I KNOOOOOOOWWWW.{/size}"
     jump TCTA
-    
+
 label m_moveOn:
     k "Let's talk about something else."
     m "Whatever you want!"
@@ -446,9 +452,9 @@ label m_somethingelse:
     m "Oh, you probably want to check out that maze, right? Otis made a weird-ass hedge maze this year for the festival. I don't get it."
 
     menu:
-        "{image=emoji/opensmile_emoji.png}Let's go in the maze together!":
+        "{image=emoji/opensmile_emoji.png} Let's go in the maze together!":
             jump m_enterMaze
-        "{image=emoji/thumbsup_emoji.png}See you later!":
+        "{image=emoji/thumbsup_emoji.png} See you later!":
             jump m_seeYouLater
 
 label m_enterMaze:
@@ -463,14 +469,35 @@ label m_seeYouLater:
     k "Interesting...well, I'm going to keep looking around this park. See you later!"
     m "See ya, buddy."
 
+    hide marlon neutral
     jump parkentrancemenu
 
 label Spikeparkconvo:
-    show spike neutral
+    show bg park bench
+    if spike_visited == False:
+        $ spike_visited = True
+        show spike neutral
+        s "There [she] is!"
+        if marlon_visited == True:
+            jump s_talked_to_marlon
+        else:
+            jump s_park_intro
+    else:
+        show spike neutral
+        s "Awoo! You're back! I missed you so much!"
+        jump Spikeparkmenu
 
-    $ spike_visited = True
-    s "There [she] is! Hey, Kai, you made it!"
-    k "Hey, Spike. Yeah I managed to find it by looking at the GPS on my phone."
+label s_talked_to_marlon:
+    s "Awoo! You smell like Marlon! How's my favorite mothman doing?"
+    k "Unforgettable. Like usual, apparently."
+    s "Hehe, definitely! I love that dude. He knows everyone's deepest, darkest secrets..."
+
+    jump s_park_intro
+
+label s_park_intro:
+
+    s "I'm glad you made it!"
+    k "Yeah, I managed to find it by looking at the GPS on my phone."
     s "See? That's why I let my pups use their phones during practice."
     k "Wait, your 'pups'?"
     s "Oh, sorry! That's what I call my students."
@@ -478,17 +505,16 @@ label Spikeparkconvo:
     s "If my pups can dribble down the court with one hand and send a text with the other, they're more skilled than I am! Maybe they should be the pack alpha instead of me!"
     k "So you just coach basketball at the high school? Do you teach any other subjects?"
     s "Nope! Just basketball! When I'm not coaching, you can find me in the Weirdwood. I chop down trees and sell quality, non-haunted logs to anyone who needs 'em!"
+    s "So... whaddaya think?"
 
     jump Spikeparkmenu
 
 label Spikeparkmenu:
-    s "So... whaddaya think?"
-
     menu:
 
-        "{image=emoji/tree_emoji.png} You're a lumberjack?":
+        "{image=emoji/tree_emoji.png} So you're a lumberjack?":
             jump s_lumberjack_park
-        "{image=emoji/basicfrown_emoji.png} Um, the Weirdwood?":
+        "{image=emoji/basicfrown_emoji.png} What's the Weirdwood?":
             jump s_weirdwood_park
         "{image=emoji/thumbsup_emoji.png} Let's move on.":
             jump s_moveon_park
@@ -560,44 +586,46 @@ label s_leave_park:
     k "Interesting... I'm going to walk around the park some more. See you later!"
     s "Not if I see you first!"
 
+    hide spike neutral
     jump parkentrancemenu
 
 label m_maze_withMaron:
 
     show bg maze one
+    show marlon neutral
 
     "Turns out, this maze is more than just a family-friendly walk in the park. How do I get out of here? Marlon doesn't seem very thrilled to be in this maze. He's made himself comfortable on my shoulder and isn't being his usual self."
     "Maybe if I get him to lighten up he'll help us get through this maze. He's the one with the supernatural powers after all."
 
     menu:
 
-        "I need to sayet Marlon interested."
+        "I need to say something to get Marlon interested."
 
-        "{image=emoji/tree_emoji.png}Work?" if marlon_maze_topics[0] == 0:
+        "{image=emoji/tree_emoji.png} Work?" if marlon_maze_topics[0] == 0:
             $ marlon_maze_topics[0] = 1
             $ marlon_friend_score -= 5
             call m_maze_work from _call_m_maze_work
-        "{image=emoji/unicorn_emoji.png}Unicorns?" if marlon_maze_topics[1] == 0:
+        "{image=emoji/unicorn_emoji.png} Unicorns?" if marlon_maze_topics[1] == 0:
             $ marlon_friend_score -= 5
             $ marlon_maze_topics[1] = 1
             call m_maze_unicorns from _call_m_maze_unicorns
-        "{image=emoji/eggplant_emoji.png}Eileen?" if marlon_maze_topics[2] == 0:
+        "{image=emoji/eggplant_emoji.png} Eileen?" if marlon_maze_topics[2] == 0:
             $ marlon_friend_score += 5
             $ marlon_maze_topics[2] = 1
             call m_maze_Eileen from _call_m_maze_Eileen
-        "{image=emoji/tableflip_emoji.png}Tia?" if marlon_maze_topics[3] == 0:
+        "{image=emoji/tableflip_emoji.png} Tia?" if marlon_maze_topics[3] == 0:
             $ marlon_friend_score -= 5
             $ marlon_maze_topics[3] = 1
             call m_maze_Tia from _call_m_maze_Tia
-        "{image=emoji/wink_emoji.png}Gossip?" if marlon_maze_topics[4] == 0:
+        "{image=emoji/wink_emoji.png} Gossip?" if marlon_maze_topics[4] == 0:
             $ marlon_friend_score += 5
             $ marlon_maze_topics[4] = 1
             call m_maze_gossip from _call_m_maze_gossip
-        "{image=emoji/heart_emoji.png}Dating?" if marlon_maze_topics[5] == 0:
+        "{image=emoji/heart_emoji.png} Dating?" if marlon_maze_topics[5] == 0:
             $ marlon_friend_score += 5
             $ marlon_maze_topics[5] = 1
             call m_maze_dating from _call_m_maze_dating
-        "{image=emoji/basicsmile_emoji.png}Aesthetic?" if marlon_maze_topics[6] == 0:
+        "{image=emoji/basicsmile_emoji.png} Aesthetic?" if marlon_maze_topics[6] == 0:
             $ marlon_friend_score += 5
             $ marlon_maze_topics[6] = 1
             call m_maze_aesthetic from _call_m_maze_aesthetic
@@ -629,7 +657,7 @@ label m_maze_Eileen:
     "Oh geez, Marlon can't stop talking about Eileen."
     return
 
-label m_maze_Tia:   
+label m_maze_Tia:
     k "Tell me about Tia from Trashy Crypids."
     m "Wow, no thanks. Tia is honestly the worst and a waste. She ruined the last season."
     "Oh no, Marlon didn't like that at all."
@@ -637,7 +665,7 @@ label m_maze_Tia:
 
 label m_maze_gossip:
     k "Any interesting stuff happening around town?"
-    m "OH YES. So you know Ferris Castro? He's the barista at the bookstore where you work. So I was walking by one night while he was closing by himself. I don't think he noticed me looking through the window. You know how he has those antlers that grow out of his head?" 
+    m "OH YES. So you know Ferris Castro? He's the barista at the bookstore where you work. So I was walking by one night while he was closing by himself. I don't think he noticed me looking through the window. You know how he has those antlers that grow out of his head?"
     m "Well I absolutely SWEAR I saw him TAKE OFF his antlers."
     m "Want to know what I think? I think he's hiding that fact that he's a normal human. CRAZY, RIGHT?"
     "Wow, Marlon really does have dirt on everybody in the town."
@@ -658,12 +686,10 @@ label m_maze_aesthetic:
     m "I am the change I want to see in the world."
     "Who knew mothmen were so...cut-throaty."
     return
-    
-    "Marlon friend score: [marlon_friend_score]" 
-    jump end_of_maze
-    
-label end_of_maze:
-    "SPOOKY SHIT"
+
+    "Marlon friend score: [marlon_friend_score]"
+    hide marlon neutral
+    jump Otis_Maze_Convo
 
 label Spikemazeconvo:
 
@@ -767,6 +793,8 @@ label Spikemazeconvo:
             call s_laugh_maze from _call_s_laugh_maze
 
     "Spike friend score: [spike_friend_score]"
+    hide spike neutral
+    show otis neutral
     if otis_visited == True:
         jump s_talked_to_otis
     else:
@@ -897,7 +925,7 @@ label Otis_Maze_Convo:
     k "How did you get here so fast?! Didn't I see you at the entrance before I came in?"
 
     o "Oh, I know my way around this place quite well. You see, the maze is the home of my imagination."
-    
+
     o "As a child, I would run through the maze seeing myself in the Great Hall of the People or flying above the Karnak Temple Complex. It was my kingdom. It was anything I needed it to be."
 
     k "Sounds like a nice place."
@@ -907,18 +935,18 @@ label Otis_Maze_Convo:
     menu:
         "{image=emoji/basicsmile_emoji.png} Sure!":
             jump Otis_Maze_Convo.k_sure
-        "{image=emoji/basicfrown_emoji.png}Okay, but the short version.":
+        "{image=emoji/basicfrown_emoji.png} Okay, but the short version.":
             jump Otis_Maze_Convo.k_shortversion
-        "{image=emoji/thumbsup_emoji.png}No thanks, I'll see you around.":
+        "{image=emoji/thumbsup_emoji.png} No thanks, I'll see you around.":
             jump Otis_Maze_Convo.k_nothanks
 
 label .k_sure:
 
     k "I'd like that."
 
-    o "Well, the Port Madrona, also known as the Arbutus Menziesii species of the order Ericales, is native to the western regions of the North." 
+    o "Well, the Port Madrona, also known as the Arbutus Menziesii species of the order Ericales, is native to the western regions of the North."
     o "It is an evergreen that sheds its bark with age and in the autumn produces small red berries known for their healing properties. "
-    o "The tree is said to be over 400 years old with roots so deep that they span the length of the town. And when it rains, the tree appears to come to life taking in water and pumping out a rich red substance like blood stains on its leaves. " 
+    o "The tree is said to be over 400 years old with roots so deep that they span the length of the town. And when it rains, the tree appears to come to life taking in water and pumping out a rich red substance like blood stains on its leaves. "
     o "It's no wonder the tree has come to be revered as the life force of the town. Every year, I host our annual festival so we can celebrate the Port Madrona tree through song, food, sacrifices and prayer. "
 
     k "Wow. That's pretty amazing. It seems to have thrived here for so long. I wonder, why?"
@@ -928,6 +956,7 @@ label .k_sure:
     k "What happens if the tree starts to die?"
 
     o "Don't be silly. That would never happen."
+    hide otis neutral
     jump maze_center
 
 label .k_shortversion:
@@ -949,7 +978,7 @@ label .k_shortversion:
     k "Oh, right, of course. Um, I should be going now."
 
     o "I'll be seeing you, Kai."
-
+    hide otis neutral
     jump maze_center
 
 label .k_nothanks:
@@ -957,7 +986,14 @@ label .k_nothanks:
     k "Maybe later."
 
     o "No problem. I'll be around if you get curious. I promise it's quite enchanting."
+    hide otis neutral
     jump maze_center
 
 label maze_center:
     "[Companion] and I finally reach the center of the hedge maze."
+
+    show bg maze center
+
+    "What the hell? Is that.. No. This isn't real… is that me?! Holy shit."
+    "What the hell is going on here? I don't understand. Am I dead? How can I be dead? I thought I just lost my memories, but is this all some type of pseudo world I'm living out in my head?! Oh god, I need to figure this out."
+    "I can't lose it now. If I can't trust my memories, I'll need to find the answers from the people of this town. I need to remember who I am and why I came here. I can't explain it, but I know it's the only way to prevent this."
