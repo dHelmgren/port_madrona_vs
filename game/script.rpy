@@ -16,58 +16,12 @@ default marlon_maze_topics = [0,0,0,0,0,0,0]
 #Define puzzle states
 default maze_progress = 0
 
-# Set up horror flicker
-default blink_timer = renpy.random.random()
-
-init python:
-    def blink(trans, st, at):
-        global blink_timer
-
-        if st >= blink_timer:
-            blink_timer = renpy.random.random()
-            return None
-        else:
-            return 0
-
-image no_flicker:
-    "madrona_light.png"
-
-image flicker_one:
-    "madrona_light.png"
-    function blink
-    "madrona_dark.png"
-    pause 0.02
-    "madrona_light.png"
-    pause 0.02
-    "madrona_dark.png"
-    function blink
-    repeat
-
-image flicker_two:
-    "madrona_light.png"
-    pause 0.05
-    "madrona_dark.png"
-    function blink
-    "madrona_gore.png"
-    pause 0.02
-    "madrona_dark.png"
-    pause 0.5
-    "madrona_gore.png"
-    function blink  
-    "madrona_light.png"
-    pause 0.08
-    "madrona_dark.png"
-    pause 0.3
-    repeat
-
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
 define k = Character(_("Kai"), color="#aa6f73")
 define m = Character(_("Marlon"), color="#7e6a7c")
 define s = Character(_("Spike"), color="#ac330f")
-define mt = Character(_("[[Marlon]"), color="#7e6a7c")
-define st = Character(_("[[Spike]"), color="#ac330f")
 define o = Character(_("Otis"), color="#f9d62e")
 
 #define companion
@@ -136,7 +90,6 @@ label open_phone:
     jump open_phone
 
 label phone_hold_two:
-    hide phone texts
     show screen phone_pop_but
     k "Okay, cool."
     k "I can head to the park now."
@@ -152,11 +105,11 @@ label phone_hold_two:
 label Marlontextconvo:
     hide screen phone_pop_but
     $ morning_phone_texts[0] = 1
-    show phone texts
+    show bg phone marlon
 
     m "omg did u watch the new episode of Trashy Cryptids Trash America?"
     m "this new season is lit"
-    m "ester is my faveeeee"
+    m "Eileen is my love 5eva"
 
     menu:
         m "u up?"
@@ -222,7 +175,7 @@ label m_unicorn:
 
 label m_eggplant:
     k "{image=emoji/eggplant_emoji.png} Maybe"
-    m "lollllll girrrrrrrl ur g8"
+    m "lollllll buddy ur g8"
     m "missed u like a lot a lot"
     m "meet me by the water fountain if ur there"
 
@@ -230,7 +183,6 @@ label m_eggplant:
 
 label Spiketextconvo:
     hide screen phone_pop_but
-    show phone texts
     $ morning_phone_texts[1] = 1
     s "hey kai!! wake up sleepyhead~*~"
     k "It's still early, Spike..."
@@ -256,11 +208,11 @@ label Spiketextconvo:
 
     menu:
         "{image=emoji/thumbsup_emoji.png} See you there!":
-            call s_thumbsup_text from _call_s_thumbsup_text
+            call s_thumbsup_text
         "{image=emoji/mad_emoji.png} If you insist":
-            call s_mad_text from _call_s_mad_text
+            call s_mad_text
         "{image=emoji/opensmile_emoji.png} Wouldn't miss it":
-            call s_opensmile_text from _call_s_opensmile_text
+            call s_opensmile_text
 
     jump phone_hold_two
 
@@ -308,7 +260,7 @@ label s_opensmile_text:
 
 label parkentrance:
     hide screen phone_pop_but
-    show bg park main
+    show bg park entrance
     #We see the entrance of the park with its three paths.
 
     "Well, I made it. It's a beautiful day. The sky is grey, the birds are screaming, and the air smells like fish and chips."
@@ -316,10 +268,8 @@ label parkentrance:
     "I could always just explore on my own for a bit before meeting up with them."
 
 label parkentrancemenu:
-    hide otis neutral
-    hide marlon neutral
-    hide spike neutral
-    show bg park main
+#Leaving this here for now until we have the arrows and scene transitions in.
+    show bg park entrance
     menu:
         "Left towards Marlon":
             jump Marlonparkconvo
@@ -333,10 +283,11 @@ label parkentrancemenu:
 label otis_park:
     $ otis_visited = True
     show otis neutral
-    show bg park fountain_mirror
 
     o "Hey there, Kai. Kai, the amelioration! How lovely to see you here at the heart of the town. Have you come to admire our famous Port Madrona Tree?"
-    k "Uh, right. Hey, to you too.. I'm actually here to meet up with one of my friends, but thought I might explore a bit first. What brings you here?"
+
+    k "Uh, right. Hey, to you too... I'm actually here to meet up with one of my friends, but thought I might explore a bit first. What brings you here?"
+
     o "Well, as you know, I run the town's grand annual festival to celebrate our beloved Port Madrona tree. I like to check on her often and tend to her. After all, we have a responsibility to protect her, right? We're all connected here."
 
     menu:
@@ -349,19 +300,29 @@ label otis_park:
 label .k_absolutely:
 
     k "Of course! That's really kind of you."
+
     o "Why, thank you. I just like to do my part. I think I'm just utterly fascinated by our town's history."
+
     k "It's definitely an interesting place.. I take it you must know a lot about it?"
+
     o "Better than most. However, I won't keep you from your friends. We'll have plenty of time to talk. Come find me in the maze later if you would like to know more."
+
     k "Okay, but I imagine I'll get there first."
+
     o "We'll see."
     hide otis neutral
     jump parkentrancemenu
 
 label .k_maybe:
+
     k "I guess, but why you? Are you the chosen one or something?"
+
     o "Oh Kai, you're full of surprises! You know we choose someone annually to guard the tree year-round, but I have to say, I just don't think anyone could show her the care and attention that I can. Perhaps, it's because I study her needs."
+
     k "How exactly do you do that?"
+
     o "I make sure her environment is ideal. Make sure she receives water every 10 - 14 days until the soil is moist at a depth of just 6-inches. I prune any dead limbs, trim the outer foliage, and spray in the early spring to kill any insects or larvae that may have nested during the winter months. It's quite simple, really."
+
     k "Right.."
     hide otis neutral
     jump parkentrancemenu
@@ -369,6 +330,7 @@ label .k_maybe:
 label .k_seeyou:
 
     k "Yeah, sounds good. I'll see you around."
+
     o "Of course. Come find me in the maze later if you would like to hear more about our enchanting Port Madrona tree."
     hide otis neutral
     jump parkentrancemenu
@@ -417,7 +379,7 @@ label m_kai_weird_greetings:
     k "None of that sounds familiar. Something...{size=-10}someone?{/size}...stuffed my mind into a blender and pressed the smoothie button."
     m "That's disgusting and… a little cool. {p=1.0} You'll remember something! I'm unforgettable after all."
     k "Thanks, Marlon."
-    m "I can answer anything up for you if you want. I got ALL the dirt."
+    m "I can answer anything for you if you want. I got ALL the dirt."
 
     jump Marlonparkmenu
 
@@ -476,7 +438,9 @@ label m_aboutGlow:
     k "Really? I didn't take you as the business owner type."
     m "I wanted to open a place that would makes me feel less afraid of the dark."
     k "But, you can see in the dark, right? Why would you be scared of the dark?"
-    m "I can see in the dark, but that doesn't make it any less scary. Light means comfort. Light is infinite, like I'm standing on the edge of forever while the cracks in my life are illuminated with understanding. I remember things I've forgotten. When I'm in the light, the world just...makes sense."
+    m "I can see in the dark, but that doesn't make it any less scary. Light means comfort. 
+    m "Light is infinite, like I'm standing on the edge of forever while the cracks in my life are illuminated with understanding. I remember things I've forgotten. 
+    m "When I'm in the light, the world just...makes sense."
     m "..."
     m "..."
     k "..."
@@ -632,8 +596,6 @@ label m_maze_withMaron:
     show bg maze one
     show marlon neutral
 
-    $ Companion = "Marlon"
-
     "Turns out, this maze is more than just a family-friendly walk in the park. How do I get out of here? Marlon doesn't seem very thrilled to be in this maze. He's made himself comfortable on my shoulder and isn't being his usual self."
     "Maybe if I get him to lighten up he'll help us get through this maze. He's the one with the supernatural powers after all."
 
@@ -732,8 +694,8 @@ label m_maze_aesthetic:
     jump Otis_Maze_Convo
 
 label Spikemazeconvo:
-    $ Companion = "Spike"
-    show bg hedge one
+
+    show bg maze one
     show spike neutral
 
     "Spike and I start to walk side by side through the maze, the seemingly endless labyrinth looming before us as we take each step."
@@ -751,7 +713,6 @@ label Spikemazeconvo:
             #GOOD response
             call s_basketball_maze from _call_s_basketball_maze
 
-    show bg hedge two
     s "In the pack, I teach my pups to support each other, lift up their teammates, in order to succeed. Maybe we should follow my own advice—literally!"
     "She goes on to present an unnecessarily complex idea that pretty much boils down to her lifting me on her shoulders to see over the hedges."
     "I think she's waiting for my response..."
@@ -767,7 +728,6 @@ label Spikemazeconvo:
             #GOOD response
             call s_teenagers_maze from _call_s_teenagers_maze
 
-    show bg hedge three
     "Spike starts talking about the hedges themselves, monologuing about the types of trees and shrubbery typically used in the construction. There's a pause in her speech."
 
     menu: #3/7
@@ -781,7 +741,6 @@ label Spikemazeconvo:
             #BAD response
             call s_unicorn_maze from _call_s_unicorn_maze
 
-    show bg hedge two
     s "Do you have a favorite tree?"
 
     menu: #4/7
@@ -795,7 +754,6 @@ label Spikemazeconvo:
             #GOOD response
             call s_madrona_maze from _call_s_madrona_maze
 
-    show bg hedge three
     "She's starting to freak out a little. I should say something."
 
     menu: #5/7
@@ -809,7 +767,6 @@ label Spikemazeconvo:
             #GOOD response
             call s_concern_maze from _call_s_concern_maze
 
-    show bg hedge one
     s "I think... it's coming from the center of the maze. Let's follow it."
 
     menu: #6/7
@@ -823,7 +780,6 @@ label Spikemazeconvo:
             #BAD response
             call s_flee_maze from _call_s_flee_maze
 
-    show bg hedge three
     "After a while, Spike says that we're getting closer. She explains that whatever we find at the center could be bad, very bad, but she'll protect me."
     s "Do you trust me?"
 
@@ -838,7 +794,6 @@ label Spikemazeconvo:
             #GOOD response
             call s_laugh_maze from _call_s_laugh_maze
 
-    show bg hedge one
     "Spike friend score: [spike_friend_score]"
     hide spike neutral
     show otis neutral
@@ -967,13 +922,16 @@ label s_laugh_maze:
     return
 
 label Otis_Maze_Convo:
-    hide spike neutral
     show otis neutral
 
     k "How did you get here so fast?! Didn't I see you at the entrance before I came in?"
+
     o "Oh, I know my way around this place quite well. You see, the maze is the home of my imagination."
+
     o "As a child, I would run through the maze seeing myself in the Great Hall of the People or flying above the Karnak Temple Complex. It was my kingdom. It was anything I needed it to be."
+
     k "Sounds like a nice place."
+
     o "Indeed. Would you like to hear about the history of the Madrona tree?"
 
     menu:
@@ -987,13 +945,18 @@ label Otis_Maze_Convo:
 label .k_sure:
 
     k "I'd like that."
+
     o "Well, the Port Madrona, also known as the Arbutus Menziesii species of the order Ericales, is native to the western regions of the North."
     o "It is an evergreen that sheds its bark with age and in the autumn produces small red berries known for their healing properties. "
     o "The tree is said to be over 400 years old with roots so deep that they span the length of the town. And when it rains, the tree appears to come to life taking in water and pumping out a rich red substance like blood stains on its leaves. "
     o "It's no wonder the tree has come to be revered as the life force of the town. Every year, I host our annual festival so we can celebrate the Port Madrona tree through song, food, sacrifices and prayer. "
+
     k "Wow. That's pretty amazing. It seems to have thrived here for so long. I wonder, why?"
+
     o "Some say, it was the Port Madrona tree that gave birth to our entire town, and as long as we honor it, it will continue to protect our home."
+
     k "What happens if the tree starts to die?"
+
     o "Don't be silly. That would never happen."
     hide otis neutral
     jump maze_center
@@ -1001,14 +964,21 @@ label .k_sure:
 label .k_shortversion:
 
     k "Alright, but keep it short will you?"
+
     o "Very well. The Port Madrona tree has lived here for over 400 years with roots that are said to span the length of the town."
     o "Every year, in order to ensure that the tree continues to thrive and floruish, we honor it."
     o "The town gets together and celebrates with a festival. Yusef's Crab House, the Beaver Mill Diner, the Dark Carta all donate food and entertainment to the night's festivities and, of course, we choose the guardian that will tend to the tree year-round."
+
     k "That sounds pretty great. Guardian, huh?"
+
     o "Yes, the chosen guardian will have the honor of tending to our beloved tree and ensuring no harm should befall her. "
-    k "I wonder who it will be this year… this festival sounds interesting. I can't wait!"
+
+    k "I wonder who it will be this year...this festival sounds interesting. I can't wait!"
+
     o "Well, surely, you remember it from last year?"
+
     k "Oh, right, of course. Um, I should be going now."
+
     o "I'll be seeing you, Kai."
     hide otis neutral
     jump maze_center
@@ -1016,16 +986,16 @@ label .k_shortversion:
 label .k_nothanks:
 
     k "Maybe later."
+
     o "No problem. I'll be around if you get curious. I promise it's quite enchanting."
     hide otis neutral
     jump maze_center
 
 label maze_center:
-    show no_flicker
     "[Companion] and I finally reach the center of the hedge maze."
-    show flicker_one
+
+    show bg maze center
+
     "What the hell? Is that.. No. This isn't real… is that me?! Holy shit."
-    show flicker_two
     "What the hell is going on here? I don't understand. Am I dead? How can I be dead? I thought I just lost my memories, but is this all some type of pseudo world I'm living out in my head?! Oh god, I need to figure this out."
     "I can't lose it now. If I can't trust my memories, I'll need to find the answers from the people of this town. I need to remember who I am and why I came here. I can't explain it, but I know it's the only way to prevent this."
-    show madrona_light
