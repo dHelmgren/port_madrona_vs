@@ -614,7 +614,7 @@ label s_lumberjack_menu:
         "{image=emoji/sadfrown_emoji.png} Don't you get lonely?":
             jump s_lonely_park
         "{image=emoji/thumbsup_emoji.png} Let's talk about something else.":
-            jump Spikeparkmenu
+            jump s_somethingelse_park
 
 label s_spirits_park:
     k "Wait... what do you mean {i}tree spirits{/i}?"
@@ -630,6 +630,12 @@ label s_lonely_park:
     s "Especially with how much noise the spirits make."
 
     jump s_lumberjack_menu
+    
+label s_somethingelse_park:
+    k "Let's talk about something else."
+    s "Your choice!"
+    
+    jump Spikeparkmenu
 
 label s_weirdwood_park:
     k "What's the Weirdwood? I've seen it on my map, but no one's really told me much about it. Honestly, I'm not really enthused by that name."
