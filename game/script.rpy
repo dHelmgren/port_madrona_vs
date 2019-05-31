@@ -5,6 +5,10 @@ default marlon_friend_score = 0
 default spike_friend_score = 10
 
 # define various states the player may trigger
+default game_state = {
+    'morning_phone_texts' : [0,0] #Marlon \ Spike
+}
+
 default morning_phone_texts = [0,0]
 default unicorn_marlon = False
 default spike_visited = False
@@ -120,7 +124,7 @@ label morning:
     k "Marlon and Spike? What do they want?"
 
 label open_phone:
-    show screen phone_pop_but
+    show screen phone_pop_but(game_state)
 
     k "Guess I need to take a look."
     k "..."
@@ -137,12 +141,12 @@ label open_phone:
 
 label phone_hold_two:
     hide phone texts
-    show screen phone_pop_but
+    show screen phone_pop_but(game_state)
     k "Okay, cool."
     k "I can head to the park now."
-    if morning_phone_texts[0] == 0:
+    if game_state['morning_phone_texts'][0] == 0:
         k "Or I can see what's up with Marlon."
-    elif morning_phone_texts[1] == 0:
+    elif game_state['morning_phone_texts'][1] == 0:
         k "Or I could see what Spike wants."
     k "If I want to go to the park, I should probably look up directions on my phone."
     ""
@@ -151,7 +155,7 @@ label phone_hold_two:
 
 label Marlontextconvo:
     hide screen phone_pop_but
-    $ morning_phone_texts[0] = 1
+    $ game_state['morning_phone_texts'][0] = 1
     show phone texts
 
     m "omg did u watch the new episode of Trashy Cryptids Trash America?"
@@ -231,7 +235,7 @@ label m_eggplant:
 label Spiketextconvo:
     hide screen phone_pop_but
     show phone texts
-    $ morning_phone_texts[1] = 1
+    $ game_state['morning_phone_texts'][1] = 1
     s "hey kai!! wake up sleepyhead~*~"
     k "It's still early, Spike..."
     s "time to greet the day ~(^.^~)"
@@ -644,7 +648,7 @@ label m_maze_withMaron:
 
         "I need to say something to get Marlon interested."
 
-	    "{image=emoji/unicorn_emoji.png} Ask about unicorns":
+        "{image=emoji/unicorn_emoji.png} Ask about unicorns":
             #BAD response
             call m_unicorn_maze from _call_m_unicorn_maze
         "{image=emoji/poop_emoji.png} Find your own way":
@@ -674,13 +678,13 @@ label m_maze_withMaron:
     m "Instead, we walked for {size=+10}HOURS{/size}. The deeper we went into the woods, the louder the spirits howled. They were soooo ANGRY! It was hilarious! We thought we'd never return, but luckily The Seer's Hut was walking around that night."
 
     menu: #3/7
-        "{image=emoji/basicsmile_emoji.png}The Seer's Hut?"
+        "{image=emoji/basicsmile_emoji.png}The Seer's Hut?":
             #GOOD response
             call m_seershut_maze from _call_m_seershut_maze
-        "{image=emoji/laugh_emoji.png}What happened next?"
+        "{image=emoji/laugh_emoji.png}What happened next?":
             #GOOD response
             call m_whathappened_maze from _call_m_whathappened_maze
-        "{image=emoji/mad_emoji.png}Let's talk about something else"
+        "{image=emoji/mad_emoji.png}Let's talk about something else":
             #BAD reponse
             call m_somethingelse_maze from _call_m_somethingelse_maze
 
@@ -688,13 +692,13 @@ label m_maze_withMaron:
     m "How would you describe your aesthetic?"
 
     menu: #4/7
-        "{image=emoji/peach_emoji.png}Summoning spirits while dressed in glow-in-the-dark booty shorts"
+        "{image=emoji/peach_emoji.png}Summoning spirits while dressed in glow-in-the-dark booty shorts":
             #GOOD reponse
             call m_booty_maze from _call_m_booty_maze
-        "{image=emoji/wolf_emoji.png}Riding a giant wolf into an apocalyptic sunset"
+        "{image=emoji/wolf_emoji.png}Riding a giant wolf into an apocalyptic sunset":
             #GOOD response
             call m_sunset_maze from _call_m_sunset_maze
-        "{image=emoji/tableflip_emoji.png}Confused and barely functioning humanoid"
+        "{image=emoji/tableflip_emoji.png}Confused and barely functioning humanoid":
             #BAD response
             call m_confused_maze from _call_m_confused_maze
     
@@ -705,13 +709,13 @@ label m_maze_withMaron:
     "I realize Marlon had been asking me something, but I've obviously missed the entire conversation."
 
     menu: #5/7
-        "{image=emoji/opensmile_emoji.png}Yes"
+        "{image=emoji/opensmile_emoji.png}Yes":
             #BAD response
             call m_yes_maze from _call_m_yes_maze
-        "{image=emoji/eyeroll_emoji.png}No"
+        "{image=emoji/eyeroll_emoji.png}No":
             #GOOD response
             call m_no_maze from _call_m_no_maze
-        "{image=emoji/basicfrown_emoji.png}I missed everything you said"
+        "{image=emoji/basicfrown_emoji.png}I missed everything you said":
             #GOOD response
             call m_missed_maze from _call_m_missed_maze
     
@@ -719,13 +723,13 @@ label m_maze_withMaron:
     m "Do you have your eyes on anyone right now?"
 
     menu: #6/7
-        "{image=emoji/wolf_emoji.png}Spike"
+        "{image=emoji/wolf_emoji.png}Spike":
             #GOOD reponse
             call m_spike_maze from _call_m_spike_maze
-        "{image=emoji/wink_emoji.png}Still looking"
+        "{image=emoji/wink_emoji.png}Still looking":
             #GOOD response
             call m_looking_maze from _call_m_looking_maze
-        "{image=emoji/eyeroll_emoji.png}I'm not saying"
+        "{image=emoji/eyeroll_emoji.png}I'm not saying":
             #BAD response
             call m_notsaying_maze from _call_m_notsaying_maze
     
@@ -737,13 +741,13 @@ label m_maze_withMaron:
     m "I don't know about you, but I had a GREAT time."
 
     menu: #7/7
-        "{image=emoji/opensmile_emoji.png}I had a great time with you too"
+        "{image=emoji/opensmile_emoji.png}I had a great time with you too":
             #GOOD response
             call m_greattime_maze from _call_m_greattime_maze
-        "{image=emoji/eyeroll_emoji.png}Let's just get out of here"
+        "{image=emoji/eyeroll_emoji.png}Let's just get out of here":
             #BAD response
             call m_leave_maze from _call_m_leave_maze
-        "{image=emoji/wink_emoji.png}Let's do the maze again"
+        "{image=emoji/wink_emoji.png}Let's do the maze again":
             #GOOD response
             call m_again_maze from _call_m_again_maze
 
