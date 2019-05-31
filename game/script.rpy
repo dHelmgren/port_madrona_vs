@@ -780,8 +780,9 @@ label m_otis_maze:
 
 label m_unicorn_maze:
     k "So, why DO you hate unicorns?"
-    m "Wow, this again?"
-    k "I'm curious, that's all."
+    if unicorn_marlon:
+        m "Wow, this again?"
+        k "I'm curious, that's all."
     m "Did you know that unicorns and mothmen went to war?"
     k "WHAT?!"
     m "That's right. It's called the Grey Rainbow War of 1983."
