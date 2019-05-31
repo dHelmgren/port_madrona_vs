@@ -890,7 +890,8 @@ screen in_game_phone(game_state):
         hotspot (997, 139, 403, 243) action ShowMenu('phone_messages', game_state) #texts
         hotspot (1424, 139, 403, 240) action ShowMenu('save') #Cache
         hotspot (997, 394, 404, 243) action ShowMenu('save') #
-        hotspot (1424, 395, 404, 238) action ShowMenu('phone_map') #Map
+        if game_state['can_map_travel']:
+            hotspot (1424, 395, 404, 238) action ShowMenu('phone_map', game_state) #Map
         hotspot (999, 650, 402, 239) action ShowMenu('save') #BL
         hotspot (1426, 650, 402, 244) action Start('maze_center') #BR
         hotspot (1186, 928, 450, 108) action Return() #Back
@@ -912,9 +913,9 @@ screen phone_messages(game_state):
             hotspot (999, 138, 831, 241) action Start('Spiketextconvo')
         if game_state['morning_phone_texts'][0] == 0:
             hotspot (997, 395, 831, 240) action Start('Marlontextconvo')
-        hotspot (1186, 930, 450, 108) action ShowMenu('in_game_phone')
+        hotspot (1186, 930, 450, 108) action ShowMenu('in_game_phone', game_state)
 
-screen phone_map():
+screen phone_map(game_state):
     tag menu
 
     zorder 90
@@ -925,8 +926,10 @@ screen phone_map():
         ground "game_phone/phone_map_ground.PNG"
         xalign 0.5
         yalign 0.5
-
-        hotspot (1473, 545, 73, 62) action Start('parkentrance') 
+        if game_state['current_location'] != 'park':
+            hotspot (1473, 545, 73, 62) action Start('parkentrance') 
+        if game_state['current_location'] != 'home':
+            hotspot (1043, 734, 76, 62) action Start('homefornoreason')
 
 ## Phone Open Button ###########################################################
 ##

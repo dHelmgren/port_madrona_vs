@@ -8,7 +8,7 @@ default spike_friend_score = 10
 default game_state = {
     'morning_phone_texts' : [0,0], #Marlon \ Spike
     'current_location' : 'home',
-    'can_map_travel' : True
+    'can_map_travel' : False
 }
 
 default morning_phone_texts = [0,0]
@@ -142,6 +142,7 @@ label open_phone:
     jump open_phone
 
 label phone_hold_two:
+    $ game_state['can_map_travel'] = True
     hide phone texts
     show screen phone_pop_but(game_state)
     k "Okay, cool."
@@ -153,6 +154,16 @@ label phone_hold_two:
     k "If I want to go to the park, I should probably look up directions on my phone."
     ""
     jump phone_hold_two
+
+label homefornoreason:
+    show bg kai bedroom
+    $ game_state['current_location'] = 'home'
+    "Why did I come back home?"
+    "..."
+    "I'm so boooorrrrreeeeed."
+    "..."
+    "...\n..."
+    jump homefornoreason
 
 
 label Marlontextconvo:
@@ -322,18 +333,27 @@ label parkentrance:
     "I could always just explore on my own for a bit before meeting up with them."
 
 label parkentrancemenu:
+    $ game_state['can_map_travel'] = True
+    $ game_state['current_location'] = 'park'
+    show screen phone_pop_but(game_state)
     hide otis neutral
     hide marlon neutral
     hide spike neutral
     show bg park main
     menu:
         "Left towards Marlon":
+            hide screen phone_pop_but
+            $ game_state['can_map_travel'] = False
             jump Marlonparkconvo
 
         "Right towards Spike":
+            hide screen phone_pop_but
+            $ game_state['can_map_travel'] = False
             jump Spikeparkconvo
 
         "Enter park center" if otis_visited == False:
+            hide screen phone_pop_but
+            $ game_state['can_map_travel'] = False
             jump otis_park
 
 label otis_park:
