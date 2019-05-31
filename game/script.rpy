@@ -156,26 +156,26 @@ label Marlontextconvo:
 
     m "omg did u watch the new episode of Trashy Cryptids Trash America?"
     m "this new season is lit"
-    m "ester is my faveeeee"
+    m "Eileen is my love 5eva"
 
     menu:
         m "u up?"
-        "{image=emoji/basicsmile_emoji.png} Yes, I'm awake and kicking.":
+        "{image=emoji/basicsmile_emoji.png} Yes, I'm awake":
             jump m_excited_text
-        "{image=emoji/basicfrown_emoji.png} No, still sleeping.":
+        "{image=emoji/basicfrown_emoji.png} No, still sleeping":
             jump m_sleepy
         "{image=emoji/peach_emoji.png} What's Trashy Cryptids?":
             jump m_question
 
 label m_excited_text:
-    k "Yeah, I'm awake and kicking it."
-    m "perf, i wanna meet up"
+    k "Yeah, I'm alive and kicking it."
+    m "perf, let's meet up"
     m "m i gotta catch you up on the new trashy cryptids season {image=emoji/peach_emoji.png}"
     jump m_invite
 
 label m_sleepy:
     k "No, I'm still sleeping"
-    m "how u texting if yr asleep?"
+    m "how u texting if ur asleep?"
     k "It's one of the world's greatest mysteries I guess"
     m "lol"
     m "i gotta catch you up on the new trashy cryptids season {image=emoji/peach_emoji.png}" #An emoji appears.
@@ -197,14 +197,14 @@ label m_invite:
         "{image=emoji/poop_emoji.png} Maybe":
             jump m_poop
 
-        "{image=emoji/unicorn_emoji.png} Maybe":
+        "{image=emoji/unicorn_emoji.png} If you insist":
             jump m_unicorn
 
-        "{image=emoji/eggplant_emoji.png} Maybe":
+        "{image=emoji/eggplant_emoji.png} Absolutely yes":
             jump m_eggplant
 
 label m_poop:
-    k "{image=emoji/poop_emoji.png} Maybe" #An emoji appears.
+    k "{image=emoji/poop_emoji.png} Maybe. We'll see how I feel." #An emoji appears.
     m "lol rude"
     m "meet me by the water fountain if ur there {image=emoji/basicsmile_emoji.png}" #An emoji appears.
 
@@ -212,17 +212,17 @@ label m_poop:
 
 label m_unicorn:
     $ unicorn_marlon = True
-    k "{image=emoji/unicorn_emoji.png} Maybe" #An emoji appears.
-    m "ew no u kno i don't like unicorns {image=emoji/basicfrown_emoji.png}" #An emoji appears.
-    k "I do?"
-    m "ya, they r the woooorst"
-    m "meet me by the water fountain if ur there"
+    k "{image=emoji/unicorn_emoji.png} Eh, I guess so." #An emoji appears.
+    m "ew no u know i don't like unicorns {image=emoji/basicfrown_emoji.png}" #An emoji appears.
+    k "You don't?"
+    m "they r the woooorst"
+    m "anyway meet me by the water fountain if ur there"
 
     jump phone_hold_two
 
 label m_eggplant:
-    k "{image=emoji/eggplant_emoji.png} Maybe"
-    m "lollllll girrrrrrrl ur g8"
+    k "{image=emoji/eggplant_emoji.png} I'd really like that!"
+    m "lollllll buddy ur g8"
     m "missed u like a lot a lot"
     m "meet me by the water fountain if ur there"
 
@@ -282,7 +282,7 @@ label s_wink_text:
     s "awoo definitely!!"
     s "it's been so long since we had fun like we used to"
     s "~(^o^)~~(^_^)~"
-    k "I thought you said I'd only been done a few days?"
+    k "I thought you said I'd only been gone a few days?"
     s "like i said. so. long."
     return
 
@@ -336,7 +336,7 @@ label otis_park:
     show bg park fountain_mirror
 
     o "Hey there, Kai. Kai, the amelioration! How lovely to see you here at the heart of the town. Have you come to admire our famous Port Madrona Tree?"
-    k "Uh, right. Hey, to you too.. I'm actually here to meet up with one of my friends, but thought I might explore a bit first. What brings you here?"
+    k "Uh, right. Hey, to you too... I'm actually here to meet up with one of my friends, but thought I might explore a bit first. What brings you here?"
     o "Well, as you know, I run the town's grand annual festival to celebrate our beloved Port Madrona tree. I like to check on her often and tend to her. After all, we have a responsibility to protect her, right? We're all connected here."
 
     menu:
@@ -350,7 +350,7 @@ label .k_absolutely:
 
     k "Of course! That's really kind of you."
     o "Why, thank you. I just like to do my part. I think I'm just utterly fascinated by our town's history."
-    k "It's definitely an interesting place.. I take it you must know a lot about it?"
+    k "It's definitely an interesting place. I take it you must know a lot about it?"
     o "Better than most. However, I won't keep you from your friends. We'll have plenty of time to talk. Come find me in the maze later if you would like to know more."
     k "Okay, but I imagine I'll get there first."
     o "We'll see."
@@ -417,7 +417,7 @@ label m_kai_weird_greetings:
     k "None of that sounds familiar. Something...{size=-10}someone?{/size}...stuffed my mind into a blender and pressed the smoothie button."
     m "That's disgusting and… a little cool. {p=1.0} You'll remember something! I'm unforgettable after all."
     k "Thanks, Marlon."
-    m "I can answer anything up for you if you want. I got ALL the dirt."
+    m "I can answer anything for you if you want. I got ALL the dirt."
 
     jump Marlonparkmenu
 
@@ -472,11 +472,13 @@ label m_moveOn:
 
 label m_aboutGlow:
     k "How do you like working at the Glow?"
-    m "I like the Glow! I actually opened it as my personal project."
+    m "I like the Glow! I actually opened it as my business project."
     k "Really? I didn't take you as the business owner type."
     m "I wanted to open a place that would makes me feel less afraid of the dark."
     k "But, you can see in the dark, right? Why would you be scared of the dark?"
-    m "I can see in the dark, but that doesn't make it any less scary. Light means comfort. Light is infinite, like I'm standing on the edge of forever while the cracks in my life are illuminated with understanding. I remember things I've forgotten. When I'm in the light, the world just...makes sense."
+    m "I can see in the dark, but that doesn't make it any less scary. Light means comfort." 
+    m "Light is infinite, like I'm standing on the edge of forever while the cracks in my life are illuminated with understanding. I remember things I've forgotten." 
+    m "When I'm in the light, the world just...makes sense."
     m "..."
     m "..."
     k "..."
@@ -634,102 +636,322 @@ label m_maze_withMaron:
 
     $ Companion = "Marlon"
 
-    "Turns out, this maze is more than just a family-friendly walk in the park. How do I get out of here? Marlon doesn't seem very thrilled to be in this maze. He's made himself comfortable on my shoulder and isn't being his usual self."
-    "Maybe if I get him to lighten up he'll help us get through this maze. He's the one with the supernatural powers after all."
+    "Turns out, this maze is more than just a family-friendly walk in the park. The imposing hedge walls feel unwelcoming despite the beautiful flora scattered about." 
+    "Marlon makes himself comfortable on my shoulder and yawns, obviously disinterested in our current predicament. We turn a few corners before I realize I have absolutely no idea where we are."
+    "Maybe if I get Marlon to lighten up he'll fly around and figure this maze out faster."
 
-    menu:
+    menu: #1/7
 
         "I need to say something to get Marlon interested."
 
-        "{image=emoji/tree_emoji.png} Work?" if marlon_maze_topics[0] == 0:
-            $ marlon_maze_topics[0] = 1
-            $ marlon_friend_score -= 5
-            call m_maze_work from _call_m_maze_work
-        "{image=emoji/unicorn_emoji.png} Unicorns?" if marlon_maze_topics[1] == 0:
-            $ marlon_friend_score -= 5
-            $ marlon_maze_topics[1] = 1
-            call m_maze_unicorns from _call_m_maze_unicorns
-        "{image=emoji/eggplant_emoji.png} Eileen?" if marlon_maze_topics[2] == 0:
-            $ marlon_friend_score += 5
-            $ marlon_maze_topics[2] = 1
-            call m_maze_Eileen from _call_m_maze_Eileen
-        "{image=emoji/tableflip_emoji.png} Tia?" if marlon_maze_topics[3] == 0:
-            $ marlon_friend_score -= 5
-            $ marlon_maze_topics[3] = 1
-            call m_maze_Tia from _call_m_maze_Tia
-        "{image=emoji/wink_emoji.png} Gossip?" if marlon_maze_topics[4] == 0:
-            $ marlon_friend_score += 5
-            $ marlon_maze_topics[4] = 1
-            call m_maze_gossip from _call_m_maze_gossip
-        "{image=emoji/heart_emoji.png} Dating?" if marlon_maze_topics[5] == 0:
-            $ marlon_friend_score += 5
-            $ marlon_maze_topics[5] = 1
-            call m_maze_dating from _call_m_maze_dating
-        "{image=emoji/basicsmile_emoji.png} Aesthetic?" if marlon_maze_topics[6] == 0:
-            $ marlon_friend_score += 5
-            $ marlon_maze_topics[6] = 1
-            call m_maze_aesthetic from _call_m_maze_aesthetic
+	    "{image=emoji/unicorn_emoji.png} Ask about unicorns":
+            #BAD response
+            call m_unicorn_maze from _call_m_unicorn_maze
+        "{image=emoji/poop_emoji.png} Find your own way":
+            #BAD response
+            call m_poop_maze from _call_m_poop_maze
+        "{image=emoji/basicsmile_emoji.png} Talk about Eileen":
+            #GOOD response
+            call m_eileen_maze from _call_m_eileen_maze
+    
+    show bg hedge two
+    "I peer around intently trying to sense my way to the middle of the maze. I'm laughably bad at it and it shows. Marlon begins to laugh."
 
-label m_maze_work:
-    k "How's work been?"
-    m "Lame. I really don't like talking about work. Can we not?"
-    k "Oh, of course."
-    "Okay, bad choice."
-    return
+    menu: #2/7
+        m "Need help?"
+        "{image=emoji/cry_emoji.png}Yes I need help":
+            #GOOD reponse
+            call m_yeshelp_maze from _call_m_yeshelp_maze
+        "{image=emoji/eyeroll_emoji.png}No, I can do this myself":
+            #BAD response
+            call m_nohelp_maze from _call_m_nohelp_maze
+        "{image=emoji/heart_emoji.png}I like being stuck here with you":
+            #GOOD response
+            call m_withyou_maze from _call_m_withyou_maze
+    
+    show bg hedge three
+    m "Speaking of your navigational skills, remember that one time we went camping with Corliss and Freya? That was amazing. We went into the Weirdwood and you said you knew how to get to a hot spring."
+    m "Instead, we walked for {size=+10}HOURS{/size}. The deeper we went into the woods, the louder the spirits howled. They were soooo ANGRY! It was hilarious! We thought we'd never return, but luckily The Seer's Hut was walking around that night."
 
-label m_maze_unicorns:
+    menu: #3/7
+        "{image=emoji/basicsmile_emoji.png}The Seer's Hut?"
+            #GOOD response
+            call m_seershut_maze from _call_m_seershut_maze
+        "{image=emoji/laugh_emoji.png}What happened next?"
+            #GOOD response
+            call m_whathappened_maze from _call_m_whathappened_maze
+        "{image=emoji/mad_emoji.png}Let's talk about something else"
+            #BAD reponse
+            call m_somethingelse_maze from _call_m_somethingelse_maze
+
+    show bg hedge two
+    m "How would you describe your aesthetic?"
+
+    menu: #4/7
+        "{image=emoji/peach_emoji.png}Summoning spirits while dressed in glow-in-the-dark booty shorts"
+            #GOOD reponse
+            call m_booty_maze from _call_m_booty_maze
+        "{image=emoji/wolf_emoji.png}Riding a giant wolf into an apocalyptic sunset"
+            #GOOD response
+            call m_sunset_maze from _call_m_sunset_maze
+        "{image=emoji/tableflip_emoji.png}Confused and barely functioning humanoid"
+            #BAD response
+            call m_confused_maze from _call_m_confused_maze
+    
+    show bg hedge three
+    "Marlon starts going on about aesthetics mentions something about being sparkly graveyard chic. Surprisingly, it looks as through we've made progress. The grass beneath us becomes more manicured, which I can take to mean that we're getting closer to the center of the maze."
+    "My mind wanders for a moment while I think about what we'll find at the center of the maze. Lots of work obviously went into building this thing, so is it supposed to be keeping us out...or keeping something in?"
+    m "Kai, what do you think? Yes or no?"
+    "I realize Marlon had been asking me something, but I've obviously missed the entire conversation."
+
+    menu: #5/7
+        "{image=emoji/opensmile_emoji.png}Yes"
+            #BAD response
+            call m_yes_maze from _call_m_yes_maze
+        "{image=emoji/eyeroll_emoji.png}No"
+            #GOOD response
+            call m_no_maze from _call_m_no_maze
+        "{image=emoji/basicfrown_emoji.png}I missed everything you said"
+            #GOOD response
+            call m_missed_maze from _call_m_missed_maze
+    
+    show bg hedge one
+    m "Do you have your eyes on anyone right now?"
+
+    menu: #6/7
+        "{image=emoji/wolf_emoji.png}Spike"
+            #GOOD reponse
+            call m_spike_maze from _call_m_spike_maze
+        "{image=emoji/wink_emoji.png}Still looking"
+            #GOOD response
+            call m_looking_maze from _call_m_looking_maze
+        "{image=emoji/eyeroll_emoji.png}I'm not saying"
+            #BAD response
+            call m_notsaying_maze from _call_m_notsaying_maze
+    
+    show bg hedge three
+    "We walk for just a bit longer and the center of the maze seems to be in sight. Marlon and I high-five excitedly, knowing that we've bested the awfully tedious hedge maze."
+    k "We did! We actually did it!"
+    m "And I thought I was going to have to carry you out of here."
+    k "If anything, I would have had to carry {i}you{/i} out."
+    m "I don't know about you, but I had a GREAT time."
+
+    menu: #7/7
+        "{image=emoji/opensmile_emoji.png}I had a great time with you too"
+            #GOOD response
+            call m_greattime_maze from _call_m_greattime_maze
+        "{image=emoji/eyeroll_emoji.png}Let's just get out of here"
+            #BAD response
+            call m_leave_maze from _call_m_leave_maze
+        "{image=emoji/wink_emoji.png}Let's do the maze again"
+            #GOOD response
+            call m_again_maze from _call_m_again_maze
+
+    show bg hedge one
+    "Marlon friend score: [marlon_friend_score]"
+    hide marlon neutral
+    show otis neutral
+    if otis_visited == True:
+        jump m_talked_to_otis
+    else:
+        jump m_otis_maze
+
+label m_talked_to_otis:
+    "Now we're suddenly face-to-face with that bird-man from before, and he's blocking our path."
+    m "Ugh, not Otis."
+    k "{size=-10}Be cool, be cool.{/size}"
+    m "How can I when he has THE worst fashion tastes? Sweater vests? REALLY?"
+    k "Calm down, I'll talk to him."
+    jump Otis_Maze_Convo
+
+label m_otis_maze:
+    "Now we're suddenly face-to-face with a bird-man I don't recognize, and he's blocking our path."
+    k "Who is THAT?"
+    m "Ugh, that's Otis. He runs the town's grand annual festival celebrating the Madrona Tree."
+    m "{size=-10}He also has THE worst fashion tastes.{/size}"
+    k "Calm down, I'll talk to him."
+    jump Otis_Maze_Convo
+
+label m_unicorn_maze:
     k "So, why DO you hate unicorns?"
     m "Wow, this again?"
     k "I'm curious, that's all."
-    m "Did you know that unicorns and mothmen went to war? Yeah, that's right. It's called the Grey Rainbow War of 1983."
+    m "Did you know that unicorns and mothmen went to war?"
+    k "WHAT?!"
+    m "That's right. It's called the Grey Rainbow War of 1983."
     k "This actually happened?"
-    m "YES! Well, okay, it was less of a war and more of a final championship. And less fighting and more roller skating."
-    k "So what you're saying is the mothmen lost against unicorns in a roller skating competition?"
-    m "YES! IT WAS CARNAGE! Mothmen have never gotten closer to beating unicorns at roller skating than in 1983. {p=2.0} Some say we never will..."
-    "Marlon doesn't seem very happy about that topic. Maybe I should let it rest."
+    m "YES!"
+    m "..."
+    m "Well, okay, it was less of a war and more of a final championship. And less fighting and more roller derby."
+    k "So what you're saying is the mothmen lost against unicorns in a roller derby competition?"
+    m "YES! IT WAS CARNAGE! Mothmen have never gotten closer to beating unicorns at roller derby than in 1983. {p=2.0} Some say we never will..."
+    "Maron stares wistfully into the distance and I can only assume images of roller derby fill his mind's eye. Maybe talking about something else will clear his mind."
     return
 
-label m_maze_Eileen:
+label m_poop_maze:
+    "I close my eyes and try to focus on the center of the maze. Maybe I'm extra still I can sense the correct path. I open my eyes and point toward one of the paths."
+    k "I bet it's a left here."
+    "We walk down the path and for a moment I feel confident in my decision. As we turn another corner I hold my breath and it's...a dead end."
+    m "Bad move, buddy."
+    k "I have a bad sense of direction. I'd be lost without my phone honestly."
+    return
+
+label m_eileen_maze:
     k "So, about Eileen from Trashy Cryptids."
     m "OMG EILEEN IS THE QUEEEEEEEEEN!!!"
     m "She is my {size=+10}IDOL{/size}."
     m "This one time I sent her some fan mail and included a piece of my antennae. Don't worry. They grow back."
-    "Oh geez, Marlon can't stop talking about Eileen."
+    m "Anyway, so last Eileen had this really cool—no no, turn right here—she made this really cool..."
+    "Oh geez, Marlon can't stop talking about Eileen. At least he knows where to go."
     return
 
-label m_maze_Tia:
-    k "Tell me about Tia from Trashy Crypids."
-    m "Wow, no thanks. Tia is honestly the worst and a waste. She ruined the last season."
-    "Oh no, Marlon didn't like that at all."
+label m_yeshelp_maze:
+    k "Yes, please. I am so lost and surprisingly bad at this."
+    m "As far as I remember you've always had questionable navigational skills."
+    "Marlon flies up causing a dust of dirt and grass to impair my vision for a moment. I crank my head upwards to get a good view of Marlon who is surveying the scene."
+    k "See anything?"
+    m "We'll need to take a right, another right, and then a left!"
+    "Marlon descends and returns to his comfortable perch on my shoulder."
     return
 
-label m_maze_gossip:
-    k "Any interesting stuff happening around town?"
-    m "OH YES. So you know Ferris Castro? He's the barista at the bookstore where you work. So I was walking by one night while he was closing by himself. I don't think he noticed me looking through the window. You know how he has those antlers that grow out of his head?"
-    m "Well I absolutely SWEAR I saw him TAKE OFF his antlers."
-    m "Want to know what I think? I think he's hiding that fact that he's a normal human. CRAZY, RIGHT?"
-    "Wow, Marlon really does have dirt on everybody in the town."
+label m_nohelp_maze:
+    k "No no no, I got this! I'm going to figure this out for us."
+    "Marlon's antenna droop, obviously disappointed at my response."
+    k "I got this! I think we make a right here."
     return
 
-label m_maze_dating:
-    k "So um, what's the dating scene look like in Port Madrona?"
-    m "OH. {p=1.0} Ohhhhhh, you're into somebody, aren't you?"
-    k "No! I was just making conversation!"
-    m "Oh yeah, I'm sure that's all it was. Don't you worry. I'm your go-to wingman any time you need it."
-    "Glad to see Marlon is really loyal when it comes to dating."
+label m_withyou_maze:
+    k "Hey, it's not so bad if we're stuck here forever right? At least I'm here with you."
+    m "Hahaha Kai, there is no one else I'd prefer to be stuck in a dumb maze with."
+    m "Except that Trashy Cryptids is on at eight tonight, so I gotta be home for that, so let's get lost together some other time."
+    k "Haha, okay. I will use my lackluster navigational skills to get us out."
     return
 
-label m_maze_aesthetic:
-    k "How would you describe your aesthetic?"
-    m "Sparkly graveyard chic is what the poets call it. I call it 'being ready to cut anybody if they cross my sweet, raged-filled self.'"
-    k "You really have yourself figured out."
-    m "I am the change I want to see in the world."
-    "Who knew mothmen were so...cut-throaty."
+label m_seershut_maze:
+    k "Seer's Hut? Sounds spooky."
+    m "It's so cool. The Seer's aesthetic is on point. She lives in a hut with bird legs and wanders the Weirdwood. For those lucky enough to find the Seer, she provides lots of services, but they don't come cheap." 
+    m "Fortune telling, hexes, potions, forbidden wisdom."
+    k "Wow, she sounds incredible."
+    m "Oh absolutely. She also makes some killer scones."
+    m "Literally. Ask her for a non-fatal scone. Those are delicious."
     return
 
-    "Marlon friend score: [marlon_friend_score]"
-    hide marlon neutral
-    jump Otis_Maze_Convo
+label m_whathappened_maze:
+    k "Seer's Hut? What happened? Was everything okay?"
+    m "The Seer came out and chastised us for going into the Weirdwood without any kind of protection or weaponry. But come on, I was too busy packing us floaties to use on the lake."
+    m "The Seer gave us a ride back to our campground...at a price."
+    k "Oh no! What was the price?"
+    m "I think it was about $12.95. We bought two scones and one prophecy from her."
+    k "WHAT?! What was it?!"
+    m "I think one was blueberry and the other was cranberry-orange."
+    k "No! The prophecy!"
+    m "Eh, something about the coming storm that would lift the darkness and bring light. I don't really remember."
+    m "Mostly I just LOVE the Seer's aesthetic."
+    return
+    
+label m_somethingelse_maze:
+    k "Let's talk about something else. I don't really like hearing about my past screw ups."
+    m "Aww! It wasn't that bad. Anyway, we got to visit the Seer's Hut. I just LOVE the Seer's aesthetic."
+    return
+
+label m_booty_maze:
+    k "Hmm, probably dressing up in my glow-in-the-dark booty shorts and spending my night summoning spirits."
+    m "I BOUGHT YOU THOSE BOOTY SHORTS!"
+    k "Did you? I found them in my apartment."
+    m "Buddy, let's make this happen."
+    return
+
+label m_sunset_maze:
+    k "Hmm, probably escaping the ruins of the town on top of a giant wolf as the sun sets on an apocalyptic scene."
+    k "That feels like me."
+    m "Lemme guess, the wolf is Spike."
+    k "I..."
+    k "No!"
+    k "Uh, course not!!!"
+    m "Hahaha you're blushing! I knew it."
+    k "I never said anything."
+    m "Your secret is safe with me."
+    return
+
+label m_confused_maze:
+    k "Eh, I'm the renmants of a very confused and barely functioning human."
+    m "Oh. That's not very fun..."
+    k "I'm not exactly the most put-together person. Especially right now."
+    return
+
+label m_yes_maze:
+    k "Yes! Absolutely."
+    m "Um, really?"
+    k "Yeah!"
+    m "Oh...well that sucks. I hope that doesn't happen."
+    k "Wait. I'm so sorry. I wasn't paying attention and I just randomly responsed. What were you asking?"
+    m "I asked whether or not you think we'd drift apart if...you started dating someone."
+    k "What! No! Of course not!"
+    return
+
+label m_no_maze:
+    k "No! Absolutely not."
+    "Marlon smiles at me and exhales a deep breathe. He looks relieved."
+    m "I'm glad."
+    k "About?"
+    m "About that fact that you won't let our friendship drift away if you end up, you know, dating and spending your time with someone else."
+    k "Of course not!"
+    return
+
+label m_missed_maze:
+    k "Er, sorry. My mind drifted and I missed your question."
+    m "I asked if you think that...{p=3.0}we'll drift apart as friends if you start dating and spending time with someone else."
+    k "What! No! Of course not!"
+    "Marlon smiles at me and exhales a deep breathe. He looks relieved."
+    m "I'm glad."
+    return
+
+label m_spike_maze:
+    k "This is going to sound lame because we've only just started to hang out but...Spike."
+    m "I KNEW IT!"
+    k "There's no way you could've known."
+    m "Nope! I called it. I am soooooo good at this. I knew it I knew I knew."
+    k "She's been really nice to me since all this craziness went down. She's been supportive."
+    m "You have my complete approval. If you ever need a wingman...{size=-10}because I have wings{/size}...you just let me know."
+    k "Thanks, Marlon."
+    return
+
+label m_looking_maze:
+    k "Honestly, I don't know. I'm still looking."
+    m "I get that. You gotta find the right person and that's not something you should rush."
+    k "Yeah. Exactly. I'm just getting used to this new reality. Maybe once that happens, I'll start thinking romance."
+    m "If you ever need a wingman...{size=-10}because I have wings{/size}...you just let me know."
+    k "Thanks, Marlon."
+    return
+
+label m_notsaying_maze:
+    k "I'd rather not say honestly. I'm worried that bit of info might make it out of the maze."
+    m "Whoa whoa whoa, you don't think I can keep a secret."
+    k "Weeeeelllllll..."
+    m "Fine. I know I'm not the BEST at keeping a secret, but I like to think I can keep a secrets when it counts."
+    return
+
+label m_greattime_maze:
+    k "This is the best time I have ever spent being lost in a hedge maze."
+    "Marlon beams at me. For a second, I think I begin to see him {i}actually{/i} glow. Maybe it was just the sunlight though."
+    m "Let's get out of here and never look back!"
+    return
+
+label m_leave_maze:
+    k "Let's just get out of here. This maze was such a waste of time."
+    "Marlon looks hurt, as though I squashed his fun. It hadn't occurred to me that he was having such a good time, especially when he seemed so disinterested at the beginning."
+    m "Let's go."
+    return
+
+label m_again_maze:
+    k "This was SO FUN. We should turn around and do this while thing again."
+    m "Hahaha."
+    m "No."
+    m "Please. Let's not do that."
+    k "Okay. Well, I had a great time being lost with you."
+    "Marlon beams at me. For a second, I think I begin to see him {i}actually{/i} glow. Maybe it was just the sunlight though."
+    m "Let's get out of here and never look back!"
+    return
 
 label Spikemazeconvo:
     $ Companion = "Spike"
@@ -1006,7 +1228,7 @@ label .k_shortversion:
     o "The town gets together and celebrates with a festival. Yusef's Crab House, the Beaver Mill Diner, the Dark Carta all donate food and entertainment to the night's festivities and, of course, we choose the guardian that will tend to the tree year-round."
     k "That sounds pretty great. Guardian, huh?"
     o "Yes, the chosen guardian will have the honor of tending to our beloved tree and ensuring no harm should befall her. "
-    k "I wonder who it will be this year… this festival sounds interesting. I can't wait!"
+    k "I wonder who it will be this year... this festival sounds interesting. I can't wait!"
     o "Well, surely, you remember it from last year?"
     k "Oh, right, of course. Um, I should be going now."
     o "I'll be seeing you, Kai."
