@@ -582,39 +582,54 @@ label Spikeparkmenu:
             jump s_lumberjack_park
         "{image=emoji/basicfrown_emoji.png} What's the Weirdwood?":
             jump s_weirdwood_park
+        "{image=emoji/cry_emoji.png} Show her the photo of the car crash" if s_photo_park == False:
+            jump s_photo_park
         "{image=emoji/thumbsup_emoji.png} Let's move on.":
             jump s_moveon_park
 
-label s_lumberjack_park:
+label s_photo_park:
+    $ s_photo_park = True
+    #This is where code magic goes to show Spike the photo on Kai's phone
+    s "Oh no. Thank the moon you're okay, Kai, that's so scary."
+    k "The thing is, I don't remember any of it. Or anything before it, either."
+    k "I was hoping you had some insight for me based on this photo evidence?"
+    s "Sorry, pup, I got nothin'. But I definitely haven't seen that car before."
+    k "That must mean {i}something{/i}..."
+    s "Don't worry, Kai. I'll protect you—even if it means that I must attack."
 
+    jump Spikeparkmenu
+
+label s_lumberjack_park:
     k "So, you're basically a lumberjack?"
     s "Awoo! You bet! I'm definitely a fan of that job title. Though we don't have anything nearly so sophisticated as a lumber or saw mill here in Port M."
     k "Where do you work, then?"
     s "Oh, just a quiet, isolated cabin in the woods with only the wailing tree spirits for company."
+    
+    jump s_lumberjack_menu
 
+label s_lumberjack_menu:
     menu:
-
-        "{image=emoji/eyeroll_emoji.png} Tree spirits?! Wailing?!":
+        "{image=emoji/eyeroll_emoji.png} 'Wailing tree spirits'?":
             jump s_spirits_park
         "{image=emoji/sadfrown_emoji.png} Don't you get lonely?":
             jump s_lonely_park
-        "{image=emoji/thumbsup_emoji.png} Let's move on.":
-            jump s_moveon_park
+        "{image=emoji/thumbsup_emoji.png} Let's talk about something else.":
+            jump Spikeparkmenu
 
 label s_spirits_park:
-
     k "Wait... what do you mean {i}tree spirits{/i}?"
     s "Don't worry! I'm only kidding... partially. Maybe you'll have to come visit me to find out!"
 
-    jump Spikeparkmenu
+    jump s_lumberjack_menu
 
 label s_lonely_park:
-    k "An isolated cabin? Don't you ever get lonely out there by yourself in the middle of the woods?"
+    k "Don't you ever get lonely out there by yourself in the middle of the woods?"
     s "I haven't really thought about it. No one's ever asked me that, to be honest. I suppose it does get lonely, but my condition kind of necessitates it."
     k "Oh, you mean the whole werewolf... thing?"
     s "Hahaha. Yeah, that old chestnut. It's not a big deal to me, but having one day out of the month when you can't entertain buds in your folksy cabin in the woods makes it kind of difficult to host extended sleep-overs."
+    s "Especially with how much noise the spirits make."
 
-    jump Spikeparkmenu
+    jump s_lumberjack_menu
 
 label s_weirdwood_park:
     k "What's the Weirdwood? I've seen it on my map, but no one's really told me much about it. Honestly, I'm not really enthused by that name."
@@ -1293,8 +1308,8 @@ label maze_center:
     show no_flicker
     "[Companion] and I finally reach the center of the hedge maze."
     show flicker_one
-    "What the hell? Is that.. No. This isn't real… is that me?! Holy shit."
+    "What the hell? Is that.. No."
     show flicker_two
-    "What the hell is going on here? I don't understand. Am I dead? How can I be dead? I thought I just lost my memories, but is this all some type of pseudo world I'm living out in my head?! Oh god, I need to figure this out."
+    "This isn't real… is that me?! Holy shit. What the hell is going on here? I don't understand. Am I dead? How can I be dead? I thought I just lost my memories, but is this all some type of pseudo world I'm living out in my head?! Oh god, I need to figure this out."
     "I can't lose it now. If I can't trust my memories, I'll need to find the answers from the people of this town. I need to remember who I am and why I came here. I can't explain it, but I know it's the only way to prevent this."
     show madrona_light
