@@ -18,6 +18,7 @@ default marlon_visited = False
 default otis_visited = False
 default trash_tv_topics = [0,0]
 default marlon_maze_topics = [0,0,0,0,0,0,0]
+default s_photo_park = False
 
 #Define puzzle states
 default maze_progress = 0
@@ -59,7 +60,7 @@ image flicker_two:
     "madrona_dark.png"
     pause 0.5
     "madrona_gore.png"
-    function blink  
+    function blink
     "madrona_light.png"
     pause 0.08
     "madrona_dark.png"
@@ -502,8 +503,8 @@ label m_aboutGlow:
     k "Really? I didn't take you as the business owner type."
     m "I wanted to open a place that would makes me feel less afraid of the dark."
     k "But, you can see in the dark, right? Why would you be scared of the dark?"
-    m "I can see in the dark, but that doesn't make it any less scary. Light means comfort." 
-    m "Light is infinite, like I'm standing on the edge of forever while the cracks in my life are illuminated with understanding. I remember things I've forgotten." 
+    m "I can see in the dark, but that doesn't make it any less scary. Light means comfort."
+    m "Light is infinite, like I'm standing on the edge of forever while the cracks in my life are illuminated with understanding. I remember things I've forgotten."
     m "When I'm in the light, the world just...makes sense."
     m "..."
     m "..."
@@ -577,12 +578,11 @@ label s_park_intro:
 
 label Spikeparkmenu:
     menu:
-
         "{image=emoji/tree_emoji.png} So you're a lumberjack?":
             jump s_lumberjack_park
         "{image=emoji/basicfrown_emoji.png} What's the Weirdwood?":
             jump s_weirdwood_park
-        "{image=emoji/cry_emoji.png} Show her the photo of the car crash" if s_photo_park == False:
+        "{image=emoji/sad_emoji.png} Show her the photo of the car crash" if s_photo_park == False:
             jump s_photo_park
         "{image=emoji/thumbsup_emoji.png} Let's move on.":
             jump s_moveon_park
@@ -604,7 +604,7 @@ label s_lumberjack_park:
     s "Awoo! You bet! I'm definitely a fan of that job title. Though we don't have anything nearly so sophisticated as a lumber or saw mill here in Port M."
     k "Where do you work, then?"
     s "Oh, just a quiet, isolated cabin in the woods with only the wailing tree spirits for company."
-    
+
     jump s_lumberjack_menu
 
 label s_lumberjack_menu:
@@ -630,11 +630,11 @@ label s_lonely_park:
     s "Especially with how much noise the spirits make."
 
     jump s_lumberjack_menu
-    
+
 label s_somethingelse_park:
     k "Let's talk about something else."
     s "Your choice!"
-    
+
     jump Spikeparkmenu
 
 label s_weirdwood_park:
@@ -683,7 +683,7 @@ label m_maze_withMaron:
 
     $ Companion = "Marlon"
 
-    "Turns out, this maze is more than just a family-friendly walk in the park. The imposing hedge walls feel unwelcoming despite the beautiful flora scattered about." 
+    "Turns out, this maze is more than just a family-friendly walk in the park. The imposing hedge walls feel unwelcoming despite the beautiful flora scattered about."
     "Marlon makes himself comfortable on my shoulder and yawns, obviously disinterested in our current predicament. We turn a few corners before I realize I have absolutely no idea where we are."
     "Maybe if I get Marlon to lighten up he'll fly around and figure this maze out faster."
 
@@ -700,7 +700,7 @@ label m_maze_withMaron:
         "{image=emoji/basicsmile_emoji.png} Talk about Eileen":
             #GOOD response
             call m_eileen_maze from _call_m_eileen_maze
-    
+
     show bg hedge two
     "I peer around intently trying to sense my way to the middle of the maze. I'm laughably bad at it and it shows. Marlon begins to laugh."
 
@@ -715,7 +715,7 @@ label m_maze_withMaron:
         "{image=emoji/heart_emoji.png} I like being stuck here with you":
             #GOOD response
             call m_withyou_maze from _call_m_withyou_maze
-    
+
     show bg hedge three
     m "Speaking of your navigational skills, remember that one time we went camping with Corliss and Freya? That was amazing. We went into the Weirdwood and you said you knew how to get to a hot spring."
     m "Instead, we walked for {size=+10}HOURS{/size}. The deeper we went into the woods, the louder the spirits howled. They were soooo ANGRY! It was hilarious! We thought we'd never return, but luckily The Seer's Hut was walking around that night."
@@ -744,7 +744,7 @@ label m_maze_withMaron:
         "{image=emoji/tableflip_emoji.png} Confused and barely functioning humanoid":
             #BAD response
             call m_confused_maze from _call_m_confused_maze
-    
+
     show bg hedge three
     "Marlon starts going on about aesthetics mentions something about being sparkly graveyard chic. Surprisingly, it looks as through we've made progress. The grass beneath us becomes more manicured, which I can take to mean that we're getting closer to the center of the maze."
     "My mind wanders for a moment while I think about what we'll find at the center of the maze. Lots of work obviously went into building this thing, so is it supposed to be keeping us out...or keeping something in?"
@@ -761,7 +761,7 @@ label m_maze_withMaron:
         "{image=emoji/basicfrown_emoji.png} I missed everything you said":
             #GOOD response
             call m_missed_maze from _call_m_missed_maze
-    
+
     show bg hedge one
     m "Do you have your eyes on anyone right now?"
 
@@ -775,7 +775,7 @@ label m_maze_withMaron:
         "{image=emoji/eyeroll_emoji.png} I'm not saying":
             #BAD response
             call m_notsaying_maze from _call_m_notsaying_maze
-    
+
     show bg hedge three
     "We walk for just a bit longer and the center of the maze seems to be in sight. Marlon and I high-five excitedly, knowing that we've bested the awfully tedious hedge maze."
     k "We did! We actually did it!"
@@ -877,7 +877,7 @@ label m_withyou_maze:
 
 label m_seershut_maze:
     k "Seer's Hut? Sounds spooky."
-    m "It's so cool. The Seer's aesthetic is on point. She lives in a hut with bird legs and wanders the Weirdwood. For those lucky enough to find the Seer, she provides lots of services, but they don't come cheap." 
+    m "It's so cool. The Seer's aesthetic is on point. She lives in a hut with bird legs and wanders the Weirdwood. For those lucky enough to find the Seer, she provides lots of services, but they don't come cheap."
     m "Fortune telling, hexes, potions, forbidden wisdom."
     k "Wow, she sounds incredible."
     m "Oh absolutely. She also makes some killer scones."
@@ -896,7 +896,7 @@ label m_whathappened_maze:
     m "Eh, something about the coming storm that would lift the darkness and bring light. I don't really remember."
     m "Mostly I just LOVE the Seer's aesthetic."
     return
-    
+
 label m_somethingelse_maze:
     k "Let's talk about something else. I don't really like hearing about my past screw ups."
     m "Aww! It wasn't that bad. Anyway, we got to visit the Seer's Hut. I just LOVE the Seer's aesthetic."
