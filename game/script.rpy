@@ -1098,10 +1098,29 @@ label Spikemazeconvo:
 
 label s_talked_to_otis:
     "Now we're suddenly face-to-face with that bird-man from before, and he's blocking our path."
+    hide otis neutral
+    show spike neutral
+    s "It's Otis! Looking snappy as always."
+    s "Something still smells off, though."
+    k "..."
+    k "Are you {i}growling{/i}?"
+    s "...{size=-10}no.{/size}"
+    k "Let me talk to him."
+    hide spike neutral
     jump Otis_Maze_Convo
 
 label s_otis_maze:
     "Now we're suddenly face-to-face with a bird-man I don't recognize, and he's blocking our path."
+    hide otis neutral
+    show spike neutral
+    k "Spike, who is this guy?"
+    s "Oh, it's just Otis! He's the one I was telling you about, the one who designed this maze for the festival."
+    s "Something still smells off, though."
+    k "..."
+    k "Are you {i}growling{/i}?"
+    s "...{size=-10}no.{/size}"
+    k "Let me talk to him."
+    hide spike neutral
     jump Otis_Maze_Convo
 
 label s_wolf_maze:
@@ -1217,6 +1236,7 @@ label s_laugh_maze:
 
 label Otis_Maze_Convo:
     hide spike neutral
+    hide marlon neutral
     show otis neutral
 
     k "How did you get here so fast?! Didn't I see you at the entrance before I came in?"
