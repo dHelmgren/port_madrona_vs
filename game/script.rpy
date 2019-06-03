@@ -559,26 +559,37 @@ label Spikeparkconvo:
         else:
             jump s_park_intro
     else:
-        show spike neutral
+        show spike laugh blush
         s "Awoo! You're back! I missed you so much!"
+        hide spike laugh blush
+        show spike neutral
         jump Spikeparkmenu
 
 label s_talked_to_marlon:
     s "Awoo! You smell like Marlon! How's my favorite mothman doing?"
-    k "Unforgettable. Like usual, apparently."
+    k "Unforgettable as usual, apparently."
+    hide spike neutral
+    show spike laugh
     s "Hehe, definitely! I love that dude. He knows everyone's deepest, darkest secrets..."
+    hide spike laugh
 
     jump s_park_intro
 
 label s_park_intro:
-
+    show spike neutral
     s "I'm glad you made it!"
     k "Yeah, I managed to find it by looking at the GPS on my phone."
     s "See? That's why I let my pups use their phones during practice."
     k "Wait, your 'pups'?"
+    hide spike neutral
+    show spike blush
     s "Oh, sorry! That's what I call my students."
+    hide spike blush
+    show spike laugh
     s "But it's true! Smartphones help develop hand-eye coordination."
     s "If my pups can dribble down the court with one hand and send a text with the other, they're more skilled than I am! Maybe they should be the pack alpha instead of me!"
+    hide spike laugh
+    show spike neutral
     k "So you just coach basketball at the high school? Do you teach any other subjects?"
     s "Nope! Just basketball! When I'm not coaching, you can find me in the Weirdwood. I chop down trees and sell quality, non-haunted logs to anyone who needs 'em!"
     s "So... whaddaya think?"
@@ -599,10 +610,18 @@ label Spikeparkmenu:
 label s_photo_park:
     $ s_photo_park = True
     #This is where code magic goes to show Spike the photo on Kai's phone
+    hide spike neutral
+    show spike concern
     s "Oh no. Thank the moon you're okay, Kai, that's so scary."
+    hide spike concern
+    show spike neutral
     k "The thing is, I don't remember any of it. Or anything before it, either."
     k "I was hoping you had some insight for me based on this photo evidence?"
+    hide spike neutral
+    show spike concern
     s "Sorry, pup, I got nothin'. But I definitely haven't seen that car before."
+    hide spike concern
+    show spike neutral
     k "That must mean {i}something{/i}..."
     s "Don't worry, Kai. I'll protect you—even if it means that I must attack."
 
@@ -610,7 +629,11 @@ label s_photo_park:
 
 label s_lumberjack_park:
     k "So, you're basically a lumberjack?"
+    hide spike neutral
+    show spike laugh
     s "Awoo! You bet! I'm definitely a fan of that job title. Though we don't have anything nearly so sophisticated as a lumber or saw mill here in Port M."
+    hide spike laugh
+    show spike neutral
     k "Where do you work, then?"
     s "Oh, just a quiet, isolated cabin in the woods with only the wailing tree spirits for company."
 
@@ -627,16 +650,26 @@ label s_lumberjack_menu:
 
 label s_spirits_park:
     k "Wait... what do you mean {i}tree spirits{/i}?"
+    hide spike neutral
+    show spike laugh
     s "Don't worry! I'm only kidding... partially. Maybe you'll have to come visit me to find out!"
+    hide spike laugh
+    show spike neutral
 
     jump s_lumberjack_menu
 
 label s_lonely_park:
     k "Don't you ever get lonely out there by yourself in the middle of the woods?"
+    hide spike neutral
+    show spike blush
     s "I haven't really thought about it. No one's ever asked me that, to be honest. I suppose it does get lonely, but my condition kind of necessitates it."
     k "Oh, you mean the whole werewolf... thing?"
+    hide spike blush
+    show spike laugh
     s "Hahaha. Yeah, that old chestnut. It's not a big deal to me, but having one day out of the month when you can't entertain buds in your folksy cabin in the woods makes it kind of difficult to host extended sleep-overs."
     s "Especially with how much noise the spirits make."
+    hide spike laugh
+    show spike neutral
 
     jump s_lumberjack_menu
 
@@ -651,8 +684,12 @@ label s_weirdwood_park:
     s "Oh! It's just our local haunted forest. Nothing to worry about."
     s "I'm sure you saw the outskirts of it on your way back into town. It's full of all sorts of creepies and crawlies, but if you're prepared and well-equipped, I'm sure you could handle it."
     k "Prepared how?"
+    hide spike neutral
+    show spike laugh
     s "You could always do what I do and pack a loaded crossbow. Gets you by just as well as a firearm does without alerting the real scary forest denizens."
     s "Couple that with some of the Seer's antivenom and/or nightvision goggles, and you're good to go a-huntin' for premium wood."
+    hide spike laugh
+    show spike neutral
 
     jump Spikeparkmenu
 
@@ -660,7 +697,11 @@ label s_moveon_park:
     k "Let's move on. Is this what you wanted to show me? It just looks like a regular old park to me."
     s "Maybe from the outside, but Otis just finished putting up the raddest hedge maze. Plus you can do a lot of people watching from the park bench here. I love to drop eaves any time of day."
     k "Tell me more about this hedge maze."
+    hide spike neutral
+    show spike blush
     s "Oh, I don't know much about it. Otis does something special for the festival every year. I'm sure he could tell you all about his plans, or Mayor Rain could fill you in."
+    hide spike blush
+    show spike neutral
 
     menu:
 
@@ -671,10 +712,17 @@ label s_moveon_park:
 
 label s_together_park:
     k "I admit that I'm very intrigued. How about we try to navigate the maze together?"
+    hide spike neutral
+    show spike laugh blush
     s "Awoo! Good idea! Who knows what kinds of goodies we could find inside?"
+    hide spike laugh blush
+    show spike neutral
     k "Probably whatever's at the center?"
+    hide spike laugh blush
+    show spike laugh
     s "Hahaha. Wouldn't you love to find out, though? I can just smell the adventure."
     s "Literally. Because of my wolfy nose senses. I can literally smell the adventure."
+    hide spike laugh
 
     jump Spikemazeconvo
 
@@ -1035,7 +1083,10 @@ label Spikemazeconvo:
             call s_basketball_maze from _call_s_basketball_maze
 
     show bg hedge two
+    show spike laugh
     s "In the pack, I teach my pups to support each other, lift up their teammates, in order to succeed. Maybe we should follow my own advice—literally!"
+    hide spike laugh
+    show spike neutral
     "She goes on to present an unnecessarily complex idea that pretty much boils down to her lifting me on her shoulders to see over the hedges."
     "I think she's waiting for my response..."
 
@@ -1051,6 +1102,7 @@ label Spikemazeconvo:
             call s_teenagers_maze from _call_s_teenagers_maze
 
     show bg hedge three
+    show spike neutral
     "Spike starts talking about the hedges themselves, monologuing about the types of trees and shrubbery typically used in the construction. There's a pause in her speech."
 
     menu: #3/7
@@ -1065,6 +1117,7 @@ label Spikemazeconvo:
             call s_unicorn_maze from _call_s_unicorn_maze
 
     show bg hedge two
+    show spike neutral
     s "Do you have a favorite tree?"
 
     menu: #4/7
@@ -1079,7 +1132,10 @@ label Spikemazeconvo:
             call s_madrona_maze from _call_s_madrona_maze
 
     show bg hedge three
+    show spike concern
     "She's starting to freak out a little. I should say something."
+    hide spike concern
+    show spike neutral
 
     menu: #5/7
         "{image=emoji/heart_emoji.png} Offer support":
@@ -1093,6 +1149,7 @@ label Spikemazeconvo:
             call s_concern_maze from _call_s_concern_maze
 
     show bg hedge one
+    show spike neutral
     s "I think... it's coming from the center of the maze. Let's follow it."
 
     menu: #6/7
@@ -1107,6 +1164,7 @@ label Spikemazeconvo:
             call s_flee_maze from _call_s_flee_maze
 
     show bg hedge three
+    show spike neutral
     "After a while, Spike says that we're getting closer. She explains that whatever we find at the center could be bad, very bad, but she'll protect me."
     s "Do you trust me?"
 
@@ -1135,12 +1193,18 @@ label s_talked_to_otis:
     hide otis neutral
     show spike neutral
     s "It's Otis! Looking snappy as always."
+    hide spike neutral
+    show spike concern
     s "Something still smells off, though."
+    hide spike concern
+    show spike neutral
     k "..."
     k "Are you {i}growling{/i}?"
+    hide spike neutral
+    show spike blush
     s "...{size=-10}no.{/size}"
     k "Let me talk to him."
-    hide spike neutral
+    hide spike blush
     jump Otis_Maze_Convo
 
 label s_otis_maze:
@@ -1149,20 +1213,33 @@ label s_otis_maze:
     show spike neutral
     k "Spike, who is this guy?"
     s "Oh, it's just Otis! He's the one I was telling you about, the one who designed this maze for the festival."
+    hide spike neutral
+    show spike concern
     s "Something still smells off, though."
+    hide spike concern
+    show spike neutral
     k "..."
     k "Are you {i}growling{/i}?"
+    hide spike neutral
+    show spike blush
     s "...{size=-10}no.{/size}"
     k "Let me talk to him."
-    hide spike neutral
+    hide spike blush
     jump Otis_Maze_Convo
 
 label s_wolf_maze:
     k "Smell anything?"
+    hide spike neutral
+    show spike laugh
     s "Awoo, yes! This way!"
+    hide spike laugh
+    show spike neutral
     "Spike explains that she can smell something in the center of the maze. She takes my hand and leads me down a series of paths, tugging me along with frenetic certainty."
     "We proceed without trouble, making good progress, until we reach a new crossroads, and Spike stops to sniff again."
+    hide spike neutral
+    show spike concern
     s "I think someone got lost in here recently. They stopped to eat a snack—a tuna sandwich—but they didn't finish it. They must have discarded the remains somewhere nearby. The rotten fish smell is blocking my nose."
+    hide spike concern
     return
 
 label s_poop_maze:
@@ -1203,7 +1280,11 @@ label s_tree_maze:
 
 label s_unicorn_maze:
     "I take control of the conversation completely and start talking about unicorns."
+    hide spike neutral
+    show spike concern
     s "Oh, uh, yeah. I like unicorns, too, I guess..."
+    hide spike concern
+    show spike neutral
     "Spike's enthusiasm dies out, and it distracts her from our course in the maze. She isn't entirely done with the subject of trees, though."
     return
 
@@ -1213,8 +1294,14 @@ label s_no_maze:
     return
 
 label s_wink_maze:
+    hide spike neutral
+    show spike blush
     "Spike blushes but quickly recovers and wiggles her eyebrows at me."
+    hide spike blush
+    show spike laugh blush
     s "Well, then, that would be the {i}you{/i} tree. Awoo!"
+    hide spike laugh blush
+    show spike neutral
     "We laugh together, but then Spike stops, her nostrils widening. She says she's picked up a scent: the scent of blood."
     return
 
@@ -1240,7 +1327,10 @@ label s_concern_maze:
 
 label s_agree2_maze:
     "I let Spike take the lead, and she walks on, presumably in the direction of this blood."
+    hide spike neutral
+    show spike laugh blush
     s "Thank you for trusting my nose."
+    hide spike laugh blush
     return
 
 label s_disagree2_maze:
