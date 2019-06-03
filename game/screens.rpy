@@ -910,9 +910,9 @@ screen phone_messages(game_state):
         yalign 0.5
         
         if game_state['morning_phone_texts'][1] == 0:
-            hotspot (999, 138, 831, 241) action Start('Spiketextconvo')
+            hotspot (987, 105, 898, 289) action Start('Spiketextconvo')
         if game_state['morning_phone_texts'][0] == 0:
-            hotspot (997, 395, 831, 240) action Start('Marlontextconvo')
+            hotspot (982, 390, 900, 276) action Start('Marlontextconvo')
         hotspot (1186, 930, 450, 108) action ShowMenu('in_game_phone', game_state)
 
 screen phone_map(game_state):
