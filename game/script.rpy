@@ -567,7 +567,7 @@ label Spikeparkconvo:
 
 label s_talked_to_marlon:
     s "Awoo! You smell like Marlon! How's my favorite mothman doing?"
-    k "Unforgettable as usual, apparently."
+    k "Unforgettable. As usual, apparently."
     hide spike neutral
     show spike laugh
     s "Hehe, definitely! I love that dude. He knows everyone's deepest, darkest secrets..."
