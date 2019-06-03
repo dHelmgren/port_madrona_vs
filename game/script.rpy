@@ -18,6 +18,7 @@ default marlon_visited = False
 default otis_visited = False
 default trash_tv_topics = [0,0]
 default marlon_maze_topics = [0,0,0,0,0,0,0]
+default s_photo_park = False
 
 #Define puzzle states
 default maze_progress = 0
@@ -59,7 +60,7 @@ image flicker_two:
     "madrona_dark.png"
     pause 0.5
     "madrona_gore.png"
-    function blink  
+    function blink
     "madrona_light.png"
     pause 0.08
     "madrona_dark.png"
@@ -363,7 +364,10 @@ label otis_park:
 
     o "Hey there, Kai. Kai, the amelioration! How lovely to see you here at the heart of the town. Have you come to admire our famous Port Madrona Tree?"
     k "Uh, right. Hey, to you too... I'm actually here to meet up with one of my friends, but thought I might explore a bit first. What brings you here?"
+    show otis explain
     o "Well, as you know, I run the town's grand annual festival to celebrate our beloved Port Madrona tree. I like to check on her often and tend to her. After all, we have a responsibility to protect her, right? We're all connected here."
+    hide otis explain
+    show otis neutral
 
     menu:
         "{image=emoji/basicsmile_emoji.png} Absolutely!":
@@ -379,15 +383,21 @@ label .k_absolutely:
     k "It's definitely an interesting place. I take it you must know a lot about it?"
     o "Better than most. However, I won't keep you from your friends. We'll have plenty of time to talk. Come find me in the maze later if you would like to know more."
     k "Okay, but I imagine I'll get there first."
+    show otis smirk
     o "We'll see."
-    hide otis neutral
+    hide otis smirk
     jump parkentrancemenu
 
 label .k_maybe:
     k "I guess, but why you? Are you the chosen one or something?"
+    show otis eyebrow raise
     o "Oh Kai, you're full of surprises! You know we choose someone annually to guard the tree year-round, but I have to say, I just don't think anyone could show her the care and attention that I can. Perhaps, it's because I study her needs."
     k "How exactly do you do that?"
+    hide otis eyebrow raise
+    show otis explain
     o "I make sure her environment is ideal. Make sure she receives water every 10 - 14 days until the soil is moist at a depth of just 6-inches. I prune any dead limbs, trim the outer foliage, and spray in the early spring to kill any insects or larvae that may have nested during the winter months. It's quite simple, really."
+    hide otis explain
+    show otis neutral
     k "Right.."
     hide otis neutral
     jump parkentrancemenu
@@ -502,8 +512,8 @@ label m_aboutGlow:
     k "Really? I didn't take you as the business owner type."
     m "I wanted to open a place that would makes me feel less afraid of the dark."
     k "But, you can see in the dark, right? Why would you be scared of the dark?"
-    m "I can see in the dark, but that doesn't make it any less scary. Light means comfort." 
-    m "Light is infinite, like I'm standing on the edge of forever while the cracks in my life are illuminated with understanding. I remember things I've forgotten." 
+    m "I can see in the dark, but that doesn't make it any less scary. Light means comfort."
+    m "Light is infinite, like I'm standing on the edge of forever while the cracks in my life are illuminated with understanding. I remember things I've forgotten."
     m "When I'm in the light, the world just...makes sense."
     m "..."
     m "..."
@@ -577,42 +587,62 @@ label s_park_intro:
 
 label Spikeparkmenu:
     menu:
-
         "{image=emoji/tree_emoji.png} So you're a lumberjack?":
             jump s_lumberjack_park
         "{image=emoji/basicfrown_emoji.png} What's the Weirdwood?":
             jump s_weirdwood_park
+        "{image=emoji/sad_emoji.png} Show her the photo of the car crash" if s_photo_park == False:
+            jump s_photo_park
         "{image=emoji/thumbsup_emoji.png} Let's move on.":
             jump s_moveon_park
 
-label s_lumberjack_park:
+label s_photo_park:
+    $ s_photo_park = True
+    #This is where code magic goes to show Spike the photo on Kai's phone
+    s "Oh no. Thank the moon you're okay, Kai, that's so scary."
+    k "The thing is, I don't remember any of it. Or anything before it, either."
+    k "I was hoping you had some insight for me based on this photo evidence?"
+    s "Sorry, pup, I got nothin'. But I definitely haven't seen that car before."
+    k "That must mean {i}something{/i}..."
+    s "Don't worry, Kai. I'll protect you—even if it means that I must attack."
 
+    jump Spikeparkmenu
+
+label s_lumberjack_park:
     k "So, you're basically a lumberjack?"
     s "Awoo! You bet! I'm definitely a fan of that job title. Though we don't have anything nearly so sophisticated as a lumber or saw mill here in Port M."
     k "Where do you work, then?"
     s "Oh, just a quiet, isolated cabin in the woods with only the wailing tree spirits for company."
 
-    menu:
+    jump s_lumberjack_menu
 
-        "{image=emoji/eyeroll_emoji.png} Tree spirits?! Wailing?!":
+label s_lumberjack_menu:
+    menu:
+        "{image=emoji/eyeroll_emoji.png} 'Wailing tree spirits'?":
             jump s_spirits_park
         "{image=emoji/sadfrown_emoji.png} Don't you get lonely?":
             jump s_lonely_park
-        "{image=emoji/thumbsup_emoji.png} Let's move on.":
-            jump s_moveon_park
+        "{image=emoji/thumbsup_emoji.png} Let's talk about something else.":
+            jump s_somethingelse_park
 
 label s_spirits_park:
-
     k "Wait... what do you mean {i}tree spirits{/i}?"
     s "Don't worry! I'm only kidding... partially. Maybe you'll have to come visit me to find out!"
 
-    jump Spikeparkmenu
+    jump s_lumberjack_menu
 
 label s_lonely_park:
-    k "An isolated cabin? Don't you ever get lonely out there by yourself in the middle of the woods?"
+    k "Don't you ever get lonely out there by yourself in the middle of the woods?"
     s "I haven't really thought about it. No one's ever asked me that, to be honest. I suppose it does get lonely, but my condition kind of necessitates it."
     k "Oh, you mean the whole werewolf... thing?"
     s "Hahaha. Yeah, that old chestnut. It's not a big deal to me, but having one day out of the month when you can't entertain buds in your folksy cabin in the woods makes it kind of difficult to host extended sleep-overs."
+    s "Especially with how much noise the spirits make."
+
+    jump s_lumberjack_menu
+
+label s_somethingelse_park:
+    k "Let's talk about something else."
+    s "Your choice!"
 
     jump Spikeparkmenu
 
@@ -657,12 +687,12 @@ label s_leave_park:
 
 label m_maze_withMaron:
 
-    show bg maze one
+    show bg hedge one
     show marlon neutral
 
     $ Companion = "Marlon"
 
-    "Turns out, this maze is more than just a family-friendly walk in the park. The imposing hedge walls feel unwelcoming despite the beautiful flora scattered about." 
+    "Turns out, this maze is more than just a family-friendly walk in the park. The imposing hedge walls feel unwelcoming despite the beautiful flora scattered about."
     "Marlon makes himself comfortable on my shoulder and yawns, obviously disinterested in our current predicament. We turn a few corners before I realize I have absolutely no idea where we are."
     "Maybe if I get Marlon to lighten up he'll fly around and figure this maze out faster."
 
@@ -679,13 +709,13 @@ label m_maze_withMaron:
         "{image=emoji/basicsmile_emoji.png} Talk about Eileen":
             #GOOD response
             call m_eileen_maze from _call_m_eileen_maze
-    
+
     show bg hedge two
     "I peer around intently trying to sense my way to the middle of the maze. I'm laughably bad at it and it shows. Marlon begins to laugh."
 
     menu: #2/7
         m "Need help?"
-        "{image=emoji/cry_emoji.png} Yes I need help":
+        "{image=emoji/sad_emoji.png} Yes I need help":
             #GOOD reponse
             call m_yeshelp_maze from _call_m_yeshelp_maze
         "{image=emoji/eyeroll_emoji.png} No, I can do this myself":
@@ -694,7 +724,7 @@ label m_maze_withMaron:
         "{image=emoji/heart_emoji.png} I like being stuck here with you":
             #GOOD response
             call m_withyou_maze from _call_m_withyou_maze
-    
+
     show bg hedge three
     m "Speaking of your navigational skills, remember that one time we went camping with Corliss and Freya? That was amazing. We went into the Weirdwood and you said you knew how to get to a hot spring."
     m "Instead, we walked for {size=+10}HOURS{/size}. The deeper we went into the woods, the louder the spirits howled. They were soooo ANGRY! It was hilarious! We thought we'd never return, but luckily The Seer's Hut was walking around that night."
@@ -723,7 +753,7 @@ label m_maze_withMaron:
         "{image=emoji/tableflip_emoji.png} Confused and barely functioning humanoid":
             #BAD response
             call m_confused_maze from _call_m_confused_maze
-    
+
     show bg hedge three
     "Marlon starts going on about aesthetics mentions something about being sparkly graveyard chic. Surprisingly, it looks as through we've made progress. The grass beneath us becomes more manicured, which I can take to mean that we're getting closer to the center of the maze."
     "My mind wanders for a moment while I think about what we'll find at the center of the maze. Lots of work obviously went into building this thing, so is it supposed to be keeping us out...or keeping something in?"
@@ -740,7 +770,7 @@ label m_maze_withMaron:
         "{image=emoji/basicfrown_emoji.png} I missed everything you said":
             #GOOD response
             call m_missed_maze from _call_m_missed_maze
-    
+
     show bg hedge one
     m "Do you have your eyes on anyone right now?"
 
@@ -754,7 +784,7 @@ label m_maze_withMaron:
         "{image=emoji/eyeroll_emoji.png} I'm not saying":
             #BAD response
             call m_notsaying_maze from _call_m_notsaying_maze
-    
+
     show bg hedge three
     "We walk for just a bit longer and the center of the maze seems to be in sight. Marlon and I high-five excitedly, knowing that we've bested the awfully tedious hedge maze."
     k "We did! We actually did it!"
@@ -784,6 +814,8 @@ label m_maze_withMaron:
 
 label m_talked_to_otis:
     "Now we're suddenly face-to-face with that bird-man from before, and he's blocking our path."
+    hide otis neutral
+    show marlon neutral
     m "Ugh, not Otis."
     k "{size=-10}Be cool, be cool.{/size}"
     m "How can I when he has THE worst fashion tastes? Sweater vests? REALLY?"
@@ -792,6 +824,8 @@ label m_talked_to_otis:
 
 label m_otis_maze:
     "Now we're suddenly face-to-face with a bird-man I don't recognize, and he's blocking our path."
+    hide otis neutral
+    show marlon neutral
     k "Who is THAT?"
     m "Ugh, that's Otis. He runs the town's grand annual festival celebrating the Madrona Tree."
     m "{size=-10}He also has THE worst fashion tastes.{/size}"
@@ -856,7 +890,7 @@ label m_withyou_maze:
 
 label m_seershut_maze:
     k "Seer's Hut? Sounds spooky."
-    m "It's so cool. The Seer's aesthetic is on point. She lives in a hut with bird legs and wanders the Weirdwood. For those lucky enough to find the Seer, she provides lots of services, but they don't come cheap." 
+    m "It's so cool. The Seer's aesthetic is on point. She lives in a hut with bird legs and wanders the Weirdwood. For those lucky enough to find the Seer, she provides lots of services, but they don't come cheap."
     m "Fortune telling, hexes, potions, forbidden wisdom."
     k "Wow, she sounds incredible."
     m "Oh absolutely. She also makes some killer scones."
@@ -875,7 +909,7 @@ label m_whathappened_maze:
     m "Eh, something about the coming storm that would lift the darkness and bring light. I don't really remember."
     m "Mostly I just LOVE the Seer's aesthetic."
     return
-    
+
 label m_somethingelse_maze:
     k "Let's talk about something else. I don't really like hearing about my past screw ups."
     m "Aww! It wasn't that bad. Anyway, we got to visit the Seer's Hut. I just LOVE the Seer's aesthetic."
@@ -1098,10 +1132,29 @@ label Spikemazeconvo:
 
 label s_talked_to_otis:
     "Now we're suddenly face-to-face with that bird-man from before, and he's blocking our path."
+    hide otis neutral
+    show spike neutral
+    s "It's Otis! Looking snappy as always."
+    s "Something still smells off, though."
+    k "..."
+    k "Are you {i}growling{/i}?"
+    s "...{size=-10}no.{/size}"
+    k "Let me talk to him."
+    hide spike neutral
     jump Otis_Maze_Convo
 
 label s_otis_maze:
     "Now we're suddenly face-to-face with a bird-man I don't recognize, and he's blocking our path."
+    hide otis neutral
+    show spike neutral
+    k "Spike, who is this guy?"
+    s "Oh, it's just Otis! He's the one I was telling you about, the one who designed this maze for the festival."
+    s "Something still smells off, though."
+    k "..."
+    k "Are you {i}growling{/i}?"
+    s "...{size=-10}no.{/size}"
+    k "Let me talk to him."
+    hide spike neutral
     jump Otis_Maze_Convo
 
 label s_wolf_maze:
@@ -1217,11 +1270,15 @@ label s_laugh_maze:
 
 label Otis_Maze_Convo:
     hide spike neutral
+    hide marlon neutral
     show otis neutral
 
     k "How did you get here so fast?! Didn't I see you at the entrance before I came in?"
+    show otis explain
     o "Oh, I know my way around this place quite well. You see, the maze is the home of my imagination."
     o "As a child, I would run through the maze seeing myself in the Great Hall of the People or flying above the Karnak Temple Complex. It was my kingdom. It was anything I needed it to be."
+    hide otis explain
+    show otis neutral
     k "Sounds like a nice place."
     o "Indeed. Would you like to hear about the history of the Madrona tree?"
 
@@ -1236,29 +1293,46 @@ label Otis_Maze_Convo:
 label .k_sure:
 
     k "I'd like that."
+    show otis explain
     o "Well, the Port Madrona, also known as the Arbutus Menziesii species of the order Ericales, is native to the western regions of the North."
     o "It is an evergreen that sheds its bark with age and in the autumn produces small red berries known for their healing properties. "
     o "The tree is said to be over 400 years old with roots so deep that they span the length of the town. And when it rains, the tree appears to come to life taking in water and pumping out a rich red substance like blood stains on its leaves. "
     o "It's no wonder the tree has come to be revered as the life force of the town. Every year, I host our annual festival so we can celebrate the Port Madrona tree through song, food, sacrifices and prayer. "
+    hide otis explain
+    show otis neutral
     k "Wow. That's pretty amazing. It seems to have thrived here for so long. I wonder, why?"
+    hide otis neutral
+    show otis explain
     o "Some say, it was the Port Madrona tree that gave birth to our entire town, and as long as we honor it, it will continue to protect our home."
+    hide otis explain
+    show otis neutral
     k "What happens if the tree starts to die?"
+    show otis eyeroll
     o "Don't be silly. That would never happen."
+    hide otis eyeroll
     hide otis neutral
     jump maze_center
 
 label .k_shortversion:
 
     k "Alright, but keep it short will you?"
+    show otis explain
     o "Very well. The Port Madrona tree has lived here for over 400 years with roots that are said to span the length of the town."
     o "Every year, in order to ensure that the tree continues to thrive and floruish, we honor it."
     o "The town gets together and celebrates with a festival. Yusef's Crab House, the Beaver Mill Diner, the Dark Carta all donate food and entertainment to the night's festivities and, of course, we choose the guardian that will tend to the tree year-round."
+    hide otis explain
+    show otis neutral
     k "That sounds pretty great. Guardian, huh?"
     o "Yes, the chosen guardian will have the honor of tending to our beloved tree and ensuring no harm should befall her. "
     k "I wonder who it will be this year... this festival sounds interesting. I can't wait!"
+    hide otis neutral
+    show otis eyebrow raise
     o "Well, surely, you remember it from last year?"
     k "Oh, right, of course. Um, I should be going now."
+    hide otis eyebrow raise
+    show otis smirk
     o "I'll be seeing you, Kai."
+    hide otis smirk
     hide otis neutral
     jump maze_center
 
@@ -1273,8 +1347,8 @@ label maze_center:
     show no_flicker
     "[Companion] and I finally reach the center of the hedge maze."
     show flicker_one
-    "What the hell? Is that.. No. This isn't real… is that me?! Holy shit."
+    "What the hell? Is that.. No."
     show flicker_two
-    "What the hell is going on here? I don't understand. Am I dead? How can I be dead? I thought I just lost my memories, but is this all some type of pseudo world I'm living out in my head?! Oh god, I need to figure this out."
+    "This isn't real… is that me?! Holy shit. What the hell is going on here? I don't understand. Am I dead? How can I be dead? I thought I just lost my memories, but is this all some type of pseudo world I'm living out in my head?! Oh god, I need to figure this out."
     "I can't lose it now. If I can't trust my memories, I'll need to find the answers from the people of this town. I need to remember who I am and why I came here. I can't explain it, but I know it's the only way to prevent this."
     show madrona_light
