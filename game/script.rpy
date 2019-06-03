@@ -1426,13 +1426,16 @@ label Otis_Maze_Convo:
     hide marlon neutral
     show otis neutral
 
-    k "How did you get here so fast?! Didn't I see you at the entrance before I came in?"
-    show otis explain
-    o "Oh, I know my way around this place quite well. You see, the maze is the home of my imagination."
-    o "As a child, I would run through the maze seeing myself in the Great Hall of the People or flying above the Karnak Temple Complex. It was my kingdom. It was anything I needed it to be."
-    hide otis explain
-    show otis neutral
-    k "Sounds like a nice place."
+    if otis_visited:
+        k "How did you get here so fast?! Didn't I see you at the entrance before I came in?"
+        show otis explain
+        o "Oh, I know my way around this place quite well. You see, the maze is the home of my imagination."
+        o "As a child, I would run through the maze seeing myself in the Great Hall of the People or flying above the Karnak Temple Complex. It was my kingdom. It was anything I needed it to be."
+        hide otis explain
+        show otis neutral
+        k "Sounds like a nice place."
+    else:
+        k "Hi there! You run the festival and put together this maze, right?"
     o "Indeed. Would you like to hear about the history of the Madrona tree?"
 
     menu:
