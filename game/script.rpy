@@ -428,17 +428,22 @@ label m_long_morning:
     k "It's been a hectic morning."
     m "Oh no buddy! Why's that?"
 
+    show marlon eyebrows
+    hide marlon eyebrows
+
     jump m_kai_weird_greetings
 
 label m_kai_weird_greetings:
     k "I felt weird walking over here. Everybody was greeting me."
-    k "'Morning, Kai!' and 'Great to see you Kai!'  Everyone was so kind and happy…"
+    k "'Morning, Kai!' and 'Great to see you Kai!' Everyone was so kind and happy…"
     m "Yep, everyone knows you. And they like you!"
     k "But I don't remember anybody. I remember nothing."
+    show marlon what
     m "Nothing? Not the time we summoned a banshee in the school cafeteria?"
     k "Nope."
     m "Or the time we covered the statue in front of town hall in glitter?"
     k "Was that one your idea?"
+    hide marlon what
     m "Oh {i}absoluuuuuuutely{/i}."
     k "None of that sounds familiar. Something...{size=-10}someone?{/size}...stuffed my mind into a blender and pressed the smoothie button."
     m "That's disgusting and… a little cool. {p=1.0} You'll remember something! I'm unforgettable after all."
@@ -458,7 +463,9 @@ label Marlonparkmenu:
 
 label m_aboutMarlon:
     k "What's your thing? What are you all about?"
+    show marlon what
     m "Trashy Cryptids Trash America obv."
+    hide marlon what
     k "Did you just use 'obv' in real life conversation?"
     m "Yeah. Obv. Eileen is ALL about that I-R-L slang. She is the QUEEEEEEEN."
     k "So, what's this show about?"
@@ -478,13 +485,17 @@ label TCTA:
 
 label m_aboutEileen:
     k "So who is Eileen? Is she your favorite? Wait, let me rephrase. Is she your {i}fave{/i}?"
+    show marlon unimpressed
     m "Ew, no, please don't say 'fave.' That's so two years ago."
+    hide marlon unimpressed
     m "Eileen is {size=+10}THE COOLEST{/size}. She is a half-woman, half-shark ghost and gives no fucks about what anyone thinks of her. She is just soooo authentic."
     jump TCTA
 
 label m_aboutTia:
     k "Who is Tia?"
+    show marlon unimpressed
     m "Ugh, don't get me started on Tia. Tia is this basic vampire who does this annoying clicking thing with her teeth when she's excited."
+    hide marlon unimpressed
     m "Tia replaced Kimmi last season because there was some drama between Kimmi and Lucretia. They should have worked it out, but instead Kimmi left and we're stuck with Tia."
     k "Fascinating."
     m "{size=+10}I KNOOOOOOOWWWW.{/size}"
@@ -500,11 +511,13 @@ label m_aboutGlow:
     k "How do you like working at the Glow?"
     m "I like the Glow! I actually opened it as my business project."
     k "Really? I didn't take you as the business owner type."
+    show marlon sigh
     m "I wanted to open a place that would makes me feel less afraid of the dark."
     k "But, you can see in the dark, right? Why would you be scared of the dark?"
     m "I can see in the dark, but that doesn't make it any less scary. Light means comfort." 
     m "Light is infinite, like I'm standing on the edge of forever while the cracks in my life are illuminated with understanding. I remember things I've forgotten." 
     m "When I'm in the light, the world just...makes sense."
+    hide marlon sigh
     m "..."
     m "..."
     k "..."
@@ -515,7 +528,9 @@ label m_aboutGlow:
 
 label m_somethingelse:
     k "Let's explore or something."
+    show marlon what
     m "Oh, you probably want to check out that maze, right? Otis made a weird-ass hedge maze this year for the festival. I don't get it."
+    hide marlon what
 
     menu:
         "{image=emoji/opensmile_emoji.png} Let's go in the maze together!":
@@ -525,8 +540,10 @@ label m_somethingelse:
 
 label m_enterMaze:
     k "I'm intrigued by the maze's weirdness. Maybe he hid something in the middle."
+    show marlon eyebrows
     m "Like treasure? Or gift cards!"
     k "How about we check it out? We can split our findings."
+    hide marlon eyebrows
     m "Dibs on the gift cards."
 
     jump m_maze_withMaron
