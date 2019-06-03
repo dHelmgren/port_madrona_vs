@@ -892,7 +892,8 @@ screen in_game_phone(game_state):
         hotspot (997, 394, 404, 243) action ShowMenu('save') #
         if game_state['can_map_travel']:
             hotspot (1424, 395, 404, 238) action ShowMenu('phone_map', game_state) #Map
-        hotspot (999, 650, 402, 239) action ShowMenu('save') #BL
+        if game_state['current_location'] == 'park':
+            hotspot (999, 650, 402, 239) action Start('SpikePhotoPark') #BL
         hotspot (1426, 650, 402, 244) action Start('maze_center') #BR
         hotspot (1186, 928, 450, 108) action Return() #Back
 
@@ -947,6 +948,7 @@ screen phone_pop_but(game_state):
         hotspot(16, 2, 164, 175) action ShowMenu('in_game_phone', game_state)
         xpos 1500
         ypos 700
+
 
 ## Maze Progress Trackert ######################################################
 ##

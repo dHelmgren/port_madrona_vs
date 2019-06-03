@@ -615,20 +615,21 @@ label s_park_intro:
     jump Spikeparkmenu
 
 label Spikeparkmenu:
+    if s_photo_park == False:
+        show screen phone_pop_but
     menu:
         "{image=emoji/tree_emoji.png} So you're a lumberjack?":
             jump s_lumberjack_park
         "{image=emoji/basicfrown_emoji.png} What's the Weirdwood?":
             jump s_weirdwood_park
-        "{image=emoji/sad_emoji.png} Show her the photo of the car crash" if s_photo_park == False:
-            jump s_photo_park
+        # "{image=emoji/sad_emoji.png} Show her the photo of the car crash" if s_photo_park == False:
+        #     jump s_photo_park
         "{image=emoji/thumbsup_emoji.png} Let's move on.":
             jump s_moveon_park
 
-label s_photo_park:
+label SpikePhotoPark:
     $ s_photo_park = True
     #This is where code magic goes to show Spike the photo on Kai's phone
-    hide spike neutral
     show spike concern
     s "Oh no. Thank the moon you're okay, Kai, that's so scary."
     hide spike concern
