@@ -977,6 +977,7 @@ screen maze_tracker(game_state):
         range 7
         xpos 1500
         ypos 200
+        xmaximum 200
 
 ## History screen ##############################################################
 ##
