@@ -8,7 +8,9 @@ default spike_friend_score = 10
 default game_state = {
     'morning_phone_texts' : [0,0], #Marlon \ Spike
     'current_location' : 'home',
-    'can_map_travel' : False
+    'can_map_travel' : False,
+    'marlon_friend_score': 0,
+    'spike_friend_score': 10
 }
 
 default morning_phone_texts = [0,0]
