@@ -188,7 +188,7 @@ label Marlontextconvo:
 label m_excited_text:
     k "Yeah, I'm alive and kicking it."
     m "perf, let's meet up"
-    m "m i gotta catch you up on the new trashy cryptids season {image=emoji/peach_emoji.png}"
+    m "i gotta catch you up on the new trashy cryptids season {image=emoji/peach_emoji.png}"
     jump m_invite
 
 label m_sleepy:
@@ -330,7 +330,7 @@ label parkentrance:
     #We see the entrance of the park with its three paths.
 
     "Well, I made it. It's a beautiful day. The sky is grey, the birds are screaming, and the air smells like fish and chips."
-    "Hmm, both Marlon and Spike wanted to meet up. The water fountain is toward the left. That's where Marlon is. I think I see Spike over toward the right, by the bench."
+    "Hmm, both Marlon and Spike wanted to meet up. The water fountain is toward the right. That's where Marlon is. I think I see Spike over toward the left, by the bench."
     "I could always just explore on my own for a bit before meeting up with them."
 
 label parkentrancemenu:
@@ -342,12 +342,12 @@ label parkentrancemenu:
     hide spike neutral
     show bg park main
     menu:
-        "Left towards Marlon":
+        "Right toward Marlon":
             hide screen phone_pop_but
             $ game_state['can_map_travel'] = False
             jump Marlonparkconvo
 
-        "Right towards Spike":
+        "Left toward Spike":
             hide screen phone_pop_but
             $ game_state['can_map_travel'] = False
             jump Spikeparkconvo
@@ -436,10 +436,9 @@ label m_talked_to_spike:
 label m_long_morning:
 
     k "It's been a hectic morning."
-    m "Oh no buddy! Why's that?"
-
     show marlon eyebrows
-    hide marlon eyebrows
+    m "Oh no buddy! Why's that?"
+    show marlon neutral
 
     jump m_kai_weird_greetings
 
@@ -453,7 +452,7 @@ label m_kai_weird_greetings:
     k "Nope."
     m "Or the time we covered the statue in front of town hall in glitter?"
     k "Was that one your idea?"
-    hide marlon what
+    show marlon neutral
     m "Oh {i}absoluuuuuuutely{/i}."
     k "None of that sounds familiar. Something...{size=-10}someone?{/size}...stuffed my mind into a blender and pressed the smoothie button."
     m "That's disgusting and… a little cool. {p=1.0} You'll remember something! I'm unforgettable after all."
@@ -475,7 +474,7 @@ label m_aboutMarlon:
     k "What's your thing? What are you all about?"
     show marlon what
     m "Trashy Cryptids Trash America obv."
-    hide marlon what
+    show marlon neutral
     k "Did you just use 'obv' in real life conversation?"
     m "Yeah. Obv. Eileen is ALL about that I-R-L slang. She is the QUEEEEEEEN."
     k "So, what's this show about?"
@@ -497,7 +496,7 @@ label m_aboutEileen:
     k "So who is Eileen? Is she your favorite? Wait, let me rephrase. Is she your {i}fave{/i}?"
     show marlon unimpressed
     m "Ew, no, please don't say 'fave.' That's so two years ago."
-    hide marlon unimpressed
+    show marlon neutral
     m "Eileen is {size=+10}THE COOLEST{/size}. She is a half-woman, half-shark ghost and gives no fucks about what anyone thinks of her. She is just soooo authentic."
     jump TCTA
 
@@ -505,9 +504,9 @@ label m_aboutTia:
     k "Who is Tia?"
     show marlon unimpressed
     m "Ugh, don't get me started on Tia. Tia is this basic vampire who does this annoying clicking thing with her teeth when she's excited."
-    hide marlon unimpressed
     m "Tia replaced Kimmi last season because there was some drama between Kimmi and Lucretia. They should have worked it out, but instead Kimmi left and we're stuck with Tia."
     k "Fascinating."
+    show marlon neutral
     m "{size=+10}I KNOOOOOOOWWWW.{/size}"
     jump TCTA
 
@@ -525,13 +524,15 @@ label m_aboutGlow:
     m "I wanted to open a place that would makes me feel less afraid of the dark."
     k "But, you can see in the dark, right? Why would you be scared of the dark?"
     m "I can see in the dark, but that doesn't make it any less scary. Light means comfort."
+    show marlon unimpressed
     m "Light is infinite, like I'm standing on the edge of forever while the cracks in my life are illuminated with understanding. I remember things I've forgotten."
     m "When I'm in the light, the world just...makes sense."
-    hide marlon sigh
+    show marlon sigh
     m "..."
     m "..."
     k "..."
     k "Buddy.{p=2.0}That was deep."
+    show marlon neutral
     m "Was it? Oops."
 
     jump Marlonparkmenu
@@ -540,7 +541,7 @@ label m_somethingelse:
     k "Let's explore or something."
     show marlon what
     m "Oh, you probably want to check out that maze, right? Otis made a weird-ass hedge maze this year for the festival. I don't get it."
-    hide marlon what
+    show marlon neutral
 
     menu:
         "{image=emoji/opensmile_emoji.png} Let's go in the maze together!":
@@ -553,7 +554,7 @@ label m_enterMaze:
     show marlon eyebrows
     m "Like treasure? Or gift cards!"
     k "How about we check it out? We can split our findings."
-    hide marlon eyebrows
+    show marlon neutral
     m "Dibs on the gift cards."
 
     jump m_maze_withMaron
@@ -772,7 +773,7 @@ label m_maze_withMaron:
             call m_confused_maze from _call_m_confused_maze
 
     show bg hedge three
-    "Marlon starts going on about aesthetics mentions something about being sparkly graveyard chic. Surprisingly, it looks as through we've made progress. The grass beneath us becomes more manicured, which I can take to mean that we're getting closer to the center of the maze."
+    "Marlon starts going on about aesthetics and mentions something about being sparkly graveyard chic. Surprisingly, it looks as through we've made progress. The grass beneath us becomes more manicured, which I can take to mean that we're getting closer to the center of the maze."
     "My mind wanders for a moment while I think about what we'll find at the center of the maze. Lots of work obviously went into building this thing, so is it supposed to be keeping us out...or keeping something in?"
     m "Kai, what do you think? Yes or no?"
     "I realize Marlon had been asking me something, but I've obviously missed the entire conversation."
@@ -847,7 +848,7 @@ label m_otis_maze:
     show marlon unimpressed
     m "Ugh, that's Otis. He runs the town's grand annual festival celebrating the Madrona Tree."
     m "{size=-10}He also has THE worst fashion tastes.{/size}"
-    hide marlon unimpressed
+    show marlon neutral
     k "Calm down, I'll talk to him."
     jump Otis_Maze_Convo
 
@@ -861,14 +862,14 @@ label m_unicorn_maze:
     k "WHAT?!"
     m "That's right. It's called the Grey Rainbow War of 1983."
     k "This actually happened?"
-    hide marlon sigh
+    show marlon neutral
     m "YES!"
     m "..."
     m "Well, okay, it was less of a war and more of a final championship. And less fighting and more roller derby."
     k "So what you're saying is the mothmen lost against unicorns in a roller derby competition?"
     show marlon eyebrows
     m "YES! IT WAS CARNAGE! Mothmen have never gotten closer to beating unicorns at roller derby than in 1983. {p=2.0} Some say we never will..."
-    hide marlon eyebrows
+    show marlon neutral
     "Maron stares wistfully into the distance and I can only assume images of roller derby fill his mind's eye. Maybe talking about something else will clear his mind."
     return
 
@@ -879,7 +880,7 @@ label m_poop_maze:
     show marlon what
     m "Bad move, buddy."
     k "I have a bad sense of direction. I'd be lost without my phone honestly."
-    hide marlon what
+    show marlon neutral
     return
 
 label m_eileen_maze:
@@ -888,7 +889,7 @@ label m_eileen_maze:
     show marlon blush
     m "She is my {size=+10}IDOL{/size}."
     m "This one time I sent her some fan mail and included a piece of my antennae. Don't worry. They grow back."
-    hide marlon blush
+    show marlon neutral
     m "Anyway, so last Eileen had this really cool—no no, turn right here—she made this really cool..."
     "Oh geez, Marlon can't stop talking about Eileen. At least he knows where to go."
     return
@@ -896,9 +897,11 @@ label m_eileen_maze:
 label m_yeshelp_maze:
     k "Yes, please. I am so lost and surprisingly bad at this."
     m "As far as I remember you've always had questionable navigational skills."
+    hide marlon neutral
     "Marlon flies up causing a dust of dirt and grass to impair my vision for a moment. I crank my head upwards to get a good view of Marlon who is surveying the scene."
     k "See anything?"
     m "We'll need to take a right, another right, and then a left!"
+    show marlon neutral
     "Marlon descends and returns to his comfortable perch on my shoulder."
     return
 
@@ -913,7 +916,7 @@ label m_withyou_maze:
     show marlon blush
     m "Hahaha Kai, there is no one else I'd prefer to be stuck in a dumb maze with."
     m "Except that Trashy Cryptids is on at eight tonight, so I gotta be home for that, so let's get lost together some other time."
-    hide marlon blush
+    show marlon neutral
     k "Haha, okay. I will use my lackluster navigational skills to get us out."
     return
 
@@ -924,7 +927,7 @@ label m_seershut_maze:
     m "Fortune telling, hexes, potions, forbidden wisdom."
     k "Wow, she sounds incredible."
     m "Oh absolutely. She also makes some killer scones."
-    hide marlon eyebrows
+    show marlon neutral
     m "Literally. Ask her for a non-fatal scone. Those are delicious."
     return
 
@@ -939,7 +942,7 @@ label m_whathappened_maze:
     m "I think one was blueberry and the other was cranberry-orange."
     k "No! The prophecy!"
     m "Eh, something about the coming storm that would lift the darkness and bring light. I don't really remember."
-    hide marlon what
+    show marlon neutral
     m "Mostly I just LOVE the Seer's aesthetic."
     return
 
@@ -953,7 +956,7 @@ label m_booty_maze:
     show marlon eyebrows
     m "I BOUGHT YOU THOSE BOOTY SHORTS!"
     k "Did you? I found them in my apartment."
-    hide marlon eyebrows
+    show marlon neutral
     m "Buddy, let's make this happen."
     return
 
@@ -965,7 +968,7 @@ label m_sunset_maze:
     k "I..."
     k "No!"
     k "Uh, course not!!!"
-    hide marlon sigh
+    show marlon neutral
     m "Hahaha you're blushing! I knew it."
     k "I never said anything."
     m "Your secret is safe with me."
@@ -976,7 +979,7 @@ label m_confused_maze:
     show marlon what
     m "Oh. That's not very fun..."
     k "I'm not exactly the most put-together person. Especially right now."
-    hide marlon what
+    show marlon neutral
     return
 
 label m_yes_maze:
@@ -986,7 +989,7 @@ label m_yes_maze:
     k "Yeah? Yeah!"
     m "Oh...well that sucks. I hope that doesn't happen."
     k "Wait. I'm so sorry. I wasn't paying attention and I just randomly responsed. What were you asking?"
-    hide marlon unimpressed
+    show marlon neutral
     m "I asked whether or not you think we'd drift apart if...you started dating someone."
     k "What! No! Of course not!"
     return
@@ -999,7 +1002,7 @@ label m_no_maze:
     k "About?"
     m "About that fact that you won't let our friendship drift away if you end up, you know, dating and spending your time with someone else."
     k "Of course not!"
-    hide marlon blush
+    show marlon neutral
     return
 
 label m_missed_maze:
@@ -1008,7 +1011,7 @@ label m_missed_maze:
     m "I asked if you think that...{p=3.0}we'll drift apart as friends if you start dating and spending time with someone else."
     k "What! No! Of course not!"
     "Marlon smiles at me and exhales a deep breathe. He looks relieved."
-    hide marlon blush
+    show marlon neutral
     m "I'm glad."
     return
 
@@ -1017,7 +1020,7 @@ label m_spike_maze:
     show marlon eyebrows
     m "I KNEW IT!"
     k "There's no way you could've known."
-    hide marlon eyebrows
+    show marlon neutral
     m "Nope! I called it. I am soooooo good at this. I knew it I knew I knew."
     k "She's been really nice to me since all this craziness went down. She's been supportive."
     m "You have my complete approval. If you ever need a wingman...{size=-10}because I have wings{/size}...you just let me know."
@@ -1029,7 +1032,7 @@ label m_looking_maze:
     show marlon sigh
     m "I get that. You gotta find the right person and that's not something you should rush."
     k "Yeah. Exactly. I'm just getting used to this new reality. Maybe once that happens, I'll start thinking romance."
-    hide marlon sigh
+    show marlon neutral
     m "If you ever need a wingman...{size=-10}because I have wings{/size}...you just let me know."
     k "Thanks, Marlon."
     return
@@ -1040,7 +1043,7 @@ label m_notsaying_maze:
     m "Whoa whoa whoa, you don't think I can keep a secret."
     k "Weeeeelllllll..."
     m "Fine. I know I'm not the BEST at keeping a secret, but I like to think I can keep a secrets when it counts."
-    hide marlon what
+    show marlon neutral
     return
 
 label m_greattime_maze:
@@ -1048,7 +1051,7 @@ label m_greattime_maze:
     "Marlon beams at me. For a second, I think I begin to see him {i}actually{/i} glow. Maybe it was just the sunlight though."
     show marlon blush
     m "Let's get out of here and never look back!"
-    hide marlon blush
+    show marlon neutral
     return
 
 label m_leave_maze:
@@ -1056,21 +1059,21 @@ label m_leave_maze:
     "Marlon looks hurt, as though I squashed his fun. It hadn't occurred to me that he was having such a good time, especially when he seemed so disinterested at the beginning."
     show marlon unimpressed
     m "Let's go."
-    hide marlon unimpressed
+    show marlon neutral
     return
 
 label m_again_maze:
-    k "This was SO FUN. We should turn around and do this while thing again."
+    k "This was SO FUN. We should turn around and do this whole thing again."
     m "Hahaha."
     show marlon unimpressed
     m "No."
     m "Please. Let's not do that."
-    hide marlon unimpressed
+    show marlon neutral
     k "Okay. Well, I had a great time being lost with you."
     "Marlon beams at me. For a second, I think I begin to see him {i}actually{/i} glow. Maybe it was just the sunlight though."
     show marlon blush
     m "Let's get out of here and never look back!"
-    hide marlon blush
+    show marlon neutral
     return
 
 label Spikemazeconvo:
