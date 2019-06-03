@@ -871,7 +871,6 @@ label m_maze_withMaron:
             call m_again_maze from _call_m_again_maze
 
     show bg hedge one
-    "Marlon friend score: [marlon_friend_score]"
     hide marlon neutral
     show otis neutral
     if otis_visited == True:
@@ -1243,7 +1242,6 @@ label Spikemazeconvo:
             call s_laugh_maze from _call_s_laugh_maze
 
     show bg hedge one
-    "Spike friend score: [spike_friend_score]"
     hide spike neutral
     show otis neutral
     if otis_visited == True:
