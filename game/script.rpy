@@ -767,6 +767,8 @@ label m_maze_withMaron:
     show marlon neutral
 
     $ Companion = "Marlon"
+    $ game_state['current_location'] = 'maze'
+    show screen maze_tracker(game_state)
 
     "Turns out, this maze is more than just a family-friendly walk in the park. The imposing hedge walls feel unwelcoming despite the beautiful flora scattered about."
     "Marlon makes himself comfortable on my shoulder and yawns, obviously disinterested in our current predicament. We turn a few corners before I realize I have absolutely no idea where we are."
@@ -788,6 +790,7 @@ label m_maze_withMaron:
             call m_eileen_maze from _call_m_eileen_maze
 
     show bg hedge two
+    show screen maze_tracker(game_state)
     "I peer around intently trying to sense my way to the middle of the maze. I'm laughably bad at it and it shows. Marlon begins to laugh."
 
     menu: #2/7
@@ -805,6 +808,7 @@ label m_maze_withMaron:
             call m_withyou_maze from _call_m_withyou_maze
 
     show bg hedge three
+    show screen maze_tracker(game_state)
     m "Speaking of your navigational skills, remember that one time we went camping with Corliss and Freya? That was amazing. We went into the Weirdwood and you said you knew how to get to a hot spring."
     m "Instead, we walked for {size=+10}HOURS{/size}. The deeper we went into the woods, the louder the spirits howled. They were soooo ANGRY! It was hilarious! We thought we'd never return, but luckily The Seer's Hut was walking around that night."
 
@@ -822,6 +826,7 @@ label m_maze_withMaron:
             call m_somethingelse_maze from _call_m_somethingelse_maze
 
     show bg hedge two
+    show screen maze_tracker(game_state)
     m "How would you describe your aesthetic?"
 
     menu: #4/7
@@ -838,6 +843,7 @@ label m_maze_withMaron:
             call m_confused_maze from _call_m_confused_maze
 
     show bg hedge three
+    show screen maze_tracker(game_state)
     "Marlon starts going on about aesthetics and mentions something about being sparkly graveyard chic. Surprisingly, it looks as through we've made progress. The grass beneath us becomes more manicured, which I can take to mean that we're getting closer to the center of the maze."
     "My mind wanders for a moment while I think about what we'll find at the center of the maze. Lots of work obviously went into building this thing, so is it supposed to be keeping us out...or keeping something in?"
     m "Kai, what do you think? Yes or no?"
@@ -857,6 +863,7 @@ label m_maze_withMaron:
             call m_missed_maze from _call_m_missed_maze
 
     show bg hedge one
+    show screen maze_tracker(game_state)
     m "Do you have your eyes on anyone right now?"
 
     menu: #6/7
@@ -873,6 +880,7 @@ label m_maze_withMaron:
             call m_notsaying_maze from _call_m_notsaying_maze
 
     show bg hedge three
+    show screen maze_tracker(game_state)
     "We walk for just a bit longer and the center of the maze seems to be in sight. Marlon and I high-five excitedly, knowing that we've bested the awfully tedious hedge maze."
     k "We did! We actually did it!"
     m "And I thought I was going to have to carry you out of here."
@@ -893,6 +901,7 @@ label m_maze_withMaron:
             call m_again_maze from _call_m_again_maze
 
     show bg hedge one
+    show screen maze_tracker(game_state)
 
     call maze_wrap_up from _call_maze_wrap_up
 
@@ -943,7 +952,7 @@ label m_unicorn_maze:
     show marlon eyebrows
     m "YES! IT WAS CARNAGE! Mothmen have never gotten closer to beating unicorns at roller derby than in 1983. {p=2.0} Some say we never will..."
     show marlon neutral
-    "Maron stares wistfully into the distance and I can only assume images of roller derby fill his mind's eye. Maybe talking about something else will clear his mind."
+    "Marlon stares wistfully into the distance and I can only assume images of roller derby fill his mind's eye. Maybe talking about something else will clear his mind."
     return
 
 label m_poop_maze:
@@ -1151,6 +1160,7 @@ label m_again_maze:
 
 label Spikemazeconvo:
     $ Companion = "Spike"
+    $ game_state['current_location'] = 'maze'
     show bg hedge one
     show spike neutral
     show screen maze_tracker(game_state)
