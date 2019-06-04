@@ -972,6 +972,8 @@ screen cachet(game_state):
 screen maze_tracker(game_state):
     zorder 70
 
+    text "Fun-o-meter:" xpos 1500 ypos 170 size 25
+
     bar:
         value game_state['maze_goods']
         range 7

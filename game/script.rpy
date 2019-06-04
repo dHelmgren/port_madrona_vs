@@ -1,9 +1,6 @@
 # The script of the game goes in this file.
 
 # Define character affection stats
-default marlon_friend_score = 0
-default spike_friend_score = 10
-
 # define various states the player may trigger
 default game_state = {
     'morning_phone_texts' : [0,0], #Marlon \ Spike
@@ -219,9 +216,12 @@ label m_invite:
             jump m_poop
 
         "{image=emoji/unicorn_emoji.png} If you insist":
+            $ game_state['marlon_friend_score'] -= 5
+            $ renpy.notify("Marlon will remember that.")
             jump m_unicorn
 
         "{image=emoji/eggplant_emoji.png} Absolutely yes":
+            $ game_state["marlon_friend_score"] += 5
             jump m_eggplant
 
 label m_poop:
@@ -264,6 +264,7 @@ label Spiketextconvo:
         "{image=emoji/sadfrown_emoji.png} Probably sulk":
             call s_sulk_text from _call_s_sulk_text
         "{image=emoji/wink_emoji.png} Spend time with you":
+
             call s_wink_text from _call_s_wink_text
 
     s "wanna meet up? i have time before bball practice this afternoon {image=emoji/sweat_emoji.png}"
@@ -622,12 +623,15 @@ label Spikeparkmenu:
         show screen phone_pop_but(game_state)
     menu:
         "{image=emoji/tree_emoji.png} So you're a lumberjack?":
+            hide screen phone_pop_but
             jump s_lumberjack_park
         "{image=emoji/basicfrown_emoji.png} What's the Weirdwood?":
+            hide screen phone_pop_but
             jump s_weirdwood_park
         # "{image=emoji/sad_emoji.png} Show her the photo of the car crash" if s_photo_park == False:
         #     jump s_photo_park
         "{image=emoji/thumbsup_emoji.png} Let's move on.":
+            hide screen phone_pop_but
             jump s_moveon_park
 
 label SpikePhotoPark:
@@ -648,6 +652,7 @@ label SpikePhotoPark:
     k "That must mean {i}something{/i}..."
     s "Don't worry, Kai. I'll protect you—even if it means that I must attack."
 
+    hide screen phone_pop_but
     jump Spikeparkmenu
 
 label s_lumberjack_park:
@@ -1484,6 +1489,7 @@ label maze_wrap_up:
         "Mazes are cancelled."
 
     hide screen phone_pop_but
+    hide screen maze_tracker
     return
 
 label Otis_Maze_Convo:
