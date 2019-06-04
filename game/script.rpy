@@ -619,7 +619,7 @@ label s_park_intro:
 
 label Spikeparkmenu:
     if s_photo_park == False:
-        show screen phone_pop_but
+        show screen phone_pop_but(game_state)
     menu:
         "{image=emoji/tree_emoji.png} So you're a lumberjack?":
             jump s_lumberjack_park
