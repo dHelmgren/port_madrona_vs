@@ -890,12 +890,12 @@ screen in_game_phone(game_state):
         if game_state['morning_phone_texts'][0] == 0 or game_state['morning_phone_texts'][1] == 0:
             hotspot (997, 139, 403, 243) action ShowMenu('phone_messages', game_state) #texts
         hotspot (1424, 139, 403, 240) action ShowMenu('cachet', game_state) #Cache
-        hotspot (997, 394, 404, 243) action ShowMenu('save') #
+        # hotspot (997, 394, 404, 243) action ShowMenu('save') #
         if game_state['can_map_travel']:
             hotspot (1424, 395, 404, 238) action ShowMenu('phone_map', game_state) #Map
         if game_state['current_location'] == 'park':
             hotspot (999, 650, 402, 239) action Start('SpikePhotoPark') #BL
-        hotspot (1426, 650, 402, 244) action Start('maze_center') #BR
+        hotspot (1426, 650, 402, 244) action ShowMenu('preferences') #BR
         hotspot (1186, 928, 450, 108) action Return() #Back
 
 screen phone_messages(game_state):

@@ -636,23 +636,18 @@ label Spikeparkmenu:
 
 label SpikePhotoPark:
     $ s_photo_park = True
+    hide screen phone_pop_but
     #This is where code magic goes to show Spike the photo on Kai's phone
     k "I took a photo of my car accident a couple days ago. Does it make any sense to you?"
     show spike concern
     s "Oh no. Thank the moon you're okay, Kai, that's so scary."
-    hide spike concern
-    show spike neutral
     k "The thing is, I don't remember any of it. Or anything before it, either."
     k "I was hoping you had some insight for me based on this photo evidence?"
-    hide spike neutral
-    show spike concern
     s "Sorry, pup, I got nothin'. But I definitely haven't seen that car before."
+    k "That must mean {i}something{/i}..."
     hide spike concern
     show spike neutral
-    k "That must mean {i}something{/i}..."
     s "Don't worry, Kai. I'll protect you—even if it means that I must attack."
-
-    hide screen phone_pop_but
     jump Spikeparkmenu
 
 label s_lumberjack_park:
@@ -997,8 +992,8 @@ label m_withyou_maze:
     k "Hey, it's not so bad if we're stuck here forever right? At least I'm here with you."
     show marlon blush
     m "Hahaha Kai, there is no one else I'd prefer to be stuck in a dumb maze with."
-    m "Except that Trashy Cryptids is on at eight tonight, so I gotta be home for that, so let's get lost together some other time."
     show marlon neutral
+    m "Except that Trashy Cryptids is on at eight tonight, so I gotta be home for that, so let's get lost together some other time."
     k "Haha, okay. I will use my lackluster navigational skills to get us out."
     return
 
