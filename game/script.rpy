@@ -633,6 +633,7 @@ label Spikeparkmenu:
 label SpikePhotoPark:
     $ s_photo_park = True
     #This is where code magic goes to show Spike the photo on Kai's phone
+    k "I took a photo of my car accident a couple days ago. Does it make any sense to you?"
     show spike concern
     s "Oh no. Thank the moon you're okay, Kai, that's so scary."
     hide spike concern
