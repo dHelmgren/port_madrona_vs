@@ -8,7 +8,10 @@ default spike_friend_score = 10
 default game_state = {
     'morning_phone_texts' : [0,0], #Marlon \ Spike
     'current_location' : 'home',
-    'can_map_travel' : False
+    'can_map_travel' : False,
+    'marlon_friend_score': 0,
+    'spike_friend_score': 10,
+    'maze_goods': 0 #max 7
 }
 
 default morning_phone_texts = [0,0]
@@ -615,20 +618,21 @@ label s_park_intro:
     jump Spikeparkmenu
 
 label Spikeparkmenu:
+    if s_photo_park == False:
+        show screen phone_pop_but
     menu:
         "{image=emoji/tree_emoji.png} So you're a lumberjack?":
             jump s_lumberjack_park
         "{image=emoji/basicfrown_emoji.png} What's the Weirdwood?":
             jump s_weirdwood_park
-        "{image=emoji/sad_emoji.png} Show her the photo of the car crash" if s_photo_park == False:
-            jump s_photo_park
+        # "{image=emoji/sad_emoji.png} Show her the photo of the car crash" if s_photo_park == False:
+        #     jump s_photo_park
         "{image=emoji/thumbsup_emoji.png} Let's move on.":
             jump s_moveon_park
 
-label s_photo_park:
+label SpikePhotoPark:
     $ s_photo_park = True
     #This is where code magic goes to show Spike the photo on Kai's phone
-    hide spike neutral
     show spike concern
     s "Oh no. Thank the moon you're okay, Kai, that's so scary."
     hide spike concern
@@ -774,6 +778,7 @@ label m_maze_withMaron:
             call m_poop_maze from _call_m_poop_maze
         "{image=emoji/basicsmile_emoji.png} Talk about Eileen":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call m_eileen_maze from _call_m_eileen_maze
 
     show bg hedge two
@@ -783,12 +788,14 @@ label m_maze_withMaron:
         m "Need help?"
         "{image=emoji/sad_emoji.png} Yes I need help":
             #GOOD reponse
+            $ game_state['maze_goods'] += 1
             call m_yeshelp_maze from _call_m_yeshelp_maze
         "{image=emoji/eyeroll_emoji.png} No, I can do this myself":
             #BAD response
             call m_nohelp_maze from _call_m_nohelp_maze
         "{image=emoji/heart_emoji.png} I like being stuck here with you":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call m_withyou_maze from _call_m_withyou_maze
 
     show bg hedge three
@@ -798,9 +805,11 @@ label m_maze_withMaron:
     menu: #3/7
         "{image=emoji/basicsmile_emoji.png} The Seer's Hut?":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call m_seershut_maze from _call_m_seershut_maze
         "{image=emoji/laugh_emoji.png} What happened next?":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call m_whathappened_maze from _call_m_whathappened_maze
         "{image=emoji/mad_emoji.png} Let's talk about something else":
             #BAD reponse
@@ -812,9 +821,11 @@ label m_maze_withMaron:
     menu: #4/7
         "{image=emoji/peach_emoji.png} Summoning spirits while dressed in glow-in-the-dark booty shorts":
             #GOOD reponse
+            $ game_state['maze_goods'] += 1
             call m_booty_maze from _call_m_booty_maze
         "{image=emoji/wolf_emoji.png} Riding a giant wolf into an apocalyptic sunset":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call m_sunset_maze from _call_m_sunset_maze
         "{image=emoji/tableflip_emoji.png} Confused and barely functioning humanoid":
             #BAD response
@@ -832,9 +843,11 @@ label m_maze_withMaron:
             call m_yes_maze from _call_m_yes_maze
         "{image=emoji/eyeroll_emoji.png} No":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call m_no_maze from _call_m_no_maze
         "{image=emoji/basicfrown_emoji.png} I missed everything you said":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call m_missed_maze from _call_m_missed_maze
 
     show bg hedge one
@@ -843,9 +856,11 @@ label m_maze_withMaron:
     menu: #6/7
         "{image=emoji/wolf_emoji.png} Spike":
             #GOOD reponse
+            $ game_state['maze_goods'] += 1
             call m_spike_maze from _call_m_spike_maze
         "{image=emoji/wink_emoji.png} Still looking":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call m_looking_maze from _call_m_looking_maze
         "{image=emoji/eyeroll_emoji.png} I'm not saying":
             #BAD response
@@ -861,16 +876,20 @@ label m_maze_withMaron:
     menu: #7/7
         "{image=emoji/opensmile_emoji.png} I had a great time with you too":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call m_greattime_maze from _call_m_greattime_maze
         "{image=emoji/eyeroll_emoji.png} Let's just get out of here":
             #BAD response
             call m_leave_maze from _call_m_leave_maze
         "{image=emoji/wink_emoji.png} Let's do the maze again":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call m_again_maze from _call_m_again_maze
 
     show bg hedge one
-    "Marlon friend score: [marlon_friend_score]"
+
+    call maze_wrap_up from _call_maze_wrap_up
+
     hide marlon neutral
     show otis neutral
     if otis_visited == True:
@@ -1128,6 +1147,7 @@ label Spikemazeconvo:
     $ Companion = "Spike"
     show bg hedge one
     show spike neutral
+    show screen maze_tracker(game_state)
 
     "Spike and I start to walk side by side through the maze, the seemingly endless labyrinth looming before us as we take each step."
     "Spike sniffs once, twice, deeply inhaling. I try to sniff, as well, only smelling the scents of the park: the freshly upturned dirt below our feet, the almost pungent aromas of the local flora, and the droppings left by various animals."
@@ -1136,16 +1156,19 @@ label Spikemazeconvo:
     menu: #1/7
         "{image=emoji/wolf_emoji.png} Ask about wolf senses":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call s_wolf_maze from _call_s_wolf_maze
         "{image=emoji/poop_emoji.png} Find your own way":
             #BAD response
             call s_poop_maze from _call_s_poop_maze
         "{image=emoji/basicsmile_emoji.png} Talk about basketball":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call s_basketball_maze from _call_s_basketball_maze
 
     show bg hedge two
     show spike laugh
+    show screen maze_tracker(game_state)
     s "In the pack, I teach my pups to support each other, lift up their teammates, in order to succeed. Maybe we should follow my own advice—literally!"
     hide spike laugh
     show spike neutral
@@ -1155,24 +1178,29 @@ label Spikemazeconvo:
     menu: #2/7
         "{image=emoji/thumbsup_emoji.png} Agree":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call s_agree_maze from _call_s_agree_maze
         "{image=emoji/basicfrown_emoji.png} Disagree":
             #BAD response
             call s_disagree_maze from _call_s_disagree_maze
         "{image=emoji/basicsmile_emoji.png} Talk about teenagers":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call s_teenagers_maze from _call_s_teenagers_maze
 
     show bg hedge three
     show spike neutral
+    show screen maze_tracker(game_state)
     "Spike starts talking about the hedges themselves, monologuing about the types of trees and shrubbery typically used in the construction. There's a pause in her speech."
 
     menu: #3/7
         "{image=emoji/hearteyes_emoji.png} Listen intently":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call s_listen_maze from _call_s_listen_maze
         "{image=emoji/tree_emoji.png} Talk about trees":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call s_tree_maze from _call_s_tree_maze
         "{image=emoji/unicorn_emoji.png} Talk about unicorns":
             #BAD response
@@ -1180,6 +1208,7 @@ label Spikemazeconvo:
 
     show bg hedge two
     show spike neutral
+    show screen maze_tracker(game_state)
     s "Do you have a favorite tree?"
 
     menu: #4/7
@@ -1188,13 +1217,16 @@ label Spikemazeconvo:
             call s_no_maze from _call_s_no_maze
         "{image=emoji/wink_emoji.png} Whatever tree you like":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call s_wink_maze from _call_s_wink_maze
         "{image=emoji/tree_emoji.png} Madrona tree":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call s_madrona_maze from _call_s_madrona_maze
 
     show bg hedge three
     show spike concern
+    show screen maze_tracker(game_state)
     "She's starting to freak out a little. I should say something."
     hide spike concern
     show spike neutral
@@ -1202,21 +1234,25 @@ label Spikemazeconvo:
     menu: #5/7
         "{image=emoji/heart_emoji.png} Offer support":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call s_support_maze from _call_s_support_maze
         "{image=emoji/tableflip_emoji.png} Demand focus":
             #BAD response
             call s_demand_maze from _call_s_demand_maze
         "{image=emoji/basicfrown_emoji.png} Express concern":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call s_concern_maze from _call_s_concern_maze
 
     show bg hedge one
     show spike neutral
+    show screen maze_tracker(game_state)
     s "I think... it's coming from the center of the maze. Let's follow it."
 
     menu: #6/7
         "{image=emoji/thumbsup_emoji.png} Agree":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call s_agree2_maze from _call_s_agree2_maze
         "{image=emoji/basicfrown_emoji.png} Disagree":
             #BAD response
@@ -1227,22 +1263,28 @@ label Spikemazeconvo:
 
     show bg hedge three
     show spike neutral
+    show screen maze_tracker(game_state)
     "After a while, Spike says that we're getting closer. She explains that whatever we find at the center could be bad, very bad, but she'll protect me."
     s "Do you trust me?"
 
     menu: #7/7
         "{image=emoji/thumbsup_emoji.png} Yes":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call s_yes_maze from _call_s_yes_maze
         "{image=emoji/basicfrown_emoji.png} No":
             #BAD response
             call s_no2_maze from _call_s_no2_maze
         "{image=emoji/laugh_emoji.png} Laugh it off":
             #GOOD response
+            $ game_state['maze_goods'] += 1
             call s_laugh_maze from _call_s_laugh_maze
 
     show bg hedge one
-    "Spike friend score: [spike_friend_score]"
+    show screen maze_tracker(game_state)
+ 
+    call maze_wrap_up from _call_maze_wrap_up_1
+
     hide spike neutral
     show otis neutral
     if otis_visited == True:
@@ -1420,18 +1462,44 @@ label s_laugh_maze:
     "Spike just looks fondly at me and shakes her head. She takes my hand in hers, and we turn the corner together."
     return
 
+label maze_wrap_up:
+    if Companion == 'Spike':
+        $ game_state['spike_friend_score'] += game_state['maze_goods'] * 5
+    else:
+        $ game_state['marlon_friend_score'] += game_state['maze_goods'] * 5
+    show screen phone_pop_but(game_state)
+
+    "We reached the end of the maze."
+
+    if game_state['maze_goods'] >= 6:
+        "[Companion] and I had an amazing time!"
+        "..."
+        "Oh god I feel like I just stepped on a rake."
+    elif game_state['maze_goods'] >= 3:
+        "I think [Companion] had fun."
+        "Not a total waste of an afternoon."
+    else:
+        "This was a mistake."
+        "Mazes are cancelled."
+
+    hide screen phone_pop_but
+    return
+
 label Otis_Maze_Convo:
     hide spike neutral
     hide marlon neutral
     show otis neutral
 
-    k "How did you get here so fast?! Didn't I see you at the entrance before I came in?"
-    show otis explain
-    o "Oh, I know my way around this place quite well. You see, the maze is the home of my imagination."
-    o "As a child, I would run through the maze seeing myself in the Great Hall of the People or flying above the Karnak Temple Complex. It was my kingdom. It was anything I needed it to be."
-    hide otis explain
-    show otis neutral
-    k "Sounds like a nice place."
+    if otis_visited:
+        k "How did you get here so fast?! Didn't I see you at the entrance before I came in?"
+        show otis explain
+        o "Oh, I know my way around this place quite well. You see, the maze is the home of my imagination."
+        o "As a child, I would run through the maze seeing myself in the Great Hall of the People or flying above the Karnak Temple Complex. It was my kingdom. It was anything I needed it to be."
+        hide otis explain
+        show otis neutral
+        k "Sounds like a nice place."
+    else:
+        k "Hi there! You run the festival and put together this maze, right?"
     o "Indeed. Would you like to hear about the history of the Madrona tree?"
 
     menu:

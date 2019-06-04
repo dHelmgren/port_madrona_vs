@@ -888,11 +888,12 @@ screen in_game_phone(game_state):
         yalign 0.5
 
         hotspot (997, 139, 403, 243) action ShowMenu('phone_messages', game_state) #texts
-        hotspot (1424, 139, 403, 240) action ShowMenu('save') #Cache
+        hotspot (1424, 139, 403, 240) action ShowMenu('cachet', game_state) #Cache
         hotspot (997, 394, 404, 243) action ShowMenu('save') #
         if game_state['can_map_travel']:
             hotspot (1424, 395, 404, 238) action ShowMenu('phone_map', game_state) #Map
-        hotspot (999, 650, 402, 239) action ShowMenu('save') #BL
+        if game_state['current_location'] == 'park':
+            hotspot (999, 650, 402, 239) action Start('SpikePhotoPark') #BL
         hotspot (1426, 650, 402, 244) action Start('maze_center') #BR
         hotspot (1186, 928, 450, 108) action Return() #Back
 
@@ -910,9 +911,9 @@ screen phone_messages(game_state):
         yalign 0.5
         
         if game_state['morning_phone_texts'][1] == 0:
-            hotspot (999, 138, 831, 241) action Start('Spiketextconvo')
+            hotspot (987, 105, 898, 289) action Start('Spiketextconvo')
         if game_state['morning_phone_texts'][0] == 0:
-            hotspot (997, 395, 831, 240) action Start('Marlontextconvo')
+            hotspot (982, 390, 900, 276) action Start('Marlontextconvo')
         hotspot (1186, 930, 450, 108) action ShowMenu('in_game_phone', game_state)
 
 screen phone_map(game_state):
@@ -948,6 +949,22 @@ screen phone_pop_but(game_state):
         xpos 1500
         ypos 700
 
+screen cachet(game_state):
+    tag menu
+    zorder 90
+
+    imagemap:
+        idle "game_phone/phone_cache_idle.PNG"
+        hover "game_phone/phone_cache_hover.PNG"
+        ground "game_phone/phone_cache_ground.PNG"
+        xalign 0.5
+        yalign 0.5
+    
+        hotspot (1186, 930, 450, 108) action ShowMenu('in_game_phone', game_state)
+        
+    text "Spike Influence: [game_state[spike_friend_score]]" size 40 xalign 0.81 yalign 0.25
+    text "Marlon Influence: [game_state[marlon_friend_score]]" size 40 xalign 0.81 yalign 0.25 yoffset 175
+
 ## Maze Progress Trackert ######################################################
 ##
 ## This is the visual representation of how the duo is doing in the maze
@@ -960,6 +977,7 @@ screen maze_tracker(game_state):
         range 7
         xpos 1500
         ypos 200
+        xmaximum 200
 
 ## History screen ##############################################################
 ##
