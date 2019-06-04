@@ -887,7 +887,8 @@ screen in_game_phone(game_state):
         xalign 0.5
         yalign 0.5
 
-        hotspot (997, 139, 403, 243) action ShowMenu('phone_messages', game_state) #texts
+        if game_state['morning_phone_texts'][0] == 0 or game_state['morning_phone_texts'][1] == 0:
+            hotspot (997, 139, 403, 243) action ShowMenu('phone_messages', game_state) #texts
         hotspot (1424, 139, 403, 240) action ShowMenu('cachet', game_state) #Cache
         hotspot (997, 394, 404, 243) action ShowMenu('save') #
         if game_state['can_map_travel']:

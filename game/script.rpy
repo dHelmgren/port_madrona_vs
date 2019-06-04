@@ -467,7 +467,7 @@ label m_kai_weird_greetings:
 
 label Marlonparkmenu:
     menu:
-        "{image=emoji/opensmile_emoji.png} Tell me about you." if trash_tv_topics[0] == 0 | trash_tv_topics[1] == 0:
+        "{image=emoji/opensmile_emoji.png} Tell me about you." if trash_tv_topics[0] == 0 or trash_tv_topics[1] == 0:
             jump m_aboutMarlon
         "{image=emoji/basicsmile_emoji.png} Tell me about The Glow.":
             jump m_aboutGlow
